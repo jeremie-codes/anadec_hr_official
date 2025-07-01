@@ -80,4 +80,8 @@ class DashboardController extends Controller
             'communiques'
         ));
     }
+
+    public function getIndex () {
+        dd('kkdkdkd');
+    }
 }

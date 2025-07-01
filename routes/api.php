@@ -15,34 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route d'authentification API
-Route::post('login', [AuthController::class, 'apiLogin']);
+Route::middleware('api')->group(function () {
+    Route::get('/index', [DashboardController::class, 'getIndex']);
 
-// Routes protégées par sanctum
-Route::middleware('auth:sanctum')->group(function () {
-    // Tableau de bord
-    Route::get('dashboard/stats', [DashboardController::class, 'stats']);
-    
-    // Employés
-    Route::get('employees', [EmployeeController::class, 'apiIndex']);
-    Route::get('employees/{employee}', [EmployeeController::class, 'apiShow']);
-    Route::post('employees', [EmployeeController::class, 'apiStore'])
-        ->middleware('can:manage-employees');
-    
-    // Congés
-    Route::get('leaves', [LeaveRequestController::class, 'apiIndex']);
-    Route::post('leaves', [LeaveRequestController::class, 'apiStore']);
-    Route::patch('leaves/{leaveRequest}/status', [LeaveRequestController::class, 'apiUpdateStatus']);
-    
-    // Présences
-    Route::get('attendance/today', [AttendanceController::class, 'apiTodayAttendance']);
-    Route::post('attendance', [AttendanceController::class, 'apiMarkAttendance'])
-        ->middleware('can:manage-attendance');
-    
-    // Fournitures
-    Route::get('supplies/requests', [SupplyController::class, 'apiRequests']);
-    Route::post('supplies/requests', [SupplyController::class, 'apiCreateRequest']);
-    Route::patch('supplies/requests/{supplyRequest}/status', [SupplyController::class, 'apiUpdateStatus'])
-        ->middleware('can:updateStatus,supplyRequest');
-    
-    Route::get('supplies/stock', [SupplyController::class, 'apiStockItems']);
 });
+
