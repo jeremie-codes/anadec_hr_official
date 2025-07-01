@@ -92,10 +92,10 @@
 
                 <!-- Gestion des Directions et Services -->
                 <div class="space-y-1">
-                    <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
+                    <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
                             onclick="toggleSubmenu('structure-submenu')">
                         <i class="bx bx-buildings text-xl"></i>
-                        <span class="sidebar-text ml-3">Structure Organisationnelle</span>
+                        <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
                         <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
                     </button>
                     <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') ? '' : 'hidden' }}">
