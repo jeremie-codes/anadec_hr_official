@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Tableau de Bord - ANADEC RH')
+{{-- @section('title', 'Tableau de Bord - ANADEC RH')
 @section('page-title', 'Tableau de Bord')
-@section('page-description', 'Vue d\'ensemble des statistiques RH')
+@section('page-description', 'Vue d\'ensemble des statistiques RH') --}}
 
 @section('content')
 <div class="space-y-6">

@@ -36,6 +36,9 @@ Route::middleware('guest')->group(function () {
 // Routes protégées
 Route::middleware('auth')->group(function () {
 
+    Route::get('/conge/{id}/pdf', [App\Http\Controllers\CongeController::class, 'generatePdf'])->name('conge.pdf');
+
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Dashboard principal
@@ -132,6 +135,10 @@ Route::middleware('auth')->group(function () {
         // Interface d'approbation directeur
         Route::get('/approbation-directeur/list', [CongeController::class, 'approbationDirecteur'])->name('approbation-directeur');
         Route::post('/{conge}/approuver-directeur', [CongeController::class, 'approuverDirecteur'])->name('approuver-directeur');
+
+        // Interface d'approbation sous directeur
+        Route::get('/approbation-sd/list', [CongeController::class, 'approbationSousDirecteur'])->name('approbation-sd');
+        Route::post('/{conge}/approuver-sd', [CongeController::class, 'approuverSousDirecteur'])->name('approuver-sd');
 
         // Interface de validation DRH
         Route::get('/validation-drh/list', [CongeController::class, 'validationDrh'])->name('validation-drh');

@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Connexion - ANADEC RH</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -46,7 +46,7 @@
         <div class="bg-white rounded-xl shadow-2xl p-8">
             <form class="space-y-6" method="POST" action="{{ route('login') }}">
                 @csrf
-                
+
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">
                         Adresse e-mail

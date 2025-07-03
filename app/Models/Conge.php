@@ -19,11 +19,14 @@ class Conge extends Model
         'justificatif',
         'type',
         'statut',
+        'commentaire_sd',
         'commentaire_directeur',
         'commentaire_drh',
+        'date_approbation_sd',
         'date_approbation_directeur',
         'date_validation_drh',
         'approuve_par_directeur',
+        'approuve_par_sd',
         'valide_par_drh',
         'traiter_par_rh',
     ];
@@ -32,6 +35,7 @@ class Conge extends Model
         'date_debut' => 'date',
         'date_fin' => 'date',
         'date_approbation_directeur' => 'date',
+        'date_approbation_sd' => 'date',
         'date_validation_drh' => 'date',
     ];
 
@@ -44,6 +48,11 @@ class Conge extends Model
     public function approbateurDirecteur()
     {
         return $this->belongsTo(User::class, 'approuve_par_directeur');
+    }
+
+    public function approbateurSousDirecteur()
+    {
+        return $this->belongsTo(User::class, 'approuve_par_sd');
     }
 
     public function validateurDrh()
@@ -62,8 +71,9 @@ class Conge extends Model
         return match($this->statut) {
             'en_attente' => 'bg-yellow-100 text-yellow-800',
             'approuve_directeur' => 'bg-blue-100 text-blue-800',
+            'approuve_sd' => 'bg-gray-100 text-gray-700',
             'valide_drh' => 'bg-green-100 text-green-800',
-            'traiter_rh' => 'bg-yellow-500 text-yellow-500',
+            'traiter_rh' => 'bg-yellow-200 text-yellow-900',
             'rejete' => 'bg-red-100 text-red-800',
             default => 'bg-gray-100 text-gray-800',
         };
@@ -74,6 +84,7 @@ class Conge extends Model
         return match($this->statut) {
             'en_attente' => 'En attente',
             'approuve_directeur' => 'Approuvé Directeur',
+            'approuve_sd' => 'Approuvé Sous Directeur',
             'valide_drh' => 'Validé DRH',
             'traiter_rh' => 'Traité RH',
             'rejete' => 'Rejeté',
@@ -86,6 +97,7 @@ class Conge extends Model
         return match($this->statut) {
             'en_attente' => 'bx-time-five',
             'approuve_directeur' => 'bx-check',
+            'approuve_sd' => 'bx-check',
             'valide_drh' => 'bx-check-double',
             'traiter_rh' => 'bx-check',
             'rejete' => 'bx-x',
@@ -139,6 +151,11 @@ class Conge extends Model
     public function scopeApprouveDirecteur($query)
     {
         return $query->where('statut', 'approuve_directeur');
+    }
+
+    public function scopeApprouveSousDirecteur($query)
+    {
+        return $query->where('statut', 'approuve_sd');
     }
 
     public function scopeTraiterRh($query)
@@ -200,8 +217,13 @@ class Conge extends Model
         return $this->statut === 'en_attente';
     }
 
-    public function peutEtreValideParDrh()
+    public function peutEtreApprouveParSousDirecteur()
     {
         return $this->statut === 'traiter_rh';
+    }
+
+    public function peutEtreValideParDrh()
+    {
+        return $this->statut === 'approuve_sd';
     }
 }

@@ -37,6 +37,11 @@
             </div>
 
             <div class="flex space-x-3">
+                <a href="{{ route('conge.pdf', $conge->id) }}"
+                   class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center">
+                    <i class="bx bx-printer mr-2"></i>Imprimer
+                </a>
+
                 @if($conge->peutEtreModifie())
                     <a href="{{ route('conges.edit', $conge) }}"
                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
@@ -163,10 +168,10 @@
                         </div>
                     </div>
 
-                    <!-- Étape 3: Approbation directeur -->
+                    <!-- Étape 3: Approbation RH -->
                     <div class="flex items-center space-x-3">
-                        @if($conge->statut === 'en_attente')
-                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                        @if(in_array($conge->statut, ['en_attente', 'approuve_directeur']))
+                            <div class="w-8 h-8 bg-yellow-300 rounded-full flex items-center justify-center">
                                 <i class="bx bx-time text-white"></i>
                             </div>
                         @elseif(in_array($conge->statut, ['traiter_rh', 'valide_drh']))
@@ -191,10 +196,38 @@
                         </div>
                     </div>
 
+                    <!-- Étape 4: Validation S/D -->
+                    <div class="flex items-center space-x-3">
+                        @if(in_array($conge->statut, ['en_attente', 'approuve_directeur', 'traiter_rh']))
+                            <div class="w-8 h-8 bg-yellow-300 rounded-full flex items-center justify-center">
+                                <i class="bx bx-time text-white"></i>
+                            </div>
+                        @elseif($conge->statut == 'approbation_sd')
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="bx bx-check text-white"></i>
+                            </div>
+                        @else
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                                <i class="bx bx-x text-white"></i>
+                            </div>
+                        @endif
+                        <div class="flex-1">
+                            <p class="font-medium text-gray-900">Approbation S/D</p>
+                            @if($conge->date_validation_drh)
+                                <p class="text-sm text-gray-600">{{ $conge->date_validation_drh->format('d/m/Y à H:i') }}</p>
+                                @if($conge->validateurDrh)
+                                    <p class="text-xs text-gray-500">Par {{ $conge->validateurDrh->name }}</p>
+                                @endif
+                            @else
+                                <p class="text-sm text-gray-500">En attente</p>
+                            @endif
+                        </div>
+                    </div>
+
                     <!-- Étape 4: Validation DRH -->
                     <div class="flex items-center space-x-3">
                         @if(in_array($conge->statut, ['en_attente', 'approuve_directeur']))
-                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                            <div class="w-8 h-8 bg-yellow-300 rounded-full flex items-center justify-center">
                                 <i class="bx bx-time text-white"></i>
                             </div>
                         @elseif($conge->statut === 'valide_drh')
@@ -318,4 +351,23 @@
     </div>
     @endif
 </div>
+
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #fiche-paie, #fiche-paie * {
+            visibility: visible;
+        }
+        #fiche-paie {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+        }
+    }
+</style>
 @endsection

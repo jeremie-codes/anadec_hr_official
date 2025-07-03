@@ -8,6 +8,7 @@ use App\Models\SoldeConge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
 class CongeController extends Controller
@@ -253,9 +254,11 @@ class CongeController extends Controller
 
         $conge->update($validated);
 
-        if (Auth::user()->role->name == 'rh' || Auth::user()->role->name == 'drh') {
-            $conge->statut = 'traiter_rh';
-            $conge->save();
+        if (Auth::user()->role->name ?? null) {
+            if (Auth::user()->role->name == 'rh' || Auth::user()->role->name == 'drh') {
+                $conge->statut = 'traiter_rh';
+                $conge->save();
+            }
         }
 
         return redirect()->route('conges.show', $conge)
@@ -278,6 +281,16 @@ class CongeController extends Controller
 
         return redirect()->route('conges.index')
             ->with('success', 'Demande de congé supprimée avec succès.');
+    }
+
+    public function generatePdf($id)
+    {
+        $conge = Conge::findOrFail($id);
+
+        // dd($conge);
+
+        $pdf = Pdf::loadView('pdf.conge', compact('conge'));
+        return $pdf->stream("decision_conge_{$conge->id}.pdf");
     }
 
     // Interface d'approbation directeur
@@ -331,10 +344,67 @@ class CongeController extends Controller
         return back()->with('success', $message);
     }
 
+    // Interface d'approbation sous directeur
+    public function approbationSousDirecteur(Request $request)
+    {
+        $query = Conge::with('agent')->traiterRH();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->whereHas('agent', function($q) use ($search) {
+                $q->where('nom', 'like', "%{$search}%");
+            });
+        }
+
+        $conges = $query->orderBy('created_at')->paginate(10);
+
+        return view('conges.approbation-sd', compact('conges'));
+    }
+
+    public function approuverSousDirecteur(Request $request, Conge $conge)
+    {
+        try {
+            if (!$conge->peutEtreApprouveParSousDirecteur()) {
+                return back()->with('error', 'Cette demande ne peut pas être approuvée.');
+            }
+
+            $validated = $request->validate([
+                'action' => 'required|in:approuver,rejeter',
+                'commentaire' => 'nullable|string|max:1000',
+            ]);
+
+
+            if ($validated['action'] === 'approuver') {
+                $conge->update([
+                    'statut' => 'approuve_sd',
+                    'commentaire_sd' => $validated['commentaire'],
+                    'date_approbation_sd' => now(),
+                    'approuve_par_sd' => Auth::id(),
+                ]);
+
+                $message = 'Demande approuvée avec succès.';
+            } else {
+                $conge->update([
+                    'statut' => 'rejete',
+                    'commentaire_sd' => $validated['commentaire'],
+                    'date_approbation_sd' => now(),
+                    'approuve_par_sd' => Auth::id(),
+                ]);
+
+                $message = 'Demande rejetée.';
+            }
+
+            return back()->with('success', $message);
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+            //throw $th;
+        }
+    }
+
     // Interface de validation DRH
     public function validationDrh(Request $request)
     {
-        $query = Conge::with('agent')->traiterRh();
+        $query = Conge::with('agent')->approuveSousDirecteur();
 
         if ($request->filled('search')) {
             $search = $request->search;

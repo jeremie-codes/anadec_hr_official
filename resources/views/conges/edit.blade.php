@@ -78,9 +78,23 @@
                         </div>
                     </div>
 
+                    @if (Auth::user()->role->name ?? null)
+                        @if (Auth::user()->role->name == 'rh')
+                            <div>
+                                <label for="exercice" class="block text-sm font-medium text-gray-700">Exercice *</label>
+                                <input type="text" name="exercice" id="exercice" required
+                                    value="{{ old('exercice', $conge->exercice) }}"
+                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                                @error('exercice')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        @endif
+                    @endif
+
                     <div>
                         <label for="motif" class="block text-sm font-medium text-gray-700">Motif *</label>
-                        <textarea name="motif" id="motif" rows="4" required
+                        <textarea name="motif" id="motif" rows="3" required
                                   class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue"
                                   placeholder="Décrivez le motif de votre demande de congé...">{{ old('motif', $conge->motif) }}</textarea>
                         @error('motif')
@@ -219,7 +233,11 @@
                 <button type="submit" id="submit-btn" disabled
                         class="bg-anadec-blue text-white px-6 py-2 rounded-md hover:bg-anadec-dark-blue disabled:bg-gray-400 disabled:cursor-not-allowed">
                     <i class="bx bx-save mr-2"></i>
-                    Enregistrer {{ Auth::user()->role->name == 'rh' ? '& Valider': '' }}
+                    @if (Auth::user()->role->name ?? null)
+                        Enregistrer {{ Auth::user()->role->name == 'rh' ? '& Valider': '' }}
+                    @else
+                        Enregistrer
+                    @endif
                 </button>
             </div>
         </form>
