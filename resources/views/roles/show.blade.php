@@ -125,7 +125,7 @@
                                 <div class="flex-1">
                                     <h4 class="text-sm font-medium text-gray-900">{{ $agent->full_name }}</h4>
                                     <p class="text-xs text-gray-500">{{ $agent->matricule }}</p>
-                                    <p class="text-xs text-gray-500">{{ $agent->direction->name }}</p>
+                                    <p class="text-xs text-gray-500">{{ $agent->direction->name ?? '' }}</p>
                                     @if($agent->user)
                                         <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 mt-1">
                                             <i class="bx bx-user-check mr-1"></i>

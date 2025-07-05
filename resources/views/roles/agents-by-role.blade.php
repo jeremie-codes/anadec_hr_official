@@ -70,8 +70,8 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $agent->direction->name }}</div>
-                                    <div class="text-sm text-gray-500">{{ $agent->service->name }}</div>
+                                    <div class="text-sm text-gray-900">{{ $agent->direction->name ?? '' }}</div>
+                                    <div class="text-sm text-gray-500">{{ $agent->service->name ?? '' }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $agent->getStatutBadgeClass() }}">

@@ -183,7 +183,7 @@
                                     @endif
                                     <div>
                                         <div class="text-sm font-medium text-gray-900">{{ $agent->full_name }}</div>
-                                        <div class="text-sm text-gray-500">{{ $agent->matricule }} • {{ $agent->direction->name }}</div>
+                                        <div class="text-sm text-gray-500">{{ $agent->matricule }} • {{ $agent->direction->name ?? '' }}</div>
                                     </div>
                                 </div>
                             </td>
