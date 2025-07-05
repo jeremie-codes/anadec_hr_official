@@ -170,7 +170,7 @@
                             <div class="text-sm text-gray-900">{{ Str::limit($visitor->motif, 50) }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {{ $visitor->direction }}
+                            {{ $visitor->direction->name }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             {{ $visitor->destination }}
