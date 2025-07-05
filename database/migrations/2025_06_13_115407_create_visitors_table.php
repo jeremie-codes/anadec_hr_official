@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nom');
             $table->enum('type', ['entrepreneur', 'visiteur'])->default('visiteur');
             $table->string('motif');
-            $table->string('direction');
+            $table->foreignId('direction_id')->constrained('directions')->onDelete('set null');
             $table->string('destination');
             $table->datetime('heure_arrivee');
             $table->datetime('heure_depart')->nullable();
@@ -24,7 +24,6 @@ return new class extends Migration
 
             // Index pour améliorer les performances
             $table->index('type');
-            $table->index('direction');
             $table->index('heure_arrivee');
             $table->index('enregistre_par');
         });

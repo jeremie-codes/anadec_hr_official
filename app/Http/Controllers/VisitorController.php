@@ -20,7 +20,7 @@ class VisitorController extends Controller
 
         // Filtrage par direction
         if ($request->filled('direction')) {
-            $query->where('direction', $request->direction);
+            $query->where('direction_id', $request->direction);
         }
 
         // Filtrage par statut (en cours ou terminé)
@@ -60,7 +60,7 @@ class VisitorController extends Controller
         ];
 
         // Directions disponibles
-        $directions = Visitor::distinct()->pluck('direction')->filter()->sort();
+        $directions = Direction::orderBy('name')->get();
 
         return view('visitors.index', compact('visitors', 'stats', 'directions'));
     }
@@ -81,7 +81,7 @@ class VisitorController extends Controller
             'nom' => 'required|string|max:255',
             'type' => 'required|in:entrepreneur,visiteur',
             'motif' => 'required|string|max:500',
-            'direction' => 'required|string|max:255',
+            'direction_id' => 'required|exists:directions,id',
             'destination' => 'required|string|max:255',
             'heure_arrivee' => 'required|date',
             'heure_depart' => 'nullable|date|after:heure_arrivee',
@@ -90,7 +90,6 @@ class VisitorController extends Controller
         ]);
 
         $validated['enregistre_par'] = Auth::id();
-
         Visitor::create($validated);
 
         return redirect()->route('visitors.index')
@@ -99,7 +98,7 @@ class VisitorController extends Controller
 
     public function show(Visitor $visitor)
     {
-        $visitor->load('enregistrePar');
+        $visitor->load('enregistrePar', 'direction');
         return view('visitors.show', compact('visitor'));
     }
 
@@ -117,7 +116,7 @@ class VisitorController extends Controller
             'nom' => 'required|string|max:255',
             'type' => 'required|in:entrepreneur,visiteur',
             'motif' => 'required|string|max:500',
-            'direction' => 'required|string|max:255',
+            'direction_id' => 'required|exists:directions,id',
             'destination' => 'required|string|max:255',
             'heure_arrivee' => 'required|date',
             'heure_depart' => 'nullable|date|after:heure_arrivee',

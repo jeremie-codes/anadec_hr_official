@@ -70,17 +70,17 @@
                 <!-- Informations de visite -->
                 <div class="space-y-6">
                     <div>
-                        <label for="direction" class="block text-sm font-medium text-gray-700">Direction *</label>
-                        <select name="direction" id="direction" required
+                        <label for="direction_id" class="block text-sm font-medium text-gray-700">Direction *</label>
+                        <select name="direction_id" id="direction_id" required
                                 class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
                             <option value="">Sélectionnez...</option>
                             @foreach($directions as $direction)
-                                <option value="{{ $direction->id }}" {{ old('direction') == $direction->id ? 'selected' : '' }}>
+                                <option value="{{ $direction->id }}" {{ old('direction_id') == $direction->id ? 'selected' : '' }}>
                                     {{ $direction->name }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('direction')
+                        @error('direction_id')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
