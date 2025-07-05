@@ -13,7 +13,7 @@ class Visitor extends Model
         'nom',
         'type',
         'motif',
-        'direction',
+        'direction_id',
         'destination',
         'heure_arrivee',
         'heure_depart',
@@ -28,6 +28,11 @@ class Visitor extends Model
     ];
 
     // Relations
+    public function direction()
+    {
+        return $this->belongsTo(Direction::class);
+    }
+
     public function enregistrePar()
     {
         return $this->belongsTo(User::class, 'enregistre_par');
