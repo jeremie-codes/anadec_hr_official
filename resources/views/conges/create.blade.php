@@ -22,16 +22,21 @@
                 <!-- Informations de base -->
                 <div class="space-y-6">
                     <div>
-                        <label for="agent_id" class="block text-sm font-medium text-gray-700">Agent *</label>
-                        <select name="agent_id" id="agent_id" required onchange="calculerSolde()"
-                                class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                            <option value="">Sélectionnez un agent...</option>
-                            @foreach($agents as $agent)
-                                <option value="{{ $agent->id }}" {{ old('agent_id') == $agent->id ? 'selected' : '' }}>
-                                    {{ $agent->full_name }} ({{ $agent->matricule }}) - {{ $agent->direction->name ?? '' }}
-                                </option>
-                            @endforeach
-                        </select>
+                        @if (Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC')
+                            <label for="agent_id" class="block text-sm font-medium text-gray-700">Agent *</label>
+                            <select name="agent_id" id="agent_id" required onchange="calculerSolde()"
+                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                                <option value="">Sélectionnez un agent...</option>
+                                @foreach($agents as $agent)
+                                    <option value="{{ $agent->id }}" {{ old('agent_id') == $agent->id ? 'selected' : '' }}>
+                                        {{ $agent->full_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="hidden" value="{{ Auth::user()->agent->id }}" name="agent_id">
+                        @endif
+
                         @error('agent_id')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
