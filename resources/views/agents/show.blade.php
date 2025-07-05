@@ -81,7 +81,7 @@
                 <div class="grid grid-cols-1 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Direction</label>
-                        <p class="text-sm text-gray-900">{{ $agent->direction->name }}</p>
+                        <p class="text-sm text-gray-900">{{ $agent->direction->name ?? '' }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Service</label>

@@ -99,7 +99,7 @@
                         <option value="">Toutes les directions</option>
                         @foreach(\App\Models\Direction::all() as $direction)
                             <option value="{{ $direction->id }}" {{ request('direction') == $direction->id ? 'selected' : '' }}>
-                                {{ $direction->name }}
+                                {{ $direction->name ?? '' }}
                             </option>
                         @endforeach
                     </select>
