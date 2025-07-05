@@ -192,7 +192,7 @@
                             @endif
                             <div>
                                 <p class="text-sm font-medium text-gray-900">{{ $conge->agent->full_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $conge->agent->direction->name }}</p>
+                                <p class="text-xs text-gray-500">{{ $conge->agent->direction->name ?? '' }}</p>
                             </div>
                         </div>
                         <div class="text-right">

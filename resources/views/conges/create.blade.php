@@ -28,7 +28,7 @@
                             <option value="">Sélectionnez un agent...</option>
                             @foreach($agents as $agent)
                                 <option value="{{ $agent->id }}" {{ old('agent_id') == $agent->id ? 'selected' : '' }}>
-                                    {{ $agent->full_name }} ({{ $agent->matricule }}) - {{ $agent->direction->name }}
+                                    {{ $agent->full_name }} ({{ $agent->matricule }}) - {{ $agent->direction->name ?? '' }}
                                 </option>
                             @endforeach
                         </select>

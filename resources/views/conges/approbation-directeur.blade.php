@@ -105,7 +105,7 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600 mb-3">
                                 <div>
-                                    <span class="font-medium">Direction :</span> {{ $conge->agent->direction->name }}
+                                    <span class="font-medium">Direction :</span> {{ $conge->agent->direction->name ?? '' }}
                                 </div>
                                 <div>
                                     <span class="font-medium">Période :</span> {{ $conge->date_debut->format('d/m/Y') }} - {{ $conge->date_fin->format('d/m/Y') }}
