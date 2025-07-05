@@ -336,10 +336,10 @@ function closeCreateAccountModal() {
 }
 
 // Fermer le modal en cliquant à l'extérieur
-document.getElementById('createAccountModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeCreateAccountModal();
-    }
-});
+// document.getElementById('createAccountModal').addEventListener('click', function(e) {
+//     if (e.target === this) {
+//         closeCreateAccountModal();
+//     }
+// });
 </script>
 @endsection
