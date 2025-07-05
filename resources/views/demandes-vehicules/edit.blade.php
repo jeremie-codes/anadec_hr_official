@@ -24,7 +24,7 @@
                 <div class="space-y-6">
                     <div>
                         <label for="agent_id" class="block text-sm font-medium text-gray-700">Demandeur *</label>
-                        <select name="agent_id" id="agent_id" required
+                        <select name="agent_id" id="agent_id" required disabled
                                 class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
                             <option value="">Sélectionnez un agent...</option>
                             @foreach($agents as $agent)

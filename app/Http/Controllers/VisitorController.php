@@ -6,6 +6,7 @@ use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Direction;
+use App\Models\Service;
 class VisitorController extends Controller
 {
     public function index(Request $request)
