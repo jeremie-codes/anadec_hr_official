@@ -32,8 +32,8 @@ class AgentSeeder extends Seeder
                     'role_id' => $roles->random()->id,
                     'date_naissance' => $faker->dateTimeBetween('-60 years', '-25 years')->format('Y-m-d'),
                     'lieu_naissance' => $faker->city(),
-                    'sexe' => $faker->randomElement(['M', 'F']),
-                    'situation_matrimoniale' => $faker->randomElement(['Célibataire', 'Marié(e)', 'Divorcé(e)', 'Veuf(ve)']),
+                    'sexe' => 'M',
+                    'situation_matrimoniale' => $faker->randomElement(['Célibataire', 'Marié(e)']),
                     'salaire_base' => $faker->randomFloat(2, 500000, 2000000),
                     'date_recrutement' => $faker->dateTimeBetween('-10 years', 'now')->format('Y-m-d'),
                     'telephone' => $faker->phoneNumber(),
@@ -45,32 +45,6 @@ class AgentSeeder extends Seeder
                     'numero_cnps' => $faker->unique()->randomNumber(8),
                     'numero_impots' => $faker->unique()->randomNumber(9),
                     'statut' => 'actif',
-                ]
-            );
-        }
-
-        // Créer 20 agents supplémentaires sans compte utilisateur (pour simuler des agents existants avant la création de comptes)
-        for ($i = 0; $i < 20; $i++) {
-            Agent::updateOrCreate(
-                ['matricule' => 'MAT-' . $faker->unique()->randomNumber(5)],
-                [
-                    'user_id' => null,
-                    'nom' => $faker->firstName(),
-                    'date_naissance' => $faker->dateTimeBetween('-60 years', '-25 years')->format('Y-m-d'),
-                    'lieu_naissance' => $faker->city(),
-                    'sexe' => $faker->randomElement(['M', 'F']),
-                    'situation_matrimoniale' => $faker->randomElement(['Célibataire', 'Marié(e)', 'Divorcé(e)', 'Veuf(ve)']),
-                    'salaire_base' => $faker->randomFloat(2, 500000, 2000000),
-                    'date_recrutement' => $faker->dateTimeBetween('-10 years', 'now')->format('Y-m-d'),
-                    'telephone' => $faker->phoneNumber(),
-                    'email' => $faker->unique()->safeEmail(),
-                    'photo' => null,
-                    'adresse' => $faker->address(),
-                    'compte_bancaire' => $faker->bankAccountNumber(),
-                    'banque' => $faker->randomElement(['SGBCI', 'BICICI', 'Ecobank', 'BOA']),
-                    'numero_cnps' => $faker->unique()->randomNumber(8),
-                    'numero_impots' => $faker->unique()->randomNumber(9),
-                    'statut' => $faker->randomElement(['actif', 'retraite', 'malade', 'demission']),
                 ]
             );
         }

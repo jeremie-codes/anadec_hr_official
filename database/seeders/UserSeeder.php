@@ -27,37 +27,6 @@ class UserSeeder extends Seeder
             ]
         );
 
-        // Créer un utilisateur RH
-        User::updateOrCreate(
-            ['email' => 'rh@anadec.com'],
-            [
-                'name' => 'RH ANADEC',
-                'photo' => null,
-                'password' => Hash::make('password'),
-            ]
-        );
-
-        // Créer un utilisateur agent
-        User::updateOrCreate(
-            ['email' => 'agent@anadec.com'],
-            [
-                'name' => 'Agent Test',
-                'photo' => null,
-                'password' => Hash::make('password'),
-            ]
-        );
-
-        // Créer 10 utilisateurs supplémentaires avec des rôles aléatoires
-        for ($i = 0; $i < 10; $i++) {
-            $user = User::updateOrCreate(
-                ['email' => $faker->unique()->safeEmail()],
-                [
-                    'name' => $faker->name(),
-                    'photo' => null,
-                    'password' => Hash::make('password'),
-                ]
-            );
-        }
     }
 }
 
