@@ -99,7 +99,7 @@ class AgentController extends Controller
             $this->createUserAccount($agent, $validated);
         }
 
-        return redirect()->route('agents.index')
+        return redirect()->route('agents.identification')
             ->with('success', 'Agent créé avec succès.' .
                 ($request->boolean('create_user_account') ? ' Un compte utilisateur a également été créé.' : ''));
         } catch (\Throwable $th) {
@@ -187,7 +187,7 @@ class AgentController extends Controller
                 $this->createUserAccount($agent, $validated);
             }
 
-            return redirect()->route('agents.index')
+            return redirect()->route('agents.identification')
                 ->with('success', 'Agent modifié avec succès.');
 
         } catch (\Throwable $th) {
