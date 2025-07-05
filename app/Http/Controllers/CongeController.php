@@ -139,6 +139,7 @@ class CongeController extends Controller
             'date_fin' => 'required|date|after:date_debut',
             'type' => 'required|in:annuel,maladie,maternite,paternite,exceptionnel',
             'motif' => 'required|string|max:1000',
+            'commentaire_rh' => 'nullable|string|max:1000',
             'justificatif' => 'nullable|image|mimes:jpeg,png,jpg,gif,pdf|max:2048',
         ]);
 
@@ -220,6 +221,8 @@ class CongeController extends Controller
             'date_fin' => 'required|date|after:date_debut',
             'type' => 'required|in:annuel,maladie,maternite,paternite,exceptionnel',
             'motif' => 'required|string|max:1000',
+            'commentaire_rh' => 'nullable|string|max:1000',
+            'commentaire_sd' => 'nullable|string|max:1000',
             'justificatif' => 'nullable|image|mimes:jpeg,png,jpg,gif,pdf|max:2048',
         ]);
 
@@ -254,8 +257,8 @@ class CongeController extends Controller
 
         $conge->update($validated);
 
-        if (Auth::user()->role->name ?? null) {
-            if (Auth::user()->role->name == 'rh' || Auth::user()->role->name == 'drh') {
+        if (Auth::user()->agent->role ?? null) {
+            if (Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC') {
                 $conge->statut = 'traiter_rh';
                 $conge->save();
             }

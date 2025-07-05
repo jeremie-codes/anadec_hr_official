@@ -138,7 +138,7 @@
                             @endif
                             <div>
                                 <p class="text-sm font-medium text-gray-900">{{ $cotation->agent->full_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $cotation->agent->direction }}</p>
+                                <p class="text-xs text-gray-500">{{ $cotation->agent->direction->name }}</p>
                             </div>
                         </div>
                         <div class="text-right">
@@ -185,7 +185,7 @@
                             @endif
                             <div>
                                 <p class="text-sm font-medium text-gray-900">{{ $cotation->agent->full_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $cotation->agent->direction }}</p>
+                                <p class="text-xs text-gray-500">{{ $cotation->agent->direction->name }}</p>
                             </div>
                         </div>
                         <div class="text-right">

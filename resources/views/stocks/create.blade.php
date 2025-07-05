@@ -31,27 +31,7 @@
                         @enderror
                     </div>
 
-                    <div>
-                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <textarea name="description" id="description" rows="3"
-                                  class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue"
-                                  placeholder="Description détaillée de l'article...">{{ old('description') }}</textarea>
-                        @error('description')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label for="reference" class="block text-sm font-medium text-gray-700">Référence</label>
-                            <input type="text" name="reference" id="reference"
-                                   value="{{ old('reference') }}"
-                                   class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                            @error('reference')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
                         <div>
                             <label for="categorie" class="block text-sm font-medium text-gray-700">Catégorie *</label>
                             <select name="categorie" id="categorie" required
@@ -67,27 +47,6 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                    </div>
-
-                    <div>
-                        <label for="fournisseur" class="block text-sm font-medium text-gray-700">Fournisseur</label>
-                        <input type="text" name="fournisseur" id="fournisseur"
-                               value="{{ old('fournisseur') }}"
-                               class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                        @error('fournisseur')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <label for="emplacement" class="block text-sm font-medium text-gray-700">Emplacement</label>
-                        <input type="text" name="emplacement" id="emplacement"
-                               value="{{ old('emplacement') }}"
-                               placeholder="Ex: Magasin A - Étagère 3"
-                               class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                        @error('emplacement')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
                     </div>
                 </div>
 
@@ -134,16 +93,6 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-
-                        <div>
-                            <label for="prix_unitaire" class="block text-sm font-medium text-gray-700">Prix Unitaire (FCFA)</label>
-                            <input type="number" name="prix_unitaire" id="prix_unitaire" min="0" step="0.01"
-                                   value="{{ old('prix_unitaire') }}"
-                                   class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                            @error('prix_unitaire')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
                     </div>
 
                     <!-- Aperçu du statut -->
@@ -159,17 +108,6 @@
                                 <li>• <strong>Alerte :</strong> Quantité ≤ Seuil d'alerte</li>
                                 <li>• <strong>Disponible :</strong> Quantité > Seuil d'alerte</li>
                             </ul>
-                        </div>
-                    </div>
-
-                    <!-- Calcul de la valeur -->
-                    <div id="valeur-info" class="bg-green-50 border border-green-200 rounded-lg p-4" style="display: none;">
-                        <h4 class="text-sm font-medium text-green-900 mb-2 flex items-center">
-                            <i class="bx bx-calculator mr-2"></i>
-                            Valeur du Stock
-                        </h4>
-                        <div class="text-sm text-green-800">
-                            <p>Valeur totale : <span id="valeur-totale" class="font-bold">0 FCFA</span></p>
                         </div>
                     </div>
                 </div>
@@ -196,14 +134,14 @@
         const quantite = parseInt(document.getElementById('quantite_stock').value) || 0;
         const seuil = parseInt(document.getElementById('quantite_minimum').value) || 0;
         const prix = parseFloat(document.getElementById('prix_unitaire').value) || 0;
-        
+
         const statutPreview = document.getElementById('statut-preview');
         const valeurInfo = document.getElementById('valeur-info');
         const valeurTotale = document.getElementById('valeur-totale');
-        
+
         let statut = '';
         let statutClass = '';
-        
+
         if (quantite === 0) {
             statut = 'Rupture de stock';
             statutClass = 'text-red-800';
@@ -214,26 +152,17 @@
             statut = 'Stock disponible';
             statutClass = 'text-green-800';
         }
-        
+
         statutPreview.innerHTML = `Statut actuel : <span class="font-bold ${statutClass}">${statut}</span>`;
-        
-        // Calcul de la valeur
-        if (prix > 0) {
-            const valeur = quantite * prix;
-            valeurTotale.textContent = new Intl.NumberFormat('fr-FR').format(valeur) + ' FCFA';
-            valeurInfo.style.display = 'block';
-        } else {
-            valeurInfo.style.display = 'none';
-        }
     }
-    
+
     // Écouter les changements
     document.addEventListener('DOMContentLoaded', function() {
         const inputs = ['quantite_stock', 'quantite_minimum', 'prix_unitaire'];
         inputs.forEach(id => {
             document.getElementById(id).addEventListener('input', updateStatutPreview);
         });
-        
+
         updateStatutPreview();
     });
 </script>

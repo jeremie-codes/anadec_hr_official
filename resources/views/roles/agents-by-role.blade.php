@@ -56,7 +56,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         @if($agent->hasPhoto())
-                                            <img src="{{ $agent->photo_url }}" alt="{{ $agent->full_name }}" 
+                                            <img src="{{ $agent->photo_url }}" alt="{{ $agent->full_name }}"
                                                  class="w-10 h-10 rounded-full object-cover mr-3">
                                         @else
                                             <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mr-3">
@@ -70,8 +70,8 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $agent->direction }}</div>
-                                    <div class="text-sm text-gray-500">{{ $agent->service }}</div>
+                                    <div class="text-sm text-gray-900">{{ $agent->direction->name }}</div>
+                                    <div class="text-sm text-gray-500">{{ $agent->service->name }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $agent->getStatutBadgeClass() }}">
@@ -98,7 +98,7 @@
                                     <div class="flex items-center space-x-2">
                                         @if(!$agent->user)
                                             <!-- Créer un compte -->
-                                            <button onclick="openCreateAccountModal({{ $agent->id }}, '{{ $agent->full_name }}')" 
+                                            <button onclick="openCreateAccountModal({{ $agent->id }}, '{{ $agent->full_name }}')"
                                                     class="text-green-600 hover:text-green-900 bg-green-100 hover:bg-green-200 px-2 py-1 rounded transition-colors">
                                                 <i class="bx bx-user-plus"></i>
                                             </button>
@@ -106,7 +106,7 @@
                                             <!-- Réinitialiser le mot de passe -->
                                             <form method="POST" action="{{ route('roles.reset-password', $agent) }}" class="inline">
                                                 @csrf
-                                                <button type="submit" 
+                                                <button type="submit"
                                                         onclick="return confirm('Réinitialiser le mot de passe de {{ $agent->full_name }} ?')"
                                                         class="text-blue-600 hover:text-blue-900 bg-blue-100 hover:bg-blue-200 px-2 py-1 rounded transition-colors">
                                                     <i class="bx bx-key"></i>
@@ -117,7 +117,7 @@
                                             <form method="POST" action="{{ route('roles.delete-user-account', $agent) }}" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" 
+                                                <button type="submit"
                                                         onclick="return confirm('Supprimer le compte utilisateur de {{ $agent->full_name }} ?')"
                                                         class="text-red-600 hover:text-red-900 bg-red-100 hover:bg-red-200 px-2 py-1 rounded transition-colors">
                                                     <i class="bx bx-trash"></i>
@@ -126,7 +126,7 @@
                                         @endif
 
                                         <!-- Voir l'agent -->
-                                        <a href="{{ route('agents.show', $agent) }}" 
+                                        <a href="{{ route('agents.show', $agent) }}"
                                            class="text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded transition-colors">
                                             <i class="bx bx-show"></i>
                                         </a>

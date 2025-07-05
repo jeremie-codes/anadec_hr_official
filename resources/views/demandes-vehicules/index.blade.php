@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $demande->agent->full_name ?? 'full name'  }}</div>
-                                    <div class="text-sm text-gray-500">{{ $demande->agent->direction ?? 'direction'  }}</div>
+                                    <div class="text-sm text-gray-500">{{ $demande->agent->direction->name ?? 'direction'  }}</div>
                                 </div>
                             </div>
                         </td>

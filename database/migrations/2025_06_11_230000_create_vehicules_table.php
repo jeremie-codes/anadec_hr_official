@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('type_vehicule'); // Berline, 4x4, Utilitaire, etc.
             $table->integer('annee');
             $table->string('couleur');
-            $table->string('numero_chassis')->unique();
-            $table->string('numero_moteur')->unique();
+            $table->string('numero_chassis')->nullable()->unique();
+            $table->string('numero_moteur')->nullable()->unique();
             $table->integer('nombre_places');
             $table->decimal('kilometrage', 10, 2)->default(0);
             $table->date('date_acquisition');
-            $table->decimal('prix_acquisition', 12, 2)->nullable();
             $table->enum('etat', ['bon_etat', 'panne', 'entretien', 'a_declasser'])->default('bon_etat');
             $table->date('date_derniere_visite_technique')->nullable();
             $table->date('date_prochaine_visite_technique')->nullable();

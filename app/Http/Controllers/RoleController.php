@@ -34,7 +34,6 @@ class RoleController extends Controller
             $search = $request->search;
             $query->where(function($q) use ($search) {
                 $q->where('nom', 'like', "%{$search}%")
-                  ->orWhere('prenoms', 'like', "%{$search}%")
                   ->orWhere('matricule', 'like', "%{$search}%");
             });
         }

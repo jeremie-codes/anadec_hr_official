@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-gradient-to-br from-yellow-500 to-orange-600 p-4 rounded-xl shadow-lg border border-yellow-200">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-gradient-to-br from-cyan-500 to-blue-600 p-4 rounded-xl shadow-lg border border-cyan-200">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-xl shadow-lg border border-green-200">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-gradient-to-br from-purple-500 to-pink-600 p-4 rounded-xl shadow-lg border border-purple-200">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-gradient-to-br from-red-500 to-rose-600 p-4 rounded-xl shadow-lg border border-red-200">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
@@ -100,7 +100,7 @@
                         </div>
                         <span class="text-lg font-bold text-blue-600">{{ $statsParType['annuel'] }}</span>
                     </div>
-                    
+
                     <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
@@ -108,7 +108,7 @@
                         </div>
                         <span class="text-lg font-bold text-red-600">{{ $statsParType['maladie'] }}</span>
                     </div>
-                    
+
                     <div class="flex items-center justify-between p-3 bg-pink-50 rounded-lg">
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-pink-500 rounded-full mr-3"></div>
@@ -116,7 +116,7 @@
                         </div>
                         <span class="text-lg font-bold text-pink-600">{{ $statsParType['maternite'] }}</span>
                     </div>
-                    
+
                     <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
@@ -124,7 +124,7 @@
                         </div>
                         <span class="text-lg font-bold text-green-600">{{ $statsParType['paternite'] }}</span>
                     </div>
-                    
+
                     <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
@@ -153,7 +153,7 @@
                         <p class="text-3xl font-bold text-gray-900">{{ $agentsEligibles }}</p>
                         <p class="text-sm text-gray-600 font-medium">Agents Éligibles</p>
                     </div>
-                    
+
                     <div class="text-center">
                         <div class="w-16 h-16 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="bx bx-x-circle text-white text-2xl"></i>
@@ -182,8 +182,8 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             @if($conge->agent->hasPhoto())
-                                <img src="{{ $conge->agent->photo_url }}" 
-                                     alt="{{ $conge->agent->full_name }}" 
+                                <img src="{{ $conge->agent->photo_url }}"
+                                     alt="{{ $conge->agent->full_name }}"
                                      class="w-8 h-8 rounded-full object-cover">
                             @else
                                 <div class="w-8 h-8 bg-gradient-to-br from-anadec-blue to-anadec-dark-blue rounded-full flex items-center justify-center">
@@ -192,7 +192,7 @@
                             @endif
                             <div>
                                 <p class="text-sm font-medium text-gray-900">{{ $conge->agent->full_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $conge->agent->direction }}</p>
+                                <p class="text-xs text-gray-500">{{ $conge->agent->direction->name }}</p>
                             </div>
                         </div>
                         <div class="text-right">
@@ -228,8 +228,8 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             @if($conge->agent->hasPhoto())
-                                <img src="{{ $conge->agent->photo_url }}" 
-                                     alt="{{ $conge->agent->full_name }}" 
+                                <img src="{{ $conge->agent->photo_url }}"
+                                     alt="{{ $conge->agent->full_name }}"
                                      class="w-8 h-8 rounded-full object-cover">
                             @else
                                 <div class="w-8 h-8 bg-gradient-to-br from-anadec-blue to-anadec-dark-blue rounded-full flex items-center justify-center">
@@ -269,7 +269,7 @@
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <a href="{{ route('conges.create') }}" 
+                <a href="{{ route('conges.create') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
                     <div>
@@ -278,7 +278,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('conges.approbation-directeur') }}" 
+                <a href="{{ route('conges.approbation-directeur') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl hover:from-yellow-100 hover:to-orange-200 transition-all duration-200 border border-yellow-200">
                     <i class="bx bx-check text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
                     <div>
@@ -287,7 +287,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('conges.validation-drh') }}" 
+                <a href="{{ route('conges.validation-drh') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
                     <i class="bx bx-check-double text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
                     <div>
@@ -296,7 +296,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('conges.index') }}" 
+                <a href="{{ route('conges.index') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
                     <i class="bx bx-list-ul text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
                     <div>

@@ -107,7 +107,7 @@
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label for="numero_chassis" class="block text-sm font-medium text-gray-700">Numéro de châssis *</label>
+                            <label for="numero_chassis" class="block text-sm font-medium text-gray-700">Numéro de châssis </label>
                             <input type="text" name="numero_chassis" id="numero_chassis" required
                                    value="{{ old('numero_chassis') }}"
                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
@@ -117,7 +117,7 @@
                         </div>
 
                         <div>
-                            <label for="numero_moteur" class="block text-sm font-medium text-gray-700">Numéro de moteur *</label>
+                            <label for="numero_moteur" class="block text-sm font-medium text-gray-700">Type de moteur </label>
                             <input type="text" name="numero_moteur" id="numero_moteur" required
                                    value="{{ old('numero_moteur') }}"
                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
@@ -142,7 +142,7 @@
                 <div class="space-y-6">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label for="kilometrage" class="block text-sm font-medium text-gray-700">Kilométrage actuel *</label>
+                            <label for="kilometrage" class="block text-sm font-medium text-gray-700">Kilométrage actuel </label>
                             <input type="number" name="kilometrage" id="kilometrage" required
                                    value="{{ old('kilometrage', 0) }}"
                                    min="0" step="0.01"
@@ -161,17 +161,6 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                    </div>
-
-                    <div>
-                        <label for="prix_acquisition" class="block text-sm font-medium text-gray-700">Prix d'acquisition (FCFA)</label>
-                        <input type="number" name="prix_acquisition" id="prix_acquisition"
-                               value="{{ old('prix_acquisition') }}"
-                               min="0" step="0.01"
-                               class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                        @error('prix_acquisition')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">

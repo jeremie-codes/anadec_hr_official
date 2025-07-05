@@ -23,7 +23,7 @@
 
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900">{{ $demandeVehicule->agent->full_name }}</h2>
-                    <p class="text-gray-600">{{ $demandeVehicule->agent->direction }} - {{ $demandeVehicule->agent->poste }}</p>
+                    <p class="text-gray-600">{{ $demandeVehicule->agent->direction->name }} - {{ $demandeVehicule->agent->poste }}</p>
                     <div class="flex items-center space-x-3 mt-2">
                         <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full {{ $demandeVehicule->getUrgenceBadgeClass() }}">
                             <i class="bx {{ $demandeVehicule->getUrgenceIcon() }} mr-1"></i>

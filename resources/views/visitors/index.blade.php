@@ -95,8 +95,8 @@
                     <select name="direction" class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
                         <option value="">Toutes les directions</option>
                         @foreach($directions as $direction)
-                            <option value="{{ $direction }}" {{ request('direction') == $direction ? 'selected' : '' }}>
-                                {{ $direction }}
+                            <option value="{{ $direction->id }}" {{ request('direction') == $direction->id ? 'selected' : '' }}>
+                                {{ $direction->name }}
                             </option>
                         @endforeach
                     </select>

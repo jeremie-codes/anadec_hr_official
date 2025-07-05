@@ -7,6 +7,8 @@ use App\Models\Agent;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Direction;
+use App\Models\Service;
 
 class DemandeFournitureController extends Controller
 {
@@ -123,16 +125,10 @@ class DemandeFournitureController extends Controller
         $articles = Stock::orderBy('nom_article')->get();
 
         // Directions et services prédéfinis
-        $directions = [
-            'Direction Générale',
-            'Direction RH',
-            'Direction Financière',
-            'Direction Technique',
-            'Direction Administrative',
-            'Direction Commerciale'
-        ];
+        $directions = Direction::all();
+        $services = Service::all();
 
-        return view('demandes-fournitures.create', compact('agents', 'directions', 'articles'));
+        return view('demandes-fournitures.create', compact('agents', 'directions', 'articles', 'services'));
     }
 
     public function store(Request $request)
@@ -172,16 +168,10 @@ class DemandeFournitureController extends Controller
         $agents = Agent::where('statut', 'actif')->orderBy('nom')->get();
         $articles = Stock::orderBy('nom_article')->get();
 
-        $directions = [
-            'Direction Générale',
-            'Direction RH',
-            'Direction Financière',
-            'Direction Technique',
-            'Direction Administrative',
-            'Direction Commerciale'
-        ];
+        $directions = Direction::all();
+        $services = Service::all();
 
-        return view('demandes-fournitures.edit', compact('demandeFourniture', 'agents', 'directions', 'articles'));
+        return view('demandes-fournitures.edit', compact('demandeFourniture', 'agents', 'directions', 'articles', 'services'));
     }
 
     public function update(Request $request, DemandeFourniture $demandeFourniture)

@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $cotation->agent->full_name }}</div>
-                                    <div class="text-sm text-gray-500">{{ $cotation->agent->direction }}</div>
+                                    <div class="text-sm text-gray-500">{{ $cotation->agent->direction->name }}</div>
                                 </div>
                             </div>
                         </td>

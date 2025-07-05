@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $conge->agent->full_name }}</div>
-                                    <div class="text-sm text-gray-500">{{ $conge->agent->direction }}</div>
+                                    <div class="text-sm text-gray-500">{{ $conge->agent->direction->name }}</div>
                                 </div>
                             </div>
                         </td>

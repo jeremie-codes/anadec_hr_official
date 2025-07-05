@@ -27,8 +27,8 @@
                         <div class="mt-1 p-3 bg-gray-50 rounded-lg">
                             <div class="flex items-center space-x-3">
                                 @if($chauffeur->agent->hasPhoto())
-                                    <img src="{{ $chauffeur->agent->photo_url }}" 
-                                         alt="{{ $chauffeur->agent->full_name }}" 
+                                    <img src="{{ $chauffeur->agent->photo_url }}"
+                                         alt="{{ $chauffeur->agent->full_name }}"
                                          class="w-10 h-10 rounded-full object-cover">
                                 @else
                                     <div class="w-10 h-10 bg-gradient-to-br from-anadec-blue to-anadec-dark-blue rounded-full flex items-center justify-center">
@@ -37,7 +37,7 @@
                                 @endif
                                 <div>
                                     <p class="text-sm font-medium text-gray-900">{{ $chauffeur->agent->full_name }}</p>
-                                    <p class="text-xs text-gray-500">{{ $chauffeur->agent->matricule }} - {{ $chauffeur->agent->direction }}</p>
+                                    <p class="text-xs text-gray-500">{{ $chauffeur->agent->matricule }} - {{ $chauffeur->agent->direction->name }}</p>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="flex items-center">
-                        <input type="checkbox" name="disponible" id="disponible" value="1" 
+                        <input type="checkbox" name="disponible" id="disponible" value="1"
                                {{ old('disponible', $chauffeur->disponible) ? 'checked' : '' }}
                                class="h-4 w-4 text-anadec-blue focus:ring-anadec-blue border-gray-300 rounded">
                         <label for="disponible" class="ml-2 block text-sm text-gray-900">

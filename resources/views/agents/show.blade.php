@@ -17,7 +17,7 @@
                 </div>
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900">{{ $agent->full_name }}</h2>
-                    <p class="text-gray-600">{{ $agent->matricule }} - {{ $agent->poste }}</p>
+                    <p class="text-gray-600">{{ $agent->matricule }} - {{ $agent->role->name }}</p>
                     <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full {{ $agent->getStatutBadgeClass() }}">
                         {{ $agent->getStatutLabel() }}
                     </span>
@@ -81,15 +81,15 @@
                 <div class="grid grid-cols-1 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Direction</label>
-                        <p class="text-sm text-gray-900">{{ $agent->direction }}</p>
+                        <p class="text-sm text-gray-900">{{ $agent->direction->name }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Service</label>
-                        <p class="text-sm text-gray-900">{{ $agent->service }}</p>
+                        <p class="text-sm text-gray-900">{{ $agent->service->name }}</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-500">Poste</label>
-                        <p class="text-sm text-gray-900">{{ $agent->poste }}</p>
+                        <label class="block text-sm font-medium text-gray-500">Grade/Fonction</label>
+                        <p class="text-sm text-gray-900">{{ $agent->role->name }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Date d'Engagement</label>

@@ -8,6 +8,8 @@ use App\Models\Vehicule;
 use App\Models\Chauffeur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Direction;
+use App\Models\Service;
 
 class DemandeVehiculeController extends Controller
 {
@@ -117,20 +119,14 @@ class DemandeVehiculeController extends Controller
         $agents = Agent::where('statut', 'actif')->orderBy('nom')->get();
 
         // Directions prédéfinies
-        $directions = [
-            'Direction Générale',
-            'Direction RH',
-            'Direction Financière',
-            'Direction Technique',
-            'Direction Administrative',
-            'Direction Commerciale'
-        ];
+        $directions = Direction::all();
+        $services = Service::all();
 
         $chauffeurs = Chauffeur::all() ?? [];
 
         $vehicules = Vehicule::where('disponible', true)->get() ?? [];
 
-        return view('demandes-vehicules.create', compact('agents', 'directions', 'chauffeurs', 'vehicules'));
+        return view('demandes-vehicules.create', compact('agents', 'directions', 'chauffeurs', 'vehicules', 'services'));
     }
 
     public function store(Request $request)
@@ -175,16 +171,10 @@ class DemandeVehiculeController extends Controller
         $agents = Agent::where('statut', 'actif')->orderBy('nom')->get();
         $chauffeurs = Chauffeur::all();
 
-        $directions = [
-            'Direction Générale',
-            'Direction RH',
-            'Direction Financière',
-            'Direction Technique',
-            'Direction Administrative',
-            'Direction Commerciale'
-        ];
+        $directions = Direction::all();
+        $services = Service::all();
 
-        return view('demandes-vehicules.edit', compact('demandeVehicule', 'agents', 'directions', 'chauffeurs'));
+        return view('demandes-vehicules.edit', compact('demandeVehicule', 'agents', 'directions', 'chauffeurs', 'services'));
     }
 
     public function update(Request $request, DemandeVehicule $demandeVehicule)

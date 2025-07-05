@@ -90,7 +90,7 @@
                     @endif
                     <div class="flex justify-between">
                         <span class="text-sm text-gray-600">Direction</span>
-                        <span class="text-sm font-medium text-gray-900">{{ $visitor->direction }}</span>
+                        <span class="text-sm font-medium text-gray-900">{{ $visitor->direction->name }}</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-sm text-gray-600">Destination</span>

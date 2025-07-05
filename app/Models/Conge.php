@@ -21,6 +21,8 @@ class Conge extends Model
         'statut',
         'commentaire_sd',
         'commentaire_directeur',
+        'commentaire_rh',
+        'commentaire_sd',
         'commentaire_drh',
         'date_approbation_sd',
         'date_approbation_directeur',
@@ -108,11 +110,11 @@ class Conge extends Model
     public function getTypeLabel()
     {
         return match($this->type) {
-            'annuel' => 'Congé annuel',
-            'maladie' => 'Congé maladie',
-            'maternite' => 'Congé maternité',
-            'paternite' => 'Congé paternité',
-            'exceptionnel' => 'Congé exceptionnel',
+            'annuel' => 'Congé de réconstitution',
+            'maladie' => 'Congé de circonstance',
+            'maternite' => 'Congé de circonstance',
+            'paternite' => 'Congé de circonstance',
+            'exceptionnel' => 'Congé de circonstance',
             default => 'Autre',
         };
     }

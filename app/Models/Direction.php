@@ -13,6 +13,42 @@ class Direction extends Model
         'name',
     ];
 
+    public static function getDefaulDirections()
+    {
+        return [
+            [
+                'name' => 'DRH',
+            ],
+            [
+                'name' => 'DSBD',
+            ],
+            [
+                'name' => 'DIFO',
+            ],
+            [
+                'name' => 'DINFO',
+            ],
+            [
+                'name' => 'DPE',
+            ],
+            [
+                'name' => 'DII',
+            ],
+            [
+                'name' => 'DFI',
+            ],
+            [
+                'name' => 'DISNP',
+            ],
+            [
+                'name' => 'CCRP',
+            ],
+            [
+                'name' => 'CLL Juridique',
+            ],
+        ];
+    }
+
     // Relations
     public function services()
     {

@@ -23,7 +23,7 @@
 
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900">{{ $chauffeur->agent->full_name }}</h2>
-                    <p class="text-gray-600">{{ $chauffeur->agent->direction }} - {{ $chauffeur->agent->poste }}</p>
+                    <p class="text-gray-600">{{ $chauffeur->agent->direction->name }} - {{ $chauffeur->agent->role->name }}</p>
                     <div class="flex items-center space-x-3 mt-2">
                         <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full {{ $chauffeur->getStatutBadgeClass() }}">
                             <i class="bx {{ $chauffeur->getStatutIcon() }} mr-1"></i>
@@ -230,14 +230,14 @@
                     <div class="flex items-center justify-center mb-4">
                         <div class="w-24 h-24 rounded-full flex items-center justify-center
                             {{ $chauffeur->permisExpire() ? 'bg-red-100' : ($chauffeur->permisExpireSoon() ? 'bg-yellow-100' : 'bg-green-100') }}">
-                            <i class="bx 
+                            <i class="bx
                                 {{ $chauffeur->permisExpire() ? 'bx-x-circle text-red-600' : ($chauffeur->permisExpireSoon() ? 'bx-time text-yellow-600' : 'bx-check-circle text-green-600') }}
                                 text-4xl"></i>
                         </div>
                     </div>
-                    
+
                     <div class="text-center">
-                        <p class="text-lg font-bold 
+                        <p class="text-lg font-bold
                             {{ $chauffeur->permisExpire() ? 'text-red-800' : ($chauffeur->permisExpireSoon() ? 'text-yellow-800' : 'text-green-800') }}">
                             {{ $chauffeur->permisExpire() ? 'Permis expiré' : ($chauffeur->permisExpireSoon() ? 'Expiration proche' : 'Permis valide') }}
                         </p>

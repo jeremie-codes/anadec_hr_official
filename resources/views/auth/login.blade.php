@@ -103,16 +103,6 @@
                 </div>
             </form>
         </div>
-
-        <!-- Informations de test -->
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-white text-sm">
-            <h3 class="font-semibold mb-2">Comptes de test :</h3>
-            <div class="space-y-1 text-xs">
-                <p><strong>Admin :</strong> admin@anadec.com / password</p>
-                <p><strong>RH Manager :</strong> rh@anadec.com / password</p>
-                <p><strong>Agent RH :</strong> agent@anadec.com / password</p>
-            </div>
-        </div>
     </div>
 </body>
 </html>

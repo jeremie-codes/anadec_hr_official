@@ -29,7 +29,7 @@
                             <option value="">Sélectionnez un agent...</option>
                             @foreach($agents as $agent)
                                 <option value="{{ $agent->id }}" {{ old('agent_id', $demandeFourniture->agent_id) == $agent->id ? 'selected' : '' }}>
-                                    {{ $agent->full_name }} ({{ $agent->matricule }}) - {{ $agent->direction }}
+                                    {{ $agent->full_name }}
                                 </option>
                             @endforeach
                         </select>
@@ -45,8 +45,8 @@
                                     class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
                                 <option value="">Sélectionnez...</option>
                                 @foreach($directions as $direction)
-                                    <option value="{{ $direction }}" {{ old('direction', $demandeFourniture->direction) == $direction ? 'selected' : '' }}>
-                                        {{ $direction }}
+                                    <option value="{{ $direction->id }}" {{ old('direction', $demandeFourniture->direction->id) == $direction->id ? 'selected' : '' }}>
+                                        {{ $direction->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -57,9 +57,15 @@
 
                         <div>
                             <label for="service" class="block text-sm font-medium text-gray-700">Service *</label>
-                            <input type="text" name="service" id="service" required
-                                   value="{{ old('service', $demandeFourniture->service) }}"
-                                   class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                            <select name="service" id="service" required
+                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                                <option value="">Sélectionnez...</option>
+                                @foreach($services as $service)
+                                    <option value="{{ $service->id }}" {{ old('service', $demandeFourniture->service->id) == $service->id ? 'selected' : '' }}>
+                                        {{ $service->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('service')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror

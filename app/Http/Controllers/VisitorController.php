@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Direction;
 class VisitorController extends Controller
 {
     public function index(Request $request)
@@ -67,16 +67,11 @@ class VisitorController extends Controller
     public function create()
     {
         // Directions prédéfinies
-        $directions = [
-            'Direction Générale',
-            'Direction RH',
-            'Direction Financière',
-            'Direction Technique',
-            'Direction Administrative',
-            'Direction Commerciale'
-        ];
+        $directions = Direction::all();
+        // Services prédéfinis
+        $services = Service::all();
 
-        return view('visitors.create', compact('directions'));
+        return view('visitors.create', compact('directions', 'services'));
     }
 
     public function store(Request $request)
@@ -109,16 +104,10 @@ class VisitorController extends Controller
 
     public function edit(Visitor $visitor)
     {
-        $directions = [
-            'Direction Générale',
-            'Direction RH',
-            'Direction Financière',
-            'Direction Technique',
-            'Direction Administrative',
-            'Direction Commerciale'
-        ];
+        $directions = Direction::all();
+        $services = Service::all();
 
-        return view('visitors.edit', compact('visitor', 'directions'));
+        return view('visitors.edit', compact('visitor', 'directions', 'services'));
     }
 
     public function update(Request $request, Visitor $visitor)
