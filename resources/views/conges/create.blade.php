@@ -34,7 +34,7 @@
                                 @endforeach
                             </select>
                         @else
-                            <input type="hidden" value="{{ Auth::user()->agent->id }}" name="agent_id">
+                            <input type="hidden" value="{{ Auth::user()->agent->id }}" name="agent_id" id="agent_id">
                         @endif
 
                         @error('agent_id')
@@ -218,7 +218,7 @@
     let soldeAgent = null;
 
     function calculerSolde() {
-        const agentId = document.getElementById('agent_id').value;
+        const agentId = document.getElementById('agent_id').value ?? null;
 
         if (!agentId) {
             document.getElementById('solde-info').style.display = 'none';
@@ -292,7 +292,7 @@
         const type = document.getElementById('type').value;
         const justificatifContainer = document.getElementById('justificatif-container');
         const justificatifInfo = document.getElementById('justificatif-info');
-        const justificatifRequired = document.getElementById('justificatif-required');
+        // const justificatifRequired = document.getElementById('justificatif-required');
         const justificatifOptional = document.getElementById('justificatif-optional');
         const justificatifMessage = document.getElementById('justificatif-message');
 
@@ -300,19 +300,19 @@
             justificatifContainer.classList.remove('hidden');
             justificatifInfo.style.display = 'block';
             justificatifMessage.textContent = 'Pour le congé maladie, veillez fournir un justificatif médical.';
-            justificatifRequired.classList.add('hidden');
+            // justificatifRequired.classList.add('hidden');
             justificatifOptional.classList.remove('hidden');
         } else if (type === 'maternite' || type === 'paternite') {
             justificatifContainer.classList.remove('hidden');
             justificatifInfo.style.display = 'block';
             justificatifMessage.textContent = `Pour les congés ${type === 'maternite' ? 'maternité' : 'paternité'}, un justificatif peut être demandé.`;
-            justificatifRequired.classList.add('hidden');
+            // justificatifRequired.classList.add('hidden');
             justificatifOptional.classList.remove('hidden');
         } else if (type === 'exceptionnel') {
             justificatifContainer.classList.remove('hidden');
             justificatifInfo.style.display = 'block';
             justificatifMessage.textContent = 'Pour les congés exceptionnels, un justificatif peut être nécessaire selon le motif.';
-            justificatifRequired.classList.add('hidden');
+            // justificatifRequired.classList.add('hidden');
             justificatifOptional.classList.remove('hidden');
         } else {
             justificatifContainer.classList.add('hidden');
@@ -344,7 +344,7 @@
 
         while (current <= fin) {
             // Compter seulement les jours ouvrables (1 = lundi, 5 = vendredi)
-            if (current.getDay() >= 1 && current.getDay() <= 5) {
+            if (current.getDay() >= 1 && current.getDay() == 5) {
                 jours++;
             }
             current.setDate(current.getDate() + 1);
