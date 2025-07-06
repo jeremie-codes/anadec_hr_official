@@ -69,6 +69,40 @@
                     </div>
                 </div>
             </div>
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200">
+                <div class="p-6">
+                    <div class="prose max-w-none">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Pièces jointes</h4>
+                        @foreach($documents as $piece)
+                            @php
+                                // $extension = pathinfo($piece->chemin, PATHINFO_EXTENSION);
+                                $url = Storage::url($piece->chemin_fichier); // si tu stockes via disk public
+                            @endphp
+
+                            <div class="mb-4">
+                                @if(in_array(strtolower($documents->type_document), ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                    <img src="{{ $url }}" alt="Pièce jointe" class="max-w-full rounded-lg shadow">
+                                @elseif(strtolower($documents->type_document) === 'pdf')
+                                    <div class="border rounded-md p-2 bg-gray-50 shadow">
+                                        <iframe src="{{ $url }}" width="100%" height="500px"></iframe>
+                                        <p class="text-sm mt-2">
+                                            <a href="{{ $url }}" target="_blank" class="text-blue-600 underline">Ouvrir le PDF dans un nouvel onglet</a>
+                                        </p>
+                                    </div>
+                                @else
+                                    <p class="text-gray-600">Fichier non supporté : 
+                                        <a href="{{ $url }}" class="text-blue-500 underline" target="_blank">Télécharger {{ $$documents->type_document }}</a>
+                                    </p>
+                                @endif
+                            </div>
+                        @endforeach
+
+                        @if($documents->isEmpty())
+                            <p class="text-gray-500">Aucune pièce jointe.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Informations complémentaires -->

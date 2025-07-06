@@ -112,7 +112,8 @@ class ValveController extends Controller
     public function show(Valve $valve)
     {
         $valve->load('publiePar');
-        return view('valves.show', compact('valve'));
+        $documents = DocumentValve::where('valve_id', $valve->id)->get();
+        return view('valves.show', compact('valve', 'documents'));
     }
 
     public function edit(Valve $valve)
