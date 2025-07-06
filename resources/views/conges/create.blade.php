@@ -397,7 +397,7 @@
         let messages = [];
 
         // Vérifications de base
-        if (!agentId || !type || !dateDebut || !dateFin || !motif.trim()) {
+        if (!type || !dateDebut || !dateFin || !motif.trim()) {
             isValid = false;
             messages.push('Veuillez remplir tous les champs obligatoires');
         }
