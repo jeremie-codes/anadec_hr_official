@@ -77,71 +77,6 @@
         </div>
     </div>
 
-    <!-- Communiqués de la valve -->
-    <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-indigo-50 to-purple-50">
-            <div class="flex items-center justify-between">
-                <h3 class="text-lg font-medium text-gray-900 flex items-center">
-                    <i class="bx bx-megaphone mr-2 text-indigo-600"></i>
-                    Communiqués Importants
-                </h3>
-                <a href="{{ route('valves.index') }}" class="text-sm text-indigo-600 hover:text-indigo-800">
-                    Voir tous les communiqués
-                </a>
-            </div>
-        </div>
-        <div class="p-6">
-            @php
-                $valves = \App\Models\Valve::enCours()
-                    ->orderByRaw("FIELD(priorite, 'urgente', 'haute', 'normale', 'basse')")
-                    ->orderBy('date_debut', 'desc')
-                    ->take(3)
-                    ->get();
-            @endphp
-
-            @if($valves->count() > 0)
-                <div class="space-y-4">
-                    @foreach($valves as $valve)
-                        <div class="p-4 rounded-lg border {{ $valve->priorite === 'urgente' ? 'bg-red-50 border-red-200' : ($valve->priorite === 'haute' ? 'bg-orange-50 border-orange-200' : 'bg-blue-50 border-blue-200') }}">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="font-medium text-gray-900 flex items-center">
-                                    @if($valve->priorite === 'urgente')
-                                        <i class="bx bx-error-circle text-red-600 mr-2"></i>
-                                    @elseif($valve->priorite === 'haute')
-                                        <i class="bx bx-up-arrow text-orange-600 mr-2"></i>
-                                    @else
-                                        <i class="bx bx-info-circle text-blue-600 mr-2"></i>
-                                    @endif
-                                    {{ $valve->titre }}
-                                </h4>
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $valve->getPrioriteBadgeClass() }}">
-                                    {{ $valve->getPrioriteLabel() }}
-                                </span>
-                            </div>
-                            <p class="text-sm text-gray-700 mb-2">
-                                {{ Str::limit($valve->contenu, 150) }}
-                            </p>
-                            <div class="flex items-center justify-between text-xs text-gray-500">
-                                <span>{{ $valve->getDateRangeFormatted() }}</span>
-                                <a href="{{ route('valves.show', $valve) }}" class="text-indigo-600 hover:text-indigo-800">
-                                    Lire la suite
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <div class="text-center py-8">
-                    <i class="bx bx-megaphone text-4xl text-gray-300 mb-2"></i>
-                    <p class="text-gray-500">Aucun communiqué actif pour le moment.</p>
-                    <a href="{{ route('valves.create') }}" class="mt-2 inline-block text-anadec-blue hover:text-anadec-dark-blue">
-                        <i class="bx bx-plus-circle mr-1"></i> Créer un communiqué
-                    </a>
-                </div>
-            @endif
-        </div>
-    </div>
-
     <!-- Graphiques et tableaux -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Présences de la semaine -->
@@ -173,32 +108,68 @@
             </div>
         </div>
 
-        <!-- Statistiques par direction -->
+        <!-- Communiqués de la valve -->
         <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-cyan-50 to-blue-50">
-                <h3 class="text-lg font-medium text-gray-900 flex items-center">
-                    <i class="bx bx-building mr-2 text-cyan-600"></i>
-                    Présences par Direction
-                </h3>
+            <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-indigo-50 to-purple-50">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-medium text-gray-900 flex items-center">
+                        <i class="bx bx-megaphone mr-2 text-indigo-600"></i>
+                        Communiqués Importants
+                    </h3>
+                    <a href="{{ route('valves.index') }}" class="text-sm text-indigo-600 hover:text-indigo-800">
+                        Voir tous les communiqués
+                    </a>
+                </div>
             </div>
             <div class="p-6">
-                <div class="space-y-4">
-                    @foreach($directions as $nom => $stats)
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <span class="text-sm font-medium text-gray-700">{{ $nom }}</span>
-                        <div class="flex items-center space-x-3">
-                            <span class="text-sm text-gray-600 font-medium">{{ $stats['presents'] }}/{{ $stats['total'] }}</span>
-                            <div class="w-24 bg-gray-200 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-anadec-blue to-anadec-light-blue h-2 rounded-full"
-                                     style="width: {{ $stats['total'] > 0 ? ($stats['presents'] / $stats['total']) * 100 : 0 }}%"></div>
+                @php
+                    $valves = \App\Models\Valve::enCours()
+                        ->orderByRaw("FIELD(priorite, 'urgente', 'haute', 'normale', 'basse')")
+                        ->orderBy('date_debut', 'desc')
+                        ->take(3)
+                        ->get();
+                @endphp
+
+                @if($valves->count() > 0)
+                    <div class="space-y-4">
+                        @foreach($valves as $valve)
+                            <div class="p-4 rounded-lg border {{ $valve->priorite === 'urgente' ? 'bg-red-50 border-red-200' : ($valve->priorite === 'haute' ? 'bg-orange-50 border-orange-200' : 'bg-blue-50 border-blue-200') }}">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-medium text-gray-900 flex items-center">
+                                        @if($valve->priorite === 'urgente')
+                                            <i class="bx bx-error-circle text-red-600 mr-2"></i>
+                                        @elseif($valve->priorite === 'haute')
+                                            <i class="bx bx-up-arrow text-orange-600 mr-2"></i>
+                                        @else
+                                            <i class="bx bx-info-circle text-blue-600 mr-2"></i>
+                                        @endif
+                                        {{ $valve->titre }}
+                                    </h4>
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $valve->getPrioriteBadgeClass() }}">
+                                        {{ $valve->getPrioriteLabel() }}
+                                    </span>
+                                </div>
+                                <p class="text-sm text-gray-700 mb-2">
+                                    {{ Str::limit($valve->contenu, 150) }}
+                                </p>
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>{{ $valve->getDateRangeFormatted() }}</span>
+                                    <a href="{{ route('valves.show', $valve) }}" class="text-indigo-600 hover:text-indigo-800">
+                                        Lire la suite
+                                    </a>
+                                </div>
                             </div>
-                            <span class="text-xs text-gray-500 font-medium w-10 text-right">
-                                {{ $stats['total'] > 0 ? round(($stats['presents'] / $stats['total']) * 100) : 0 }}%
-                            </span>
-                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
+                @else
+                    <div class="text-center py-8">
+                        <i class="bx bx-megaphone text-4xl text-gray-300 mb-2"></i>
+                        <p class="text-gray-500">Aucun communiqué actif pour le moment.</p>
+                        <a href="{{ route('valves.create') }}" class="mt-2 inline-block text-anadec-blue hover:text-anadec-dark-blue">
+                            <i class="bx bx-plus-circle mr-1"></i> Créer un communiqué
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

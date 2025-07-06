@@ -96,7 +96,7 @@
                             onclick="toggleSubmenu('structure-submenu')">
                         <i class="bx bx-buildings text-xl"></i>
                         <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') ? '' : 'hidden' }}">
                         <a href="{{ route('directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -116,7 +116,7 @@
                             onclick="toggleSubmenu('agents-submenu')">
                         <i class="bx bx-group text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Agents</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('agents.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="agents-submenu" class="ml-4 space-y-1 {{ request()->routeIs('agents.*') ? '' : 'hidden' }}">
                         <a href="{{ route('agents.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -176,7 +176,7 @@
                             onclick="toggleSubmenu('presences-submenu')">
                         <i class="bx bx-calendar-check text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Présences</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('presences.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="presences-submenu" class="ml-4 space-y-1 {{ request()->routeIs('presences.*') ? '' : 'hidden' }}">
                         <a href="{{ route('presences.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -200,7 +200,7 @@
                             onclick="toggleSubmenu('conges-submenu')">
                         <i class="bx bx-calendar-minus text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Congés</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('conges.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="conges-submenu" class="ml-4 space-y-1 {{ request()->routeIs('conges.*') ? '' : 'hidden' }}">
                         <a href="{{ route('conges.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -240,7 +240,7 @@
                             onclick="toggleSubmenu('cotations-submenu')">
                         <i class="bx bx-chart text-xl"></i>
                         <span class="sidebar-text ml-3">Cotation des Agents</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('cotations.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="cotations-submenu" class="ml-4 space-y-1 {{ request()->routeIs('cotations.*') ? '' : 'hidden' }}">
                         <a href="{{ route('cotations.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -264,7 +264,7 @@
                             onclick="toggleSubmenu('logistic-submenu')">
                         <i class="bx bx-box text-xl"></i>
                         <span class="sidebar-text ml-3">Logistique & Appro.</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('stocks.*') || request()->routeIs('demandes-fournitures.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="logistic-submenu" class="ml-4 space-y-1 {{ request()->routeIs('stocks.*') || request()->routeIs('demandes-fournitures.*') ? '' : 'hidden' }}">
                         <a href="{{ route('stocks.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -304,7 +304,7 @@
                             onclick="toggleSubmenu('charroi-submenu')">
                         <i class="bx bx-car text-xl"></i>
                         <span class="sidebar-text ml-3">Charroi Automobile</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('vehicules.*') || request()->routeIs('chauffeurs.*') || request()->routeIs('demandes-vehicules.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="charroi-submenu" class="ml-4 space-y-1 {{ request()->routeIs('vehicules.*') || request()->routeIs('chauffeurs.*') || request()->routeIs('demandes-vehicules.*') ? '' : 'hidden' }}">
                         <a href="{{ route('vehicules.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -352,7 +352,7 @@
                             onclick="toggleSubmenu('paiements-submenu')">
                         <i class="bx bx-money text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Paiements</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('paiements.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="paiements-submenu" class="ml-4 space-y-1 {{ request()->routeIs('paiements.*') ? '' : 'hidden' }}">
                         <a href="{{ route('paiements.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -392,7 +392,7 @@
                             onclick="toggleSubmenu('courriers-submenu')">
                         <i class="bx bx-envelope text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Courriers</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('courriers.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="courriers-submenu" class="ml-4 space-y-1 {{ request()->routeIs('courriers.*') ? '' : 'hidden' }}">
                         <a href="{{ route('courriers.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -436,7 +436,7 @@
                             onclick="toggleSubmenu('visitors-submenu')">
                         <i class="bx bx-user-voice text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Visiteurs</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('visitors.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="visitors-submenu" class="ml-4 space-y-1 {{ request()->routeIs('visitors.*') ? '' : 'hidden' }}">
                         <a href="{{ route('visitors.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -456,7 +456,7 @@
                             onclick="toggleSubmenu('valves-submenu')">
                         <i class="bx bx-megaphone text-xl"></i>
                         <span class="sidebar-text ml-3">Gestion des Communiqués</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('valves.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="valves-submenu" class="ml-4 space-y-1 {{ request()->routeIs('valves.*') ? '' : 'hidden' }}">
                         <a href="{{ route('valves.dashboard') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -480,7 +480,7 @@
                             onclick="toggleSubmenu('roles-submenu')">
                         <i class="bx bx-shield text-xl"></i>
                         <span class="sidebar-text ml-3">Rôles & Permissions</span>
-                        <i class="bx bx-chevron-down sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('roles.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
                     <div id="roles-submenu" class="ml-4 space-y-1 {{ request()->routeIs('roles.*') ? '' : 'hidden' }}">
                         <a href="{{ route('roles.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
