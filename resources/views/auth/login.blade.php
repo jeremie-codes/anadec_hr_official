@@ -10,6 +10,7 @@
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <script>
         tailwind.config = {
@@ -52,13 +53,13 @@
                         Adresse e-mail
                     </label>
                     <div class="mt-1 relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="bx bx-user text-gray-400"></i>
-                        </div>
                         <input id="email" name="email" type="email" autocomplete="email" required
                                class="appearance-none relative block w-full px-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-anadec-blue focus:border-anadec-blue focus:z-10 sm:text-sm"
                                placeholder="Entrez votre adresse e-mail"
                                value="{{ old('email') }}">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style="z-index: 999;">
+                            <i class="bx bx-user text-gray-400"></i>
+                        </div>
                     </div>
                     @error('email')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -70,12 +71,21 @@
                         Mot de passe
                     </label>
                     <div class="mt-1 relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="bx bx-lock-alt text-gray-400"></i>
-                        </div>
                         <input id="password" name="password" type="password" autocomplete="current-password" required
                                class="appearance-none relative block w-full px-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-anadec-blue focus:border-anadec-blue focus:z-10 sm:text-sm"
                                placeholder="Entrez votre mot de passe">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style="z-index: 999;">
+                            <i class="bx bx-lock-alt text-gray-400"></i>
+                        </div>
+
+                        <button class="absolute inset-y0 right-0 px-3 py-1 flex items-center pointer-events-none border" style="z-index: 999; cursor: pointer;"
+                                onclick="event.preventDefault(); document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password';">
+                            <i class="bx bx-eye text-gray-400 text-lg"></i>
+                        </button>
+
+                        <script>
+
+                        </script>
                     </div>
                     @error('password')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

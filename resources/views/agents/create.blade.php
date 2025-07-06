@@ -35,9 +35,17 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="matricule" class="block text-sm font-medium text-gray-700">Matricule *</label>
-                    <input type="text" name="matricule" id="matricule" required
-                           value="{{ old('matricule') }}"
-                           class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                    <input
+                        type="text"
+                        name="matricule"
+                        id="matricule"
+                        required
+                        pattern="^\d{4}/\d{2}$"
+                        title="Format attendu : 4 chiffres / 2 chiffres (ex : 1111/21)"
+                        value="{{ old('matricule') }}"
+                        class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue"
+                    />
+
                     @error('matricule')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror

@@ -19,12 +19,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="md:col-span-2">
                     <label for="agent_id" class="block text-sm font-medium text-gray-700">Agent *</label>
-                    <select name="agent_id" id="agent_id" required
+                    <select name="agent_id" id="agent_id" required disabled
                             class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
                         <option value="">Sélectionnez un agent...</option>
                         @foreach($agents as $agent)
                             <option value="{{ $agent->id }}" {{ old('agent_id', $presence->agent_id) == $agent->id ? 'selected' : '' }}>
-                                {{ $agent->full_name }} ({{ $agent->matricule }}) - {{ $agent->direction }}
+                                {{ $agent->full_name }}
                             </option>
                         @endforeach
                     </select>
