@@ -78,7 +78,7 @@
                             <i class="bx bx-lock-alt text-gray-400"></i>
                         </div>
 
-                        <button class="absolute inset-y0 right-0 px-3 py-1 flex items-center pointer-events-none border" style="z-index: 999; cursor: pointer;"
+                        <button class="absolute inset-y-0 right-0 px-3 py-1 flex items-center" style="z-index: 999; cursor: pointer;"
                                 onclick="event.preventDefault(); document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password';">
                             <i class="bx bx-eye text-gray-400 text-lg"></i>
                         </button>

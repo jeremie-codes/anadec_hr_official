@@ -308,7 +308,12 @@
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Mot de passe (optionnel)</label>
-                    <input type="password" name="password" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <input type="password" name="password" id="password" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    
+                    <button class="absolute inset-y-0 right-0 px-3 py-1 flex items-center" style="z-index: 999; cursor: pointer;"
+                            onclick="event.preventDefault(); document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password';">
+                        <i class="bx bx-eye text-gray-400 text-lg"></i>
+                    </button>
                     <p class="text-xs text-gray-500 mt-1">Si vide, le mot de passe par défaut sera "password123"</p>
                 </div>
                 <div class="flex justify-end space-x-3">
