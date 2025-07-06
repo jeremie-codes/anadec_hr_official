@@ -113,7 +113,7 @@ class ValveController extends Controller
         $valve->load('publiePar');
         $documents = DocumentValve::where('valve_id', $valve->id)->get();
 
-        dd($documents);
+        // dd($documents);
         return view('valves.show', compact('valve', 'documents'));
     }
 

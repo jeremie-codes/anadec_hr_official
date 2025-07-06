@@ -75,14 +75,14 @@
                         <h4 class="text-lg font-semibold text-gray-900 mb-4">Pièces jointes</h4>
                         @foreach($documents as $piece)
                             @php
-                                // $extension = pathinfo($piece->chemin, PATHINFO_EXTENSION);
+                                $extension = pathinfo($piece->chemin_fichier, PATHINFO_EXTENSION);
                                 $url = Storage::url($piece->chemin_fichier); // si tu stockes via disk public
                             @endphp
 
                             <div class="mb-4">
-                                @if(in_array(strtolower($documents->type_document), ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                @if(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                     <img src="{{ $url }}" alt="Pièce jointe" class="max-w-full rounded-lg shadow">
-                                @elseif(strtolower($documents->type_document) === 'pdf')
+                                @elseif(strtolower($extension) === 'pdf')
                                     <div class="border rounded-md p-2 bg-gray-50 shadow">
                                         <iframe src="{{ $url }}" width="100%" height="500px"></iframe>
                                         <p class="text-sm mt-2">
@@ -91,7 +91,7 @@
                                     </div>
                                 @else
                                     <p class="text-gray-600">Fichier non supporté : 
-                                        <a href="{{ $url }}" class="text-blue-500 underline" target="_blank">Télécharger {{ $$documents->type_document }}</a>
+                                        <a href="{{ $url }}" class="text-blue-500 underline" target="_blank">Télécharger {{ $extension }}</a>
                                     </p>
                                 @endif
                             </div>
