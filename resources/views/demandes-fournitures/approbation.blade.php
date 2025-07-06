@@ -124,10 +124,10 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm text-gray-600 mb-3">
                                 <div>
-                                    <span class="font-medium">Direction :</span> {{ $demande->direction->name }}
+                                    <span class="font-medium">Direction :</span> {{ $demande->direction->name ?? 'N/A' }}
                                 </div>
                                 <div>
-                                    <span class="font-medium">Service :</span> {{ $demande->service }}
+                                    <span class="font-medium">Service :</span> {{ $demande->service ?? 'N/A' }}
                                 </div>
                                 <div>
                                     <span class="font-medium">Quantité :</span> {{ $demande->quantite }} {{ $demande->unite }}
