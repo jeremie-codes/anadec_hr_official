@@ -67,7 +67,6 @@ class ValveController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
         try {
             $validated = $request->validate([
             'titre' => 'required|string|max:255',
@@ -113,6 +112,8 @@ class ValveController extends Controller
     {
         $valve->load('publiePar');
         $documents = DocumentValve::where('valve_id', $valve->id)->get();
+
+        dd($documents);
         return view('valves.show', compact('valve', 'documents'));
     }
 
