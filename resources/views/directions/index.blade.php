@@ -33,8 +33,8 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-purple-100">Total Services</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($stats['total_services']) }}</p>
+                        <p class="text-sm font-medium text-purple-100">Total Sous Direction</p>
+                        <p class="text-3xl font-bold text-white">{{ number_format($stats['total_sous_directions']) }}</p>
                     </div>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-orange-100">Total Agents</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($stats['total_agents']) }}</p>
+                        <p class="text-sm font-medium text-orange-100">Total Services</p>
+                        <p class="text-3xl font-bold text-white">{{ number_format($stats['total_services']) - 1 }}</p>
                     </div>
                 </div>
             </div>
@@ -98,6 +98,7 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Direction</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sous Directions</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Services</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agents</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -108,6 +109,9 @@
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">{{ $direction->name }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="text-lg font-semibold text-gray-900">{{ $direction->sousDirections->count() }}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
                                 <span class="text-lg font-semibold text-gray-900">{{ $direction->services_count }}</span>

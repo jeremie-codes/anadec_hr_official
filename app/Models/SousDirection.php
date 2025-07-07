@@ -2,25 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class SousDirection extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'direction_id',
-        'sous_direction_id',
         'name',
     ];
 
     // Relations
-    public function sousDirection()
-    {
-        return $this->belongsTo(SousDirection::class);
-    }
-
     public function direction()
     {
         return $this->belongsTo(Direction::class);
@@ -31,6 +22,10 @@ class Service extends Model
         return $this->hasMany(Agent::class);
     }
 
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
 
     public function scopeByDirection($query, $directionId)
     {

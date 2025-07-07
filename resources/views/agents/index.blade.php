@@ -162,6 +162,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             {{ $agent->role->name ?? 'N/A' }}
+                            <div class="text-sm text-gray-500">{{ $agent->sousDirection->name ?? '' }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $agent->getStatutBadgeClass() }}">

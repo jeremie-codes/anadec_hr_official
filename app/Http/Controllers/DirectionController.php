@@ -23,7 +23,7 @@ class DirectionController extends Controller
         $stats = [
             'total' => Direction::count(),
             'total_services' => \App\Models\Service::count(),
-            'total_agents' => \App\Models\Agent::count(),
+            'total_sous_directions' => \App\Models\SousDirection::count(),
         ];
 
         return view('directions.index', compact('directions', 'stats'));

@@ -18,7 +18,7 @@
                         Informations de la Direction
                     </h3>
                     <div class="flex items-center space-x-3">
-                        <a href="{{ route('directions.show', $direction) }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                        <a href="{{ route('directions.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                             <i class="bx bx-arrow-back mr-2"></i>Retour
                         </a>
                         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
@@ -41,7 +41,7 @@
             </div>
 
             <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3">
-                <a href="{{ route('directions.show', $direction) }}" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                <a href="{{ route('directions.index') }}" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                     <i class="bx bx-x mr-2"></i>Annuler
                 </a>
                 <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">

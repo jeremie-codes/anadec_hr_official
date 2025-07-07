@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Créer un Service - ANADEC RH')
-@section('page-title', 'Créer un Nouveau Service')
-@section('page-description', 'Ajouter un nouveau service à l\'organisation')
+@section('title', 'Créer une Sous Direction - ANADEC RH')
+@section('page-title', 'Créer une Nouvelle Sous Direction')
+@section('page-description', 'Ajouter une nouvelle sous direction à l\'organisation')
 
 @section('content')
 <div class="max-w-4xl mx-auto">
-    <form method="POST" action="{{ route('services.store') }}">
+    <form method="POST" action="{{ route('sous_directions.store') }}">
         @csrf
 
         <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
@@ -14,10 +14,10 @@
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-medium text-gray-900 flex items-center">
                         <i class="bx bx-plus mr-2 text-blue-600"></i>
-                        Informations du Service
+                        Informations du Sous direction
                     </h3>
                     <div class="flex items-center space-x-3">
-                        <a href="{{ route('services.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                        <a href="{{ route('sous_directions.index') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                             <i class="bx bx-arrow-back mr-2"></i>Retour
                         </a>
                         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
@@ -45,25 +45,9 @@
                         @enderror
                     </div>
 
-                    <!-- Direction -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Sous Direction *</label>
-                        <select name="sous_direction_id" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
-                            <option value="">Sélectionner une sous direction</option>
-                            @foreach($sous_directions as $sous_direction)
-                                <option value="{{ $sous_direction->id }}" {{ old('sous_direction_id', request('sous_direction_id')) == $sous_direction->id ? 'selected' : '' }}>
-                                    {{ $sous_direction->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('sous_direction_id')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
                     <!-- Nom -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom du Service *</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom de la sous direction *</label>
                         <input type="text" name="name" value="{{ old('name') }}"
                                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                required>
@@ -75,11 +59,11 @@
             </div>
 
             <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3">
-                <a href="{{ route('services.index') }}" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                <a href="{{ route('sous_directions.index') }}" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors">
                     <i class="bx bx-x mr-2"></i>Annuler
                 </a>
                 <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
-                    <i class="bx bx-save mr-2"></i>Créer le Service
+                    <i class="bx bx-save mr-2"></i>Créer la sous direction
                 </button>
             </div>
         </div>

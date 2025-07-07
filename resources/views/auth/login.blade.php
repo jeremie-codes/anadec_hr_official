@@ -31,7 +31,7 @@
         <!-- Logo et titre -->
         <div class="text-center">
             <div class="flex justify-center">
-                <div class="bg-white p-4 rounded-full shadow-lg">
+                <div class="bg-white h-16 flex flex-row items-center justify-center w-16 rounded-full shadow-lg">
                     <i class="bx bx-buildings text-anadec-blue text-4xl"></i>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Direction;
+use App\Models\SousDirection;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -23,7 +24,7 @@ class ServiceController extends Controller
             $query->where('name', 'like', "%{$search}%");
         }
 
-        $services = $query->orderBy('name')->paginate(10);
+        $services = $query->where('name', '!=', 'Aucun')->orderBy('name')->paginate(10);
 
         // Statistiques
         $stats = [
@@ -39,13 +40,16 @@ class ServiceController extends Controller
     public function create()
     {
         $directions = Direction::orderBy('name')->get();
-        return view('services.create', compact('directions'));
+        $sous_directions = SousDirection::orderBy('name')->get();
+
+        return view('services.create', compact('directions', 'sous_directions'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
+            'sous_direction_id' => 'required|exists:sous_directions,id',
             'name' => 'required|string|max:255',
         ]);
 
@@ -80,13 +84,15 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         $directions = Direction::orderBy('name')->get();
-        return view('services.edit', compact('service', 'directions'));
+        $sous_directions = SousDirection::orderBy('name')->get();
+        return view('services.edit', compact('service', 'directions', 'sous_directions'));
     }
 
     public function update(Request $request, Service $service)
     {
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
+            'sous_direction_id' => 'required|exists:sous_   directions,id',
             'name' => 'required|string|max:255',
         ]);
 

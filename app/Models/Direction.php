@@ -55,6 +55,11 @@ class Direction extends Model
         return $this->hasMany(Service::class);
     }
 
+    public function sousDirections()
+    {
+        return $this->hasMany(SousDirection::class);
+    }
+
     public function agents()
     {
         return $this->hasMany(Agent::class);

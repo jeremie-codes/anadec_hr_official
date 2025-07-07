@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Gestion des Services - ANADEC RH')
-@section('page-title', 'Gestion des Services')
-@section('page-description', 'Administration des services de l\'organisation')
+@section('title', 'Gestion des Sous Direction - ANADEC RH')
+@section('page-title', 'Gestion des Sous Direction')
+@section('page-description', 'Administration des Sous Direction de l\'organisation')
 
 @section('content')
 <div class="space-y-6">
@@ -17,8 +17,8 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-blue-100">Total Services</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($stats['total']) - 1 }}</p>
+                        <p class="text-sm font-medium text-blue-100">Total Sous Direction</p>
+                        <p class="text-3xl font-bold text-white">{{ number_format($stats['total']) }}</p>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-purple-100">Sous Directions</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format(\App\Models\SousDirection::count()) }}</p>
+                        <p class="text-sm font-medium text-purple-100">Services</p>
+                        <p class="text-3xl font-bold text-white">{{ number_format(\App\Models\Service::count() - 1) }}</p>
                     </div>
                 </div>
             </div>
@@ -65,8 +65,8 @@
                     <i class="bx bx-filter mr-2 text-blue-600"></i>
                     Filtres et Recherche
                 </h3>
-                <a href="{{ route('services.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                    <i class="bx bx-plus mr-2"></i>Nouveau Service
+                <a href="{{ route('sous_directions.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="bx bx-plus mr-2"></i>Nouvelle sous direction
                 </a>
             </div>
         </div>
@@ -75,7 +75,7 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recherche</label>
                     <input type="text" name="search" value="{{ request('search') }}"
-                           placeholder="Nom du service..."
+                           placeholder="Nom du sous_direction..."
                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
@@ -100,12 +100,12 @@
         </div>
     </div>
 
-    <!-- Liste des services -->
+    <!-- Liste des Sous Direction -->
     <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
             <h3 class="text-lg font-medium text-gray-900 flex items-center">
                 <i class="bx bx-list-ul mr-2 text-gray-600"></i>
-                Liste des Services ({{ $services->total() }})
+                Liste des Sous Direction ({{ $sous_directions->total() }})
             </h3>
         </div>
 
@@ -113,40 +113,36 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sous Direction</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Direction</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">sous_direction</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Services</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agents</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @forelse($services as $service)
+                    @forelse($sous_directions as $sous_direction)
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">{{ $service->name }}</div>
+                                <div class="text-sm font-medium text-gray-900">{{ $sous_direction->name }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $service->sousDirection->name ?? '' }}</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $service->direction->name ?? '' }}</div>
+                                <div class="text-lg font-semibold text-gray-900">{{ $sous_direction->services->count() }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <span class="text-lg font-semibold text-gray-900">{{ $service->agents_count }}</span>
+                                <span class="text-lg font-semibold text-gray-900">{{ $sous_direction->agents_count }}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex items-center space-x-2">
-                                    <a href="{{ route('services.edit', $service) }}"
+                                    <a href="{{ route('sous_directions.edit', $sous_direction) }}"
                                        class="text-green-600 hover:text-green-900 bg-green-100 hover:bg-green-200 px-2 py-1 rounded transition-colors">
                                         <i class="bx bx-edit"></i>
                                     </a>
-                                    @if($service->agents_count == 0)
-                                        <form method="POST" action="{{ route('services.destroy', $service) }}" class="inline">
+                                    @if($sous_direction->agents_count == 0)
+                                        <form method="POST" action="{{ route('sous_directions.destroy', $sous_direction) }}" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                    onclick="return confirm('Supprimer ce service ?')"
+                                                    onclick="return confirm('Supprimer cette sous direction ?')"
                                                     class="text-red-600 hover:text-red-900 bg-red-100 hover:bg-red-200 px-2 py-1 rounded transition-colors">
                                                 <i class="bx bx-trash"></i>
                                             </button>
@@ -160,9 +156,9 @@
                             <td colspan="4" class="px-6 py-12 text-center">
                                 <div class="text-gray-500">
                                     <i class="bx bx-briefcase text-4xl mb-2"></i>
-                                    <p>Aucun service trouvé.</p>
-                                    <a href="{{ route('services.create') }}" class="mt-2 inline-block text-blue-600 hover:text-blue-800">
-                                        <i class="bx bx-plus-circle mr-1"></i> Créer un service
+                                    <p>Aucune sous direction trouvée.</p>
+                                    <a href="{{ route('sous_directions.create') }}" class="mt-2 inline-block text-blue-600 hover:text-blue-800">
+                                        <i class="bx bx-plus-circle mr-1"></i> Créer une nouvelle sous direction
                                     </a>
                                 </div>
                             </td>
@@ -173,9 +169,9 @@
         </div>
 
         <!-- Pagination -->
-        @if($services->hasPages())
+        @if($sous_directions->hasPages())
             <div class="px-6 py-4 border-t border-gray-200">
-                {{ $services->withQueryString()->links() }}
+                {{ $sous_direction->withQueryString()->links() }}
             </div>
         @endif
     </div>

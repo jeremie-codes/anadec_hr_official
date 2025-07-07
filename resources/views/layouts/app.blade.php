@@ -96,12 +96,16 @@
                             onclick="toggleSubmenu('structure-submenu')">
                         <i class="bx bx-buildings text-xl"></i>
                         <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
-                        <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                        <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                     </button>
-                    <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') ? '' : 'hidden' }}">
+                    <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? '' : 'hidden' }}">
                         <a href="{{ route('directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                             <i class="bx bx-building text-lg"></i>
                             <span class="sidebar-text ml-3">Directions</span>
+                        </a>
+                        <a href="{{ route('sous_directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
+                            <i class="bx bx-building text-lg"></i>
+                            <span class="sidebar-text ml-3">Sous Directions</span>
                         </a>
                         <a href="{{ route('services.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                             <i class="bx bx-briefcase text-lg"></i>

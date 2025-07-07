@@ -161,6 +161,22 @@
                 </div>
 
                 <div>
+                    <label for="sous_direction" class="block text-sm font-medium text-gray-700">Sous Direction *</label>
+                    <select name="sous_direction_id" id="sous_direction" required
+                            class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                        <option value="">Sélectionnez une direction...</option>
+                        @foreach(\App\Models\SousDirection::all() as $sous_direction)
+                            <option value="{{ $sous_direction->id }}" {{ old('sous_direction_id') == $sous_direction->id ? 'selected' : '' }}>
+                                {{ $sous_direction->name ?? '' }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('sous_direction')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
                     <label for="service" class="block text-sm font-medium text-gray-700">Service *</label>
                    <select name="service_id" id="service" required
                             class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">

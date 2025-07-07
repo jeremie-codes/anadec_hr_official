@@ -18,6 +18,7 @@ use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\ValveController;
 use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SousDirectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;
 /*
@@ -74,6 +75,18 @@ Route::middleware('auth')->group(function () {
         Route::put('/{service}', [ServiceController::class, 'update'])->name('update');
         Route::delete('/{service}', [ServiceController::class, 'destroy'])->name('destroy');
         Route::post('/{service}/toggle-status', [ServiceController::class, 'toggleStatus'])->name('toggle-status');
+    });
+
+    // Module Gestion des sous directions
+    Route::prefix('sous_directions')->name('sous_directions.')->group(function () {
+        Route::get('/', [SousDirectionController::class, 'index'])->name('index');
+        Route::get('/create', [SousDirectionController::class, 'create'])->name('create');
+        Route::post('/', [SousDirectionController::class, 'store'])->name('store');
+        Route::get('/{sous_direction}', [SousDirectionController::class, 'show'])->name('show');
+        Route::get('/{sous_direction}/edit', [SousDirectionController::class, 'edit'])->name('edit');
+        Route::put('/{sous_direction}', [SousDirectionController::class, 'update'])->name('update');
+        Route::delete('/{sous_direction}', [SousDirectionController::class, 'destroy'])->name('destroy');
+        Route::post('/{sous_direction}/toggle-status', [SousDirectionController::class, 'toggleStatus'])->name('toggle-status');
     });
 
     // API pour obtenir les services d'une direction

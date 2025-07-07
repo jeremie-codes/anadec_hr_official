@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('direction_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->timestamps();
-
-            $table->unique(['direction_id', 'name']);
+        Schema::table('services', function (Blueprint $table) {
+            $table->foreignId('sous_direction_id')->nullable()->after('direction_id')->constrained()->onDelete('set null');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::table('services', function (Blueprint $table) {
+            $table->unique(['sous_direction_id', 'name']);
+        });
     }
 };

@@ -20,6 +20,7 @@ class Agent extends Model
         'sexe',
         'situation_matrimoniale',
         'direction_id',
+        'sous_direction_id',
         'service_id',
         'role_id',
         'date_recrutement',
@@ -72,6 +73,11 @@ class Agent extends Model
         return $this->belongsTo(Direction::class);
     }
 
+    public function sousDirection()
+    {
+        return $this->belongsTo(SousDirection::class);
+    }
+
     public function service()
     {
         return $this->belongsTo(Service::class);
@@ -105,7 +111,9 @@ class Agent extends Model
 
     public function getAncienneteAttribute()
     {
-        return $this->date_recrutement ? $this->date_recrutement->diffInYears(Carbon::now()) : null;
+        return $this->date_recrutement
+            ? $this->date_recrutement->diff(Carbon::now())->y
+            : null;
     }
 
     public function getPhotoUrlAttribute()
