@@ -23,11 +23,11 @@ class SousDirectionController extends Controller
             $query->where('name', 'like', "%{$search}%");
         }
 
-        $sous_directions = $query->where('name', '!=', 'Aucun')->orderBy('name')->paginate(10)->withQueryString();
+        $sous_directions = $query->where('name', '!=', 'Aucun')->orderBy('name')->paginate(10);
 
         // Statistiques
         $stats = [
-            'total' => SousDirection::where('name', '!=', 'Aucun')->count(),
+            'total' => SousDirection::count(),
             'total_agents' => \App\Models\Agent::count(),
         ];
 
