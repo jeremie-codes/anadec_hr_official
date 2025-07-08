@@ -28,7 +28,7 @@ class ServiceController extends Controller
 
         // Statistiques
         $stats = [
-            'total' => Service::count(),
+            'total' => Service::where('name', '!=', 'Aucun')->count(),
             'total_agents' => \App\Models\Agent::count(),
         ];
 
