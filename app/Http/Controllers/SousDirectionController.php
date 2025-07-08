@@ -23,7 +23,7 @@ class SousDirectionController extends Controller
             $query->where('name', 'like', "%{$search}%");
         }
 
-        $sous_directions = $query->where('name', '!=', 'Aucun')->orderBy('name')->paginate(10);
+        $sous_directions = $query->where('name', '!=', 'Aucun')->orderBy('name')->paginate(10)->withQueryString();
 
         // Statistiques
         $stats = [
