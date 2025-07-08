@@ -46,6 +46,22 @@
                         @enderror
                     </div>
 
+                     <!-- Sous Direction -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Sous Direction *</label>
+                        <select name="sous_direction_id" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="">Sélectionner une sous direction</option>
+                            @foreach($sous_directions as $sous_direction)
+                                <option value="{{ $sous_direction->id }}" {{ old('sous_direction_id', $service->sous_direction_id) == $sous_direction->id ? 'selected' : '' }}>
+                                    {{ $sous_direction->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('sous_direction_id')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- Nom -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Nom du Service *</label>
