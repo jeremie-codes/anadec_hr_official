@@ -34,7 +34,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-purple-100">Services</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format(\App\Models\Service::count() - 1) }}</p>
+                        <p class="text-3xl font-bold text-white">{{ number_format(\App\Models\Service::where('name', '!=', 'Aucun')->count()) }}</p>
                     </div>
                 </div>
             </div>
