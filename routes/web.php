@@ -39,7 +39,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/conge/{id}/pdf', [App\Http\Controllers\CongeController::class, 'generatePdf'])->name('conge.pdf');
 
-
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Dashboard principal

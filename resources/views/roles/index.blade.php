@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Gestion des Rôles et Comptes - ANADEC RH')
-@section('page-title', 'Gestion des Rôles et Comptes Utilisateurs')
-@section('page-description', 'Attribution des rôles et création des comptes utilisateurs pour les agents')
+@section('title', 'Gestion des grade/functions et Comptes - ANADEC RH')
+@section('page-title', 'Gestion des grade/functions et Comptes Utilisateurs')
+@section('page-description', 'Attribution des grade/functions et création des comptes utilisateurs pour les agents')
 
 @section('content')
 <div class="space-y-6">
@@ -81,9 +81,6 @@
                     <i class="bx bx-zap mr-2 text-indigo-600"></i>
                     Actions Rapides
                 </h3>
-                <a href="{{ route('roles.permissions') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
-                    <i class="bx bx-shield mr-2"></i>Gérer les Permissions
-                </a>
             </div>
         </div>
         <div class="p-6">
@@ -120,9 +117,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Rôle</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">grade/function</label>
                     <select name="role_id" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <option value="">Tous les rôles</option>
+                        <option value="">Tous les grade/functions</option>
                         @foreach($roles as $role)
                             <option value="{{ $role->id }}" {{ request('role_id') == $role->id ? 'selected' : '' }}>
                                 {{ $role->display_name }}
@@ -163,7 +160,7 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agent</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rôle Actuel</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">grade/function Actuel</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compte Utilisateur</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
@@ -192,7 +189,7 @@
                                     @csrf
                                     @method('PUT')
                                     <select name="role_id" class="border border-gray-300 rounded px-2 py-1 text-sm" onchange="this.form.submit()">
-                                        <option value="">Aucun rôle</option>
+                                        <option value="">Aucun grade/function</option>
                                         @foreach($roles as $role)
                                             <option value="{{ $role->id }}" {{ $agent->role_id == $role->id ? 'selected' : '' }}>
                                                 {{ $role->display_name }}
@@ -309,7 +306,7 @@
                 <div class="mb-6">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Mot de passe (optionnel)</label>
                     <input type="password" name="password" id="password" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    
+
                     <button class="absolute inset-y-0 right-0 px-3 py-1 flex items-center" style="z-index: 999; cursor: pointer;"
                             onclick="event.preventDefault(); document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password';">
                         <i class="bx bx-eye text-gray-400 text-lg"></i>

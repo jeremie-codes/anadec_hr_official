@@ -88,11 +88,11 @@
                                     <div class="flex-1">
                                         <div class="text-sm font-medium text-gray-900">{{ $description }}</div>
                                         <div class="text-xs text-gray-500">{{ $permission }}</div>
-                                        @if($agent->role && $agent->role->hasPermission($permission))
+                                        {{-- @if($agent->role && $agent->role->hasPermission($permission))
                                             <div class="text-xs text-green-600 mt-1">
                                                 <i class="bx bx-check-circle mr-1"></i>Déjà accordé par le rôle
                                             </div>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </label>
                             @endforeach

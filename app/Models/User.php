@@ -70,9 +70,6 @@ class User extends Authenticatable
         if (is_array($this->permissions) && in_array($permission, $this->permissions)) {
             return true;
         }
-
-        // Si l'utilisateur n'a pas la permission spécifique, vérifier les permissions du rôle
-        return $this->agent && $this->agent->role && $this->agent->role->hasPermission($permission);
     }
 
     public function hasRole($roleName)
