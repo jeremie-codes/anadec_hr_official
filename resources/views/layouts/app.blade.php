@@ -253,7 +253,7 @@
                                     <span class="sidebar-text ml-3">Mes Congés</span>
                                 </a>
                             @endif
-                            @if(can('conges.approbation_directeur'))
+                            @if(can('conges.approbation-directeur'))
                                 <a href="{{ route('conges.approbation-directeur') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-check text-lg"></i>
                                     <span class="sidebar-text ml-3">Approbation Dir.</span>
@@ -265,7 +265,7 @@
                                     <span class="sidebar-text ml-3">Approbation S/D.</span>
                                 </a>
                             @endif
-                            @if(can('conges.validation_drh'))
+                            @if(can('conges.validation-drh'))
                                 <a href="{{ route('conges.validation-drh') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-check-double text-lg"></i>
                                     <span class="sidebar-text ml-3">Validation DRH</span>
