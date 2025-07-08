@@ -285,8 +285,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{demandeVehicule}', [DemandeVehiculeController::class, 'destroy'])->name('destroy');
 
         // Interface d'approbation
-        Route::get('/approbation/list', [DemandeVehiculeController::class, 'approbation'])->name('approbation');
-        Route::post('/{demandeVehicule}/approuver', [DemandeVehiculeController::class, 'approuver'])->name('approuver');
+        // Route::get('/approbation/list', [DemandeVehiculeController::class, 'approbation'])->name('approbation');
+        // Route::post('/{demandeVehicule}/approuver', [DemandeVehiculeController::class, 'approuver'])->name('approuver');
 
         // Interface d'affectation
         Route::get('/affectation/list', [DemandeVehiculeController::class, 'affectation'])->name('affectation');

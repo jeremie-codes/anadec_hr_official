@@ -188,7 +188,7 @@ class DemandeVehicule extends Model
 
     public function peutEtreAffecte()
     {
-        return $this->statut === 'approuve';
+        return $this->statut === 'en_attente';
     }
 
     public function estEnRetard()

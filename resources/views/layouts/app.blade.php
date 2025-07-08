@@ -219,7 +219,7 @@
                 <!-- Gestion des Congés -->
                 @if(
                     can('conges.dashboard') || can('conges.view') || can('conges.create') || can('conges.mes-conges') ||
-                    can('conges.approbation_directeur') || can('conges.approbation_sd') || can('conges.validation_drh')
+                    can('conges.approbation-directeur') || can('conges.approbation-sd') || can('conges.validation-drh')
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
@@ -390,12 +390,12 @@
                                     <span class="sidebar-text ml-3">Dashboard Charroi</span>
                                 </a>
                             @endif
-                            @if(can('vehicules.view'))
+                            {{-- @if(can('vehicules.view'))
                                 <a href="{{ route('vehicules.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-car text-lg"></i>
                                     <span class="sidebar-text ml-3">Gestion Véhicules</span>
                                 </a>
-                            @endif
+                            @endif --}}
                             @if(can('chauffeurs.view'))
                                 <a href="{{ route('chauffeurs.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-user-voice text-lg"></i>

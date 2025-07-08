@@ -121,8 +121,9 @@ class Role extends Model
             'conges.create' => 'Créer un congé',
             'conges.edit' => 'Modifier un congé',
             'conges.delete' => 'Supprimer un congé',
-            'conges.approval.directeur' => 'Approuver en tant que directeur',
-            'conges.validation.drh' => 'Valider en tant que DRH',
+            'conges.approbation-directeur' => 'Approuver en tant que directeur',
+            'conges.validation-sd' => 'Valider en tant que Sous Directeur',
+            'conges.validation-drh' => 'Valider en tant que DRH',
             'conges.mes-conges' => 'Voir mes congés',
 
             // Cotations
