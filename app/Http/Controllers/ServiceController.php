@@ -78,7 +78,7 @@ class ServiceController extends Controller
             'total_agents' => $service->agents()->count(),
         ];
 
-        return view('services.show', compact('service', 'stats'));
+        return view('services.index', compact('service', 'stats'));
     }
 
     public function edit(Service $service)
@@ -109,7 +109,7 @@ class ServiceController extends Controller
 
         $service->update($validated);
 
-        return redirect()->route('services.show', $service)
+        return redirect()->route('services.index', $service)
             ->with('success', 'Service modifié avec succès.');
     }
 
