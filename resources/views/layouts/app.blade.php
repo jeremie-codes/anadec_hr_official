@@ -92,192 +92,6 @@
                     </a>
                 @endif
 
-               <!-- Gestion des Directions et Services -->
-                @if(can('directions.view') || can('sous_directions.view') || can('services.view'))
-                    <div class="space-y-1">
-                        <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('structure-submenu')">
-                            <i class="bx bx-buildings text-xl"></i>
-                            <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
-                            <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
-                        </button>
-                        <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? '' : 'hidden' }}">
-                            @if(can('directions.view'))
-                                <a href="{{ route('directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-building text-lg"></i>
-                                    <span class="sidebar-text ml-3">Directions</span>
-                                </a>
-                            @endif
-                            @if(can('sous_directions.view'))
-                                <a href="{{ route('sous_directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-building text-lg"></i>
-                                    <span class="sidebar-text ml-3">Sous Directions</span>
-                                </a>
-                            @endif
-                            @if(can('services.view'))
-                                <a href="{{ route('services.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-briefcase text-lg"></i>
-                                    <span class="sidebar-text ml-3">Services</span>
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                @endif
-
-               <!-- Gestion des Directions et Services -->
-                @if(can('directions.view') || can('sous_directions.view') || can('services.view'))
-                    <div class="space-y-1">
-                        <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('structure-submenu')">
-                            <i class="bx bx-buildings text-xl"></i>
-                            <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
-                            <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
-                        </button>
-                        <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? '' : 'hidden' }}">
-                            @if(can('directions.view'))
-                                <a href="{{ route('directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-building text-lg"></i>
-                                    <span class="sidebar-text ml-3">Directions</span>
-                                </a>
-                            @endif
-                            @if(can('sous_directions.view'))
-                                <a href="{{ route('sous_directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-building text-lg"></i>
-                                    <span class="sidebar-text ml-3">Sous Directions</span>
-                                </a>
-                            @endif
-                            @if(can('services.view'))
-                                <a href="{{ route('services.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-briefcase text-lg"></i>
-                                    <span class="sidebar-text ml-3">Services</span>
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                @endif
-
-                <!-- Gestion des Agents -->
-                @if(
-                        can('agents.view') || can('agents.identification') || can('agents.retraites') ||
-                        can('agents.malades') || can('agents.demissions') || can('agents.revocations') ||
-                        can('agents.disponibilites') || can('agents.detachements') || can('agents.mutations') ||
-                        can('agents.reintegrations') || can('agents.missions') || can('agents.deces')
-                    )
-                    <div class="space-y-1">
-                        <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('agents-submenu')">
-                            <i class="bx bx-group text-xl"></i>
-                            <span class="sidebar-text ml-3">Gestion des Agents</span>
-                            <i class="bx {{ request()->routeIs('agents.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
-                        </button>
-                        <div id="agents-submenu" class="ml-4 space-y-1 {{ request()->routeIs('agents.*') ? '' : 'hidden' }}">
-                            @if(can('agents.view'))
-                                <a href="{{ route('agents.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-list-ul text-lg"></i>
-                                    <span class="sidebar-text ml-3">Liste Générale</span>
-                                </a>
-                            @endif
-                            @if(can('agents.identification'))
-                                <a href="{{ route('agents.identification') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-id-card text-lg"></i>
-                                    <span class="sidebar-text ml-3">Identification</span>
-                                </a>
-                            @endif
-                            @if(can('agents.retraites'))
-                                <a href="{{ route('agents.retraites') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-user-check text-lg"></i>
-                                    <span class="sidebar-text ml-3">Retraités</span>
-                                </a>
-                            @endif
-                            @if(can('agents.malades'))
-                                <a href="{{ route('agents.malades') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-first-aid text-lg"></i>
-                                    <span class="sidebar-text ml-3">Malades</span>
-                                </a>
-                            @endif
-                            @if(can('agents.demissions'))
-                                <a href="{{ route('agents.demissions') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-user-minus text-lg"></i>
-                                    <span class="sidebar-text ml-3">Démissions</span>
-                                </a>
-                            @endif
-                            @if(can('agents.revocations'))
-                                <a href="{{ route('agents.revocations') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-user-x text-lg"></i>
-                                    <span class="sidebar-text ml-3">Révocations</span>
-                                </a>
-                            @endif
-                            @if(can('agents.disponibilites'))
-                                <a href="{{ route('agents.disponibilites') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-time text-lg"></i>
-                                    <span class="sidebar-text ml-3">Disponibilités</span>
-                                </a>
-                            @endif
-                            @if(can('agents.detachements'))
-                                <a href="{{ route('agents.detachements') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-transfer text-lg"></i>
-                                    <span class="sidebar-text ml-3">Détachements</span>
-                                </a>
-                            @endif
-                            @if(can('agents.mutations'))
-                                <a href="{{ route('agents.mutations') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-shuffle text-lg"></i>
-                                    <span class="sidebar-text ml-3">Mutations</span>
-                                </a>
-                            @endif
-                            @if(can('agents.reintegrations'))
-                                <a href="{{ route('agents.reintegrations') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-undo text-lg"></i>
-                                    <span class="sidebar-text ml-3">Réintégrations</span>
-                                </a>
-                            @endif
-                            @if(can('agents.missions'))
-                                <a href="{{ route('agents.missions') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-briefcase text-lg"></i>
-                                    <span class="sidebar-text ml-3">Missions</span>
-                                </a>
-                            @endif
-                            @if(can('agents.deces'))
-                                <a href="{{ route('agents.deces') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-cross text-lg"></i>
-                                    <span class="sidebar-text ml-3">Décès</span>
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                @endif
-
-               <!-- Gestion des Directions et Services -->
-                @if(can('directions.view') || can('sous_directions.view') || can('services.view'))
-                    <div class="space-y-1">
-                        <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('structure-submenu')">
-                            <i class="bx bx-buildings text-xl"></i>
-                            <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
-                            <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
-                        </button>
-                        <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? '' : 'hidden' }}">
-                            @if(can('directions.view'))
-                                <a href="{{ route('directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-building text-lg"></i>
-                                    <span class="sidebar-text ml-3">Directions</span>
-                                </a>
-                            @endif
-                            @if(can('sous_directions.view'))
-                                <a href="{{ route('sous_directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-building text-lg"></i>
-                                    <span class="sidebar-text ml-3">Sous Directions</span>
-                                </a>
-                            @endif
-                            @if(can('services.view'))
-                                <a href="{{ route('services.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
-                                    <i class="bx bx-briefcase text-lg"></i>
-                                    <span class="sidebar-text ml-3">Services</span>
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                @endif
 
                 <!-- Gestion des Agents -->
                 @if(
@@ -804,6 +618,38 @@
                                 <a href="{{ route('valves.create') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-plus text-lg"></i>
                                     <span class="sidebar-text ml-3">Nouveau Communiqué</span>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+
+               <!-- Gestion des Directions et Services -->
+                @if(can('directions.view') || can('sous_directions.view') || can('services.view'))
+                    <div class="space-y-1">
+                        <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
+                                onclick="toggleSubmenu('structure-submenu')">
+                            <i class="bx bx-buildings text-xl"></i>
+                            <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
+                            <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                        </button>
+                        <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? '' : 'hidden' }}">
+                            @if(can('directions.view'))
+                                <a href="{{ route('directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
+                                    <i class="bx bx-building text-lg"></i>
+                                    <span class="sidebar-text ml-3">Directions</span>
+                                </a>
+                            @endif
+                            @if(can('sous_directions.view'))
+                                <a href="{{ route('sous_directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
+                                    <i class="bx bx-building text-lg"></i>
+                                    <span class="sidebar-text ml-3">Sous Directions</span>
+                                </a>
+                            @endif
+                            @if(can('services.view'))
+                                <a href="{{ route('services.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
+                                    <i class="bx bx-briefcase text-lg"></i>
+                                    <span class="sidebar-text ml-3">Services</span>
                                 </a>
                             @endif
                         </div>
