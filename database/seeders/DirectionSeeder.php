@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Direction;
+use App\Models\SousDirection;
 use App\Models\Service;
 
 class DirectionSeeder extends Seeder
@@ -25,6 +26,10 @@ class DirectionSeeder extends Seeder
         }
 
         Service::create([
+            'name' => 'Aucun'
+        ]);
+
+        SousDirection::create([
             'name' => 'Aucun'
         ]);
     }
