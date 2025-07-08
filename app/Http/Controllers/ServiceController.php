@@ -92,7 +92,7 @@ class ServiceController extends Controller
     {
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
-            'sous_direction_id' => 'required|exists:sous_   directions,id',
+            'sous_direction_id' => 'required|exists:sous_directions,id',
             'name' => 'required|string|max:255',
         ]);
 
