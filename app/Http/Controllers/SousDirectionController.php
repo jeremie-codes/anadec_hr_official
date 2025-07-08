@@ -27,7 +27,7 @@ class SousDirectionController extends Controller
 
         // Statistiques
         $stats = [
-            'total' => SousDirection::count(),
+            'total' => SousDirection::where('name', '!=', 'Aucun')->count(),
             'total_agents' => \App\Models\Agent::count(),
         ];
 

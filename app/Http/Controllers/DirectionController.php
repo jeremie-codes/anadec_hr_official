@@ -22,7 +22,7 @@ class DirectionController extends Controller
         // Statistiques
         $stats = [
             'total' => Direction::count(),
-            'total_services' => \App\Models\Service::count(),
+            'total_services' => \App\Models\Service::where('name', '!=', 'Aucun')->count(),
             'total_sous_directions' => \App\Models\SousDirection::where('name', '!=', 'Aucun')->count(),
         ];
 
