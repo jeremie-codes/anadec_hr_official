@@ -171,7 +171,7 @@
         <!-- Pagination -->
         @if($sous_directions->hasPages())
             <div class="px-6 py-4 border-t border-gray-200">
-                {{ $sous_direction->withQueryString()->links() }}
+                {{ $sous_directions->withQueryString()->links() }}
             </div>
         @endif
     </div>
