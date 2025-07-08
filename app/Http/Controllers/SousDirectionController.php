@@ -25,7 +25,7 @@ class SousDirectionController extends Controller
 
         $sous_directions = $query->where('name', '!=', 'Aucun')->orderBy('name')->paginate(10);
 
-        dd($sous_directions);
+        // dd($sous_directions);
 
         // Statistiques
         $stats = [
