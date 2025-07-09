@@ -24,14 +24,19 @@
                 </div>
             </div>
             <div class="flex space-x-2">
+                @if(can('agents.edit'))
                 <a href="{{ route('agents.edit', $agent) }}"
                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700">
                     <i class="bx bx-edit mr-2"></i>Modifier
                 </a>
-                <a href="{{ route('agents.index') }}"
-                   class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                @endif
+
+
+                <a href="{{ url()->previous() }}"
+                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
                     <i class="bx bx-arrow-back mr-2"></i>Retour
                 </a>
+
             </div>
         </div>
     </div>

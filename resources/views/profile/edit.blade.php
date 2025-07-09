@@ -75,36 +75,36 @@
                 </div>
             </div>
 
-            <!-- Informations sur le rôle (lecture seule) -->
-            @if($user->role)
+            <!-- Informations sur le grade ou fonction (lecture seule) -->
+            @if($user?->agent?->role)
             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <h4 class="text-sm font-medium text-blue-900 mb-2 flex items-center">
                     <i class="bx bx-info-circle mr-2"></i>
-                    Informations sur votre rôle
+                    Informations sur votre grade/function
                 </h4>
                 <div class="space-y-2 text-sm">
                     <div class="flex items-center justify-between">
-                        <span class="text-blue-800">Rôle actuel :</span>
-                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $user->role->getBadgeClass() }}">
-                            <i class="bx {{ $user->role->getIcon() }} mr-1"></i>
-                            {{ $user->role->display_name }}
+                        <span class="text-blue-800">Grade/Funtion actuel :</span>
+                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $user?->agent?->role->getBadgeClass() }}">
+                            <i class="bx {{ $user?->agent?->role->getIcon() }} mr-1"></i>
+                            {{ $user?->agent?->role->display_name }}
                         </span>
                     </div>
-                    @if($user->role->description)
+                    @if($user?->agent?->role->description)
                     <div class="flex items-start justify-between">
                         <span class="text-blue-800">Description :</span>
-                        <span class="text-blue-700 text-right max-w-xs">{{ $user->role->description }}</span>
+                        <span class="text-blue-700 text-right max-w-xs">{{ $user?->agent?->role->description }}</span>
                     </div>
                     @endif
                     <div class="flex items-center justify-between">
                         <span class="text-blue-800">Permissions :</span>
-                        <span class="text-blue-700">{{ count($user->role->permissions ?? []) }} permission(s)</span>
+                        <span class="text-blue-700">{{ count($user->permissions ?? []) }} permission(s)</span>
                     </div>
                 </div>
                 <div class="mt-3 pt-3 border-t border-blue-200">
                     <p class="text-xs text-blue-700">
                         <i class="bx bx-info-circle mr-1"></i>
-                        Pour modifier votre rôle, contactez un administrateur ou la DRH.
+                        Pour modifier votre grade ou fonction, contactez un administrateur.
                     </p>
                 </div>
             </div>
@@ -113,9 +113,9 @@
                 <div class="flex items-center">
                     <i class="bx bx-error-circle text-yellow-600 mr-2"></i>
                     <div>
-                        <h4 class="text-sm font-medium text-yellow-900">Aucun rôle assigné</h4>
+                        <h4 class="text-sm font-medium text-yellow-900">Aucun grade ou fonction assigné</h4>
                         <p class="text-sm text-yellow-800">
-                            Votre compte n'a pas encore de rôle assigné. Contactez un administrateur pour obtenir les permissions appropriées.
+                            Votre compte n'a pas encore de grade ou fonction assigné. Contactez un administrateur pour obtenir les permissions appropriées.
                         </p>
                     </div>
                 </div>

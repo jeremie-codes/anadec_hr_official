@@ -25,10 +25,10 @@
                     @endif
 
                     <!-- Badge de rôle -->
-                    @if($user->role)
+                    @if($user->agent->role)
                         <div class="absolute -bottom-2 -right-2">
                             <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center border-2 border-white">
-                                <i class="bx {{ $user->role->getIcon() }} text-white text-sm"></i>
+                                <i class="bx {{ $user->agent?->role?->getIcon() }} text-white text-sm"></i>
                             </div>
                         </div>
                     @endif
@@ -38,10 +38,10 @@
                     <h2 class="text-3xl font-bold text-gray-900">{{ $user->name }}</h2>
                     <p class="text-lg text-gray-600">{{ $user->email }}</p>
                     <div class="flex items-center space-x-3 mt-2">
-                        @if($user->role)
-                            <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full {{ $user->role->getBadgeClass() }}">
-                                <i class="bx {{ $user->role->getIcon() }} mr-1"></i>
-                                {{ $user->role->display_name }}
+                        @if($user->agent?->role)
+                            <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full {{ $user->agent->role->getBadgeClass() }}">
+                                <i class="bx {{ $user->agent->role->getIcon() }} mr-1"></i>
+                                {{ $user?->agent?->role?->name }}
                             </span>
                         @else
                             <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full bg-gray-100 text-gray-800">
@@ -50,7 +50,7 @@
                             </span>
                         @endif
 
-                        @if($user->role && !$user->role->is_active)
+                        @if($user->aget?->role && !$user->agent?->role->is_active)
                             <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
                                 <i class="bx bx-error-circle mr-1"></i>
                                 Rôle inactif
@@ -143,11 +143,11 @@
                 <div class="grid grid-cols-1 gap-3">
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Direction</label>
-                        <p class="text-sm text-gray-900">{{ $user->agent->direction }}</p>
+                        <p class="text-sm text-gray-900">{{ $user->agent?->direction?->name }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Service</label>
-                        <p class="text-sm text-gray-900">{{ $user->agent->service }}</p>
+                        <p class="text-sm text-gray-900">{{ $user->agent?->service?->name }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Poste</label>
@@ -196,7 +196,7 @@
     </div>
 
     <!-- Permissions et accès -->
-    @if($user->role && $user->role->permissions)
+    @if($user->permissions)
     <div class="bg-white rounded-xl shadow-lg border border-gray-200">
         <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">
             <h3 class="text-lg font-medium text-gray-900 flex items-center">
@@ -207,13 +207,13 @@
         <div class="p-6">
             <div class="mb-4">
                 <p class="text-sm text-gray-600 mb-3">
-                    Votre rôle <strong>{{ $user->role->display_name }}</strong> vous donne accès aux fonctionnalités suivantes :
+                    Votre *grade/function* <strong>{{ $user->agent->role->display_name }}</strong> vous donne accès aux fonctionnalités suivantes :
                 </p>
             </div>
 
             @php
                 $groupedPermissions = [];
-                foreach($user->role->permissions as $permission) {
+                foreach($user->permissions as $permission) {
                     $parts = explode('.', $permission);
                     $category = $parts[0];
                     $action = $parts[1] ?? '';
@@ -293,8 +293,8 @@
                         <i class="bx bx-shield text-purple-600 text-xl"></i>
                     </div>
                     <p class="text-2xl font-bold text-gray-900">
-                        @if($user->role)
-                            {{ count($user->role->permissions ?? []) }}
+                        @if($user->permissions)
+                            {{ count($user->permissions ?? []) }}
                         @else
                             0
                         @endif

@@ -674,7 +674,7 @@
                             @foreach(\App\Models\Role::where('is_active', true)->orderBy('display_name')->get() as $role)
                             {{-- {{ $role->display_name }}
                                 @can('roles.show', $role) --}}
-                                    <a href="{{ route('roles.show', $role) }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
+                                    <a href="{{ route('roles.agents-by-role', $role) }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                         <i class="bx {{ $role->getIcon() }} text-lg"></i>
                                         <span class="sidebar-text ml-3">{{ $role->display_name }}</span>
                                     </a>
