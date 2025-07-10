@@ -33,13 +33,13 @@ class SousDirectionController extends Controller
 
         $directions = Direction::orderBy('name')->get();
 
-        return view('sous_directions.index', compact('sous_directions', 'stats', 'directions'));
+        return view('sous-directions.index', compact('sous_directions', 'stats', 'directions'));
     }
 
     public function create()
     {
         $directions = Direction::orderBy('name')->get();
-        return view('sous_directions.create', compact('directions'));
+        return view('sous-directions.create', compact('directions'));
     }
 
     public function store(Request $request)
@@ -74,13 +74,13 @@ class SousDirectionController extends Controller
             'total_agents' => $sous_direction->agents()->count(),
         ];
 
-        return view('sous_directions.show', compact('sous_direction', 'stats'));
+        return view('sous-directions.show', compact('sous_direction', 'stats'));
     }
 
     public function edit(SousDirection $sous_direction)
     {
         $directions = Direction::orderBy('name')->get();
-        return view('sous_directions.edit', compact('sous_direction', 'directions'));
+        return view('sous-directions.edit', compact('sous_direction', 'directions'));
     }
 
     public function update(Request $request, SousDirection $sous_direction)

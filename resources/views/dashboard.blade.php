@@ -1,80 +1,84 @@
 @extends('layouts.app')
 
-{{-- @section('title', 'Tableau de Bord - ANADEC RH')
+@section('title', 'Tableau de Bord - ANADEC RH')
 @section('page-title', 'Tableau de Bord')
-@section('page-description', 'Vue d\'ensemble des statistiques RH') --}}
+@section('page-description', 'Vue d\'ensemble des statistiques RH')
 
 @section('content')
 <div class="space-y-6">
     <!-- Statistiques principales -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Total Agents Actifs -->
-        <div class="bg-gradient-to-br from-emerald-500 to-green-600 overflow-hidden shadow-lg rounded-xl border border-green-200">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                            <i class="bx bx-group text-white text-2xl"></i>
+        @if(Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC' 
+            || Auth::user()->agent->role->name == 'directeur' && Auth::user()->agent->direction->name == 'DRH' 
+            || || Auth::user()->agent->role->name == 'sous-directeur' && Auth::user()->agent->sousDirection->name == 'ADMINISTRATION' && Auth::user()->agent->direction->name == 'DRH')
+            <!-- Total Agents Actifs -->
+            <div class="bg-gradient-to-br from-emerald-500 to-green-600 overflow-hidden shadow-lg rounded-xl border border-green-200">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="bx bx-group text-white text-2xl"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-green-100">Agents Actifs</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($totalAgents) }}</p>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-green-100">Agents Actifs</p>
+                            <p class="text-3xl font-bold text-white">{{ number_format($totalAgents) }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Présents Aujourd'hui -->
-        <div class="bg-gradient-to-br from-blue-500 to-indigo-600 overflow-hidden shadow-lg rounded-xl border border-blue-200">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                            <i class="bx bx-calendar-check text-white text-2xl"></i>
+            <!-- Présents Aujourd'hui -->
+            <div class="bg-gradient-to-br from-blue-500 to-indigo-600 overflow-hidden shadow-lg rounded-xl border border-blue-200">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="bx bx-calendar-check text-white text-2xl"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-blue-100">Présents Aujourd'hui</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($presentsToday) }}</p>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-blue-100">Présents Aujourd'hui</p>
+                            <p class="text-3xl font-bold text-white">{{ number_format($presentsToday) }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Retards Aujourd'hui -->
-        <div class="bg-gradient-to-br from-amber-500 to-orange-600 overflow-hidden shadow-lg rounded-xl border border-orange-200">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                            <i class="bx bx-time text-white text-2xl"></i>
+            <!-- Retards Aujourd'hui -->
+            <div class="bg-gradient-to-br from-amber-500 to-orange-600 overflow-hidden shadow-lg rounded-xl border border-orange-200">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="bx bx-time text-white text-2xl"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-orange-100">Retards Aujourd'hui</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($retardsToday) }}</p>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-orange-100">Retards Aujourd'hui</p>
+                            <p class="text-3xl font-bold text-white">{{ number_format($retardsToday) }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Absents Aujourd'hui -->
-        <div class="bg-gradient-to-br from-red-500 to-rose-600 overflow-hidden shadow-lg rounded-xl border border-red-200">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                            <i class="bx bx-x-circle text-white text-2xl"></i>
+            <!-- Absents Aujourd'hui -->
+            <div class="bg-gradient-to-br from-red-500 to-rose-600 overflow-hidden shadow-lg rounded-xl border border-red-200">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="bx bx-x-circle text-white text-2xl"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-red-100">Absents Aujourd'hui</p>
-                        <p class="text-3xl font-bold text-white">{{ number_format($absentsToday) }}</p>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-red-100">Absents Aujourd'hui</p>
+                            <p class="text-3xl font-bold text-white">{{ number_format($absentsToday) }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 
     <!-- Graphiques et tableaux -->

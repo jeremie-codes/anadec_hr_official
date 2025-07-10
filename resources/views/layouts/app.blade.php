@@ -69,7 +69,7 @@
         <!-- Sidebar -->
         <div id="sidebar" class="sidebar-expanded transition-width bg-anadec-blue flex flex-col
                         fixed md:relative z-40 h-full md:h-auto top-0 left-0 transform -translate-x-full md:translate-x-0
-                        md:flex w-64 md:w-auto transition-transform duration-300 ease-in-out">
+                        md:flex w-64 md:w-[18em] transition-transform duration-300 ease-in-out">
             <!-- Logo -->
             <div class="flex items-center justify-center h-16 bg-anadec-dark-blue">
                 <div class="flex items-center">
@@ -107,10 +107,10 @@
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('agents-submenu')">
+                                onclick="toggleSubmenu('agents-submenu', 'icon-agents')">
                             <i class="bx bx-group text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Agents</span>
-                            <i class="bx {{ request()->routeIs('agents.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-agents" class="bx {{ request()->routeIs('agents.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="agents-submenu" class="ml-4 space-y-1 {{ request()->routeIs('agents.*') ? '' : 'hidden' }}">
                             @if(can('agents.view'))
@@ -193,10 +193,10 @@
                 @if(can('presences.view') || can('presences.daily') || can('presences.create'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('presences-submenu')">
+                                onclick="toggleSubmenu('presences-submenu', 'icon-presences')">
                             <i class="bx bx-calendar-check text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Présences</span>
-                            <i class="bx {{ request()->routeIs('presences.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-presences" class="bx {{ request()->routeIs('presences.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="presences-submenu" class="ml-4 space-y-1 {{ request()->routeIs('presences.*') ? '' : 'hidden' }}">
                             @if(can('presences.view'))
@@ -228,10 +228,10 @@
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('conges-submenu')">
+                                onclick="toggleSubmenu('conges-submenu', 'icon-conges')">
                             <i class="bx bx-calendar-minus text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Congés</span>
-                            <i class="bx {{ request()->routeIs('conges.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-conges" class="bx {{ request()->routeIs('conges.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="conges-submenu" class="ml-4 space-y-1 {{ request()->routeIs('conges.*') ? '' : 'hidden' }}">
                             @if(can('conges.dashboard'))
@@ -284,10 +284,10 @@
                 @if(can('cotations.dashboard') || can('cotations.view') || can('cotations.create'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('cotations-submenu')">
+                                onclick="toggleSubmenu('cotations-submenu', 'icon-cotations')">
                             <i class="bx bx-chart text-xl"></i>
                             <span class="sidebar-text ml-3">Cotation des Agents</span>
-                            <i class="bx {{ request()->routeIs('cotations.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-cotations" class="bx {{ request()->routeIs('cotations.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="cotations-submenu" class="ml-4 space-y-1 {{ request()->routeIs('cotations.*') ? '' : 'hidden' }}">
                             @if(can('cotations.dashboard'))
@@ -321,10 +321,10 @@
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('logistic-submenu')">
+                                onclick="toggleSubmenu('logistic-submenu', 'icon-logistic')">
                             <i class="bx bx-box text-xl"></i>
                             <span class="sidebar-text ml-3">Logistique & Appro.</span>
-                            <i class="bx {{ request()->routeIs('stocks.*') || request()->routeIs('demandes-fournitures.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-logistic" class="bx {{ request()->routeIs('stocks.*') || request()->routeIs('demandes-fournitures.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="logistic-submenu" class="ml-4 space-y-1 {{ request()->routeIs('stocks.*') || request()->routeIs('demandes-fournitures.*') ? '' : 'hidden' }}">
                             @if(can('stocks.dashboard'))
@@ -383,10 +383,10 @@
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('charroi-submenu')">
+                                onclick="toggleSubmenu('charroi-submenu', 'icon-charroi')">
                             <i class="bx bx-car text-xl"></i>
                             <span class="sidebar-text ml-3">Charroi Automobile</span>
-                            <i class="bx {{ request()->routeIs('vehicules.*') || request()->routeIs('chauffeurs.*') || request()->routeIs('demandes-vehicules.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-charroi" class="bx {{ request()->routeIs('vehicules.*') || request()->routeIs('chauffeurs.*') || request()->routeIs('demandes-vehicules.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="charroi-submenu" class="ml-4 space-y-1 {{ request()->routeIs('vehicules.*') || request()->routeIs('chauffeurs.*') || request()->routeIs('demandes-vehicules.*') ? '' : 'hidden' }}">
                             @if(can('vehicules.dashboard'))
@@ -455,10 +455,10 @@
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('paiements-submenu')">
+                                onclick="toggleSubmenu('paiements-submenu', 'icon-paiements')">
                             <i class="bx bx-money text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Paiements</span>
-                            <i class="bx {{ request()->routeIs('paiements.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-paiements" class="bx {{ request()->routeIs('paiements.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="paiements-submenu" class="ml-4 space-y-1 {{ request()->routeIs('paiements.*') ? '' : 'hidden' }}">
                             @if(can('paiements.dashboard'))
@@ -515,10 +515,10 @@
                 )
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('courriers-submenu')">
+                                onclick="toggleSubmenu('courriers-submenu', 'icon-courriers')">
                             <i class="bx bx-envelope text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Courriers</span>
-                            <i class="bx {{ request()->routeIs('courriers.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-courriers" class="bx {{ request()->routeIs('courriers.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="courriers-submenu" class="ml-4 space-y-1 {{ request()->routeIs('courriers.*') ? '' : 'hidden' }}">
                             @if(can('courriers.dashboard'))
@@ -577,10 +577,10 @@
                 @if(can('visitors.view') || can('visitors.create'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('visitors-submenu')">
+                                onclick="toggleSubmenu('visitors-submenu', 'icon-visitors')">
                             <i class="bx bx-user-voice text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Visiteurs</span>
-                            <i class="bx {{ request()->routeIs('visitors.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id='icon-visitors' id="icon-visitors" class="bx {{ request()->routeIs('visitors.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="visitors-submenu" class="ml-4 space-y-1 {{ request()->routeIs('visitors.*') ? '' : 'hidden' }}">
                             @if(can('visitors.view'))
@@ -603,10 +603,10 @@
                 @if(can('valves.view') || can('valves.create'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('valves-submenu')">
+                                onclick="toggleSubmenu('valves-submenu', 'icon-valves')">
                             <i class="bx bx-megaphone text-xl"></i>
                             <span class="sidebar-text ml-3">Gestion des Communiqués</span>
-                            <i class="bx {{ request()->routeIs('valves.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-valves" class="bx {{ request()->routeIs('valves.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="valves-submenu" class="ml-4 space-y-1 {{ request()->routeIs('valves.*') ? '' : 'hidden' }}">
                             @if(can('valves.view'))
@@ -633,10 +633,10 @@
                 @if(can('directions.view') || can('sous_directions.view') || can('services.view'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('structure-submenu')">
+                                onclick="toggleSubmenu('structure-submenu', 'icon-structure')">
                             <i class="bx bx-buildings text-xl"></i>
                             <span class="sidebar-text ml-3 text-left">Structure Organisationnelle</span>
-                            <i class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-structure" class="bx {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="structure-submenu" class="ml-4 space-y-1 {{ request()->routeIs('directions.*') || request()->routeIs('services.*') || request()->routeIs('sous_directions.*') ? '' : 'hidden' }}">
                             @if(can('directions.view'))
@@ -665,10 +665,10 @@
                 @if(can('roles.view'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
-                                onclick="toggleSubmenu('roles-submenu')">
+                                onclick="toggleSubmenu('roles-submenu', 'icon-roles')">
                             <i class="bx bx-shield text-xl"></i>
                             <span class="sidebar-text ml-3">Rôles & Permissions</span>
-                            <i class="bx {{ request()->routeIs('roles.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
+                            <i id="icon-roles" class="bx {{ request()->routeIs('roles.*') ? 'bx-chevron-down' : 'bx-chevron-right' }} sidebar-text ml-auto"></i>
                         </button>
                         <div id="roles-submenu" class="ml-4 space-y-1 {{ request()->routeIs('roles.*') ? '' : 'hidden' }}">
                             <a href="{{ route('roles.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
@@ -825,10 +825,21 @@
         }
 
         // Gestion des sous-menus
-        function toggleSubmenu(submenuId) {
+        function toggleSubmenu(submenuId, iconId) {
             const submenu = document.getElementById(submenuId);
+            const icon = document.getElementById(iconId);
+
             submenu.classList.toggle('hidden');
+
+            if (submenu.classList.contains('hidden')) {
+                icon.classList.remove('bx-chevron-down');
+                icon.classList.add('bx-chevron-right');
+            } else {
+                icon.classList.remove('bx-chevron-right');
+                icon.classList.add('bx-chevron-down');
+            }
         }
+
 
         // Gestion du dropdown profil
         function toggleProfileDropdown() {
