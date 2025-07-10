@@ -8,7 +8,19 @@
 <div class="space-y-6">
     <!-- Statistiques principales -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        @if(Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC' || Auth::user()->agent->role->name == 'directeur' && Auth::user()->agent->direction->name == 'DRH' || Auth::user()->agent->role->name == 'sous-directeur' && Auth::user()->agent->sousDirection->name == 'S/D ADMINISTRATION' && Auth::user()->agent->direction->name == 'DRH')
+        @if(
+    (Auth::user()->agent?->role?->name === 'collaborateur' && 
+     Auth::user()->agent?->direction?->name === 'DRH' && 
+     Auth::user()->agent?->service?->name === 'DEC') ||
+
+    (Auth::user()->agent?->role?->name === 'directeur' && 
+     Auth::user()->agent?->direction?->name === 'DRH') ||
+
+    (Auth::user()->agent?->role?->name === 'sous-directeur' && 
+     Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' && 
+     Auth::user()->agent?->direction?->name === 'DRH')
+)
+
             <!-- Total Agents Actifs -->
             <div class="bg-gradient-to-br from-emerald-500 to-green-600 overflow-hidden shadow-lg rounded-xl border border-green-200">
                 <div class="p-6">
