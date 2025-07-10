@@ -43,10 +43,12 @@
                 </a>
 
                 @if($conge->peutEtreModifie())
+                    @if(can('conges.edit'))
                     <a href="{{ route('conges.edit', $conge) }}"
                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                         <i class="bx bx-edit mr-2"></i>Modifier
                     </a>
+                    @endif
                 @endif
                 <a href="{{ route('conges.index') }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">

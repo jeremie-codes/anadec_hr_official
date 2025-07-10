@@ -173,14 +173,21 @@
                             {{ $agent->anciennete }} ans
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('agents.show'))
                             <a href="{{ route('agents.show', $agent) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
+                            @if(can('agents.edit'))
                             <a href="{{ route('agents.edit', $agent) }}"
                                class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                 <i class="bx bx-edit"></i>
                             </a>
+                            @endif
+
+                            @if(can('agents.destroy'))
                             <form method="POST" action="{{ route('agents.destroy', $agent) }}" class="inline">
                                 @csrf
                                 @method('DELETE')
@@ -190,6 +197,7 @@
                                     <i class="bx bx-trash"></i>
                                 </button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @empty

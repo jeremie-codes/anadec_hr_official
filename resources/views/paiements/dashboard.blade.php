@@ -210,10 +210,12 @@
                 @endforelse
             </div>
             <div class="px-6 py-3 border-t border-gray-200 bg-gray-50">
+                @if(can('paiements.valider'))
                 <a href="{{ route('paiements.validation') }}" class="text-anadec-blue hover:text-anadec-dark-blue flex items-center justify-center">
                     <i class="bx bx-list-ul mr-1"></i>
                     Voir tous les paiements en attente
                 </a>
+                @endif
             </div>
         </div>
 
@@ -258,10 +260,12 @@
                 @endforelse
             </div>
             <div class="px-6 py-3 border-t border-gray-200 bg-gray-50">
+                @if(can('paiements.fiches-paie'))
                 <a href="{{ route('paiements.fiches-paie') }}" class="text-anadec-blue hover:text-anadec-dark-blue flex items-center justify-center">
                     <i class="bx bx-list-ul mr-1"></i>
                     Voir toutes les fiches de paie
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -276,6 +280,7 @@
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @if(can('paiements.create'))
                 <a href="{{ route('paiements.create') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -284,7 +289,9 @@
                         <p class="text-sm text-blue-700">Créer un paiement</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('paiements.valider'))
                 <a href="{{ route('paiements.validation') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl hover:from-yellow-100 hover:to-orange-200 transition-all duration-200 border border-yellow-200">
                     <i class="bx bx-check text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -293,7 +300,9 @@
                         <p class="text-sm text-orange-700">Valider les paiements</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('paiements.payer'))
                 <a href="{{ route('paiements.paiement') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
                     <i class="bx bx-dollar text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -302,7 +311,9 @@
                         <p class="text-sm text-green-700">Effectuer les paiements</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('paiements.fiches-paie'))
                 <a href="{{ route('paiements.fiches-paie') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
                     <i class="bx bx-file text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -311,6 +322,7 @@
                         <p class="text-sm text-purple-700">Consulter les fiches</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

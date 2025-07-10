@@ -225,6 +225,7 @@
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @if(can('stocks.create'))
                 <a href="{{ route('stocks.create') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -233,7 +234,9 @@
                         <p class="text-sm text-blue-700">Ajouter au stock</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('stocks.mouvements'))
                 <a href="{{ route('stocks.mouvements') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
                     <i class="bx bx-transfer text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -242,7 +245,9 @@
                         <p class="text-sm text-purple-700">Historique complet</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('stocks.view'))
                 <a href="{{ route('stocks.index', ['statut' => 'alerte']) }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-orange-50 to-red-100 rounded-xl hover:from-orange-100 hover:to-red-200 transition-all duration-200 border border-orange-200">
                     <i class="bx bx-error-circle text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -251,7 +256,9 @@
                         <p class="text-sm text-orange-700">Réapprovisionner</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('demandes-fournitures.view'))
                 <a href="{{ route('demandes-fournitures.index') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
                     <i class="bx bx-package text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -260,6 +267,7 @@
                         <p class="text-sm text-green-700">Fournitures</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

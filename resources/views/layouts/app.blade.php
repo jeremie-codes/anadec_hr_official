@@ -450,7 +450,7 @@
                 <!-- Gestion des Paiements -->
                 @if(
                     can('paiements.dashboard') || can('paiements.view') || can('paiements.create') ||
-                    can('paiements.validation') || can('paiements.paiement') || can('paiements.fiches_paie') ||
+                    can('paiements.valider') || can('paiements.paiement') || can('paiements.fiches_paie') ||
                     can('paiements.mes_paiements')
                 )
                     <div class="space-y-1">
@@ -479,7 +479,7 @@
                                     <span class="sidebar-text ml-3">Nouveau Paiement</span>
                                 </a>
                             @endif
-                            @if(can('paiements.validation'))
+                            @if(can('paiements.valider'))
                                 <a href="{{ route('paiements.validation') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-check text-lg"></i>
                                     <span class="sidebar-text ml-3">Validation</span>

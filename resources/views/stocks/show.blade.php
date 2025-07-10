@@ -32,6 +32,7 @@
             </div>
 
             <div class="flex space-x-3">
+                @if(can('stocks.create'))
                 <button onclick="openStockModal({{ $stock->id }}, 'ajouter')"
                         class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
                     <i class="bx bx-plus mr-2"></i>Ajouter Stock
@@ -40,10 +41,15 @@
                         class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 flex items-center">
                     <i class="bx bx-minus mr-2"></i>Retirer Stock
                 </button>
+                @endif
+
+                @if(can('stocks.edit'))                
                 <a href="{{ route('stocks.edit', $stock) }}"
                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                     <i class="bx bx-edit mr-2"></i>Modifier
                 </a>
+                @endif
+                
                 <a href="{{ route('stocks.index') }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">
                     <i class="bx bx-arrow-back mr-2"></i>Retour

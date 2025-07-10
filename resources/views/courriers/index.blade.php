@@ -239,15 +239,20 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('courriers.view'))
                             <a href="{{ route('courriers.show', $courrier) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+                            
                             @if($courrier->peutEtreModifie())
+                                @if(can('courriers.edit'))
                                 <a href="{{ route('courriers.edit', $courrier) }}"
                                    class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                     <i class="bx bx-edit"></i>
                                 </a>
+                                @endif
                             @endif
                             @if($courrier->peutEtreTraite())
                                 <button onclick="openTraiterModal({{ $courrier->id }}, '{{ $courrier->statut }}')"
@@ -262,6 +267,7 @@
                                 </button>
                             @endif
                             @if($courrier->peutEtreAnnule())
+                                @if(can('courriers.destroy'))
                                 <form method="POST" action="{{ route('courriers.destroy', $courrier) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -271,6 +277,7 @@
                                         <i class="bx bx-x"></i>
                                     </button>
                                 </form>
+                                @endif
                             @endif
                         </td>
                     </tr>

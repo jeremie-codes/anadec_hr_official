@@ -11,7 +11,7 @@
         @if(
     (Auth::user()->agent?->role?->name === 'collaborateur' && 
      Auth::user()->agent?->direction?->name === 'DRH' && 
-     Auth::user()->agent?->service?->name === 'DEC') ||
+     Auth::user()->agent?->service?->code === 'DEC') ||
 
     (Auth::user()->agent?->role?->name === 'directeur' && 
      Auth::user()->agent?->direction?->name === 'DRH') ||

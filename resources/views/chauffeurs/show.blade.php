@@ -48,10 +48,12 @@
             </div>
 
             <div class="flex space-x-3">
+                @if(can('chauffeurs.edit'))
                 <a href="{{ route('chauffeurs.edit', $chauffeur) }}"
                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                     <i class="bx bx-edit mr-2"></i>Modifier
                 </a>
+                @endif
                 <a href="{{ url()->previous() }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">
                     <i class="bx bx-arrow-back mr-2"></i>Retour
@@ -279,6 +281,7 @@
                         <span class="text-yellow-800 font-medium">Modifier le chauffeur</span>
                     </a>
 
+                    @if(can('chauffeurs.destroy'))
                     <form action="{{ route('chauffeurs.destroy', $chauffeur) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce chauffeur ?');">
                         @csrf
                         @method('DELETE')
@@ -287,6 +290,7 @@
                             <span class="text-red-800 font-medium">Supprimer le chauffeur</span>
                         </button>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

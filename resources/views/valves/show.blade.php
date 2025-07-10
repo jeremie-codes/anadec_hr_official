@@ -30,11 +30,14 @@
             </div>
 
             <div class="flex space-x-3">
+                @if(can('valves.edit'))
                 <a href="{{ route('valves.edit', $valve) }}"
                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                     <i class="bx bx-edit mr-2"></i>Modifier
                 </a>
+                @endif
 
+                @if(can('valves.edit'))
                 <form method="POST" action="{{ route('valves.toggle-actif', $valve) }}">
                     @csrf
                     <button type="submit"
@@ -43,6 +46,7 @@
                         {{ $valve->actif ? 'Désactiver' : 'Activer' }}
                     </button>
                 </form>
+                @endif
 
                 <a href="{{ route('valves.index') }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">
@@ -171,12 +175,15 @@
                     </h3>
                 </div>
                 <div class="p-6 space-y-3">
+                    @if(can('valves.edit'))
                     <a href="{{ route('valves.edit', $valve) }}"
                        class="w-full flex items-center justify-center p-3 bg-gradient-to-r from-yellow-50 to-amber-100 rounded-lg hover:from-yellow-100 hover:to-amber-200 transition-all border border-yellow-200">
                         <i class="bx bx-edit text-yellow-600 mr-2"></i>
                         <span class="text-yellow-800 font-medium">Modifier le communiqué</span>
                     </a>
+                    @endif
 
+                    @if(can('valves.edit'))
                     <form method="POST" action="{{ route('valves.toggle-actif', $valve) }}">
                         @csrf
                         <button type="submit"
@@ -187,7 +194,9 @@
                             </span>
                         </button>
                     </form>
+                    @endif
 
+                    @if(can('valves.destroy'))
                     <form action="{{ route('valves.destroy', $valve) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce communiqué ?');">
                         @csrf
                         @method('DELETE')
@@ -196,6 +205,7 @@
                             <span class="text-red-800 font-medium">Supprimer le communiqué</span>
                         </button>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

@@ -219,6 +219,7 @@
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @if(can('cotations.create'))
                 <a href="{{ route('cotations.create') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -227,7 +228,9 @@
                         <p class="text-sm text-blue-700">Évaluer un agent</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('cotations.view'))
                 <a href="{{ route('cotations.index') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
                     <i class="bx bx-list-ul text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -236,7 +239,9 @@
                         <p class="text-sm text-green-700">Voir toutes les cotations</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('cotations.genererate'))
                 <button onclick="openGenerationModal()"
                         class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
                     <i class="bx bx-cog text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -245,7 +250,9 @@
                         <p class="text-sm text-purple-700">Tous les agents</p>
                     </div>
                 </button>
-
+                @endif
+                
+                @if(can('presences.view'))
                 <a href="{{ route('presences.index') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-orange-50 to-red-100 rounded-xl hover:from-orange-100 hover:to-red-200 transition-all duration-200 border border-orange-200">
                     <i class="bx bx-calendar-check text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -254,6 +261,7 @@
                         <p class="text-sm text-orange-700">Gérer les présences</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

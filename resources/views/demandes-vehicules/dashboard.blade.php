@@ -207,6 +207,7 @@
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @if(can('demandes-vehicules.create'))
                 <a href="{{ route('demandes-vehicules.create') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -215,7 +216,9 @@
                         <p class="text-sm text-blue-700">Créer une demande</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('demandes-vehicules.approbation'))
                 <a href="{{ route('demandes-vehicules.approbation') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl hover:from-yellow-100 hover:to-orange-200 transition-all duration-200 border border-yellow-200">
                     <i class="bx bx-check text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -224,7 +227,9 @@
                         <p class="text-sm text-orange-700">Approuver demandes</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('demandes-vehicules.affectation'))
                 <a href="{{ route('demandes-vehicules.affectation') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
                     <i class="bx bx-transfer-alt text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -233,7 +238,9 @@
                         <p class="text-sm text-purple-700">Affecter véhicules</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('vehicules.view'))
                 <a href="{{ route('vehicules.index') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
                     <i class="bx bx-car text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -242,6 +249,7 @@
                         <p class="text-sm text-green-700">Gérer véhicules</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

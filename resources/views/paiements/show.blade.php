@@ -38,10 +38,14 @@
 
             <div class="flex space-x-3">
                 @if($paiement->statut === 'en_attente')
+                    @if(can('paiements.edit'))
                     <a href="{{ route('paiements.edit', $paiement) }}"
                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                         <i class="bx bx-edit mr-2"></i>Modifier
                     </a>
+                    @endif
+
+                    @if(can('paiements.valider'))
                     <form method="POST" action="{{ route('paiements.valider', $paiement) }}">
                         @csrf
                         <button type="submit"
@@ -49,6 +53,7 @@
                             <i class="bx bx-check mr-2"></i>Valider
                         </button>
                     </form>
+                    @endif
                 @endif
 
                 @if($paiement->statut === 'valide')
@@ -59,10 +64,12 @@
                 @endif
 
                 @if($paiement->statut === 'paye')
+                    @if(can('paiements.fiches-paie'))
                     <a href="{{ route('paiements.fiche-paie', $paiement) }}"
                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center">
                         <i class="bx bx-file mr-2"></i>Fiche de Paie
                     </a>
+                    @endif
                 @endif
 
                 <a href="{{ route('paiements.index') }}"

@@ -137,11 +137,13 @@
                 </form>
             </div>
 
+            @if(can('conges.create'))
             <a href="{{ route('conges.create') }}"
                class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                 <i class="bx bx-plus mr-2"></i>
                 Nouvelle Demande
             </a>
+            @endif
         </div>
     </div>
 
@@ -207,15 +209,22 @@
                             {{ $conge->created_at->format('d/m/Y') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('conges.view'))
                             <a href="{{ route('conges.show', $conge) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
                             @if($conge->peutEtreModifie())
+                                @if(can('conges.edit'))
                                 <a href="{{ route('conges.edit', $conge) }}"
                                    class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                     <i class="bx bx-edit"></i>
                                 </a>
+                                @endif
+
+                                @if(can('conges.destroy'))
                                 <form method="POST" action="{{ route('conges.destroy', $conge) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -225,6 +234,7 @@
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </form>
+                                @endif
                             @endif
                         </td>
                     </tr>

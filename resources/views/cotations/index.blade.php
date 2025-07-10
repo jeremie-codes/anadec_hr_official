@@ -125,11 +125,13 @@
                 </form>
             </div>
 
+            @if(can('cotations.create'))
             <a href="{{ route('cotations.create') }}"
                class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                 <i class="bx bx-plus mr-2"></i>
                 Nouvelle Cotation
             </a>
+            @endif
         </div>
     </div>
 
@@ -210,14 +212,21 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('cotations.view'))
                             <a href="{{ route('cotations.show', $cotation) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
+                            @if(can('cotations.edit'))
                             <a href="{{ route('cotations.edit', $cotation) }}"
                                class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                 <i class="bx bx-edit"></i>
                             </a>
+                            @endif
+
+                            @if(can('cotations.destroy'))
                             <form method="POST" action="{{ route('cotations.destroy', $cotation) }}" class="inline">
                                 @csrf
                                 @method('DELETE')
@@ -227,6 +236,7 @@
                                     <i class="bx bx-trash"></i>
                                 </button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @empty

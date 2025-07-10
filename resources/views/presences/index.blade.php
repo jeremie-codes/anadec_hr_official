@@ -84,16 +84,21 @@
     <!-- Filtres et actions -->
     <div class="bg-white p-3 rounded-lg shadow-sm border">
         <div class="flex space-x-2 mb-3">
+            @if(can('presences.export'))
             <a href="{{ route('presences.export') }}{{ request()->getQueryString() ? '?' . request()->getQueryString() : '' }}"
                 class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
                 <i class="bx bx-download mr-2"></i>
                 Exporter
             </a>
+            @endif
+
+            @if(can('presences.create'))
             <a href="{{ route('presences.create') }}"
                 class="bg-anadec-blue text-white px-4 py-2 rounded-lg hover:bg-anadec-dark-blue flex items-center">
                 <i class="bx bx-plus mr-2"></i>
                 Nouvelle Présence
             </a>
+            @endif
         </div>
 
         <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
@@ -208,10 +213,14 @@
                             {{ $presence->motif ?: '-' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('presences.edit'))
                             <a href="{{ route('presences.edit', $presence) }}"
                                class="text-yellow-600 hover:text-yellow-800">
                                 <i class="bx bx-edit"></i>
                             </a>
+                            @endif
+
+                            @if(can('presences.destroy'))                            
                             <form method="POST" action="{{ route('presences.destroy', $presence) }}" class="inline">
                                 @csrf
                                 @method('DELETE')
@@ -221,6 +230,7 @@
                                     <i class="bx bx-trash"></i>
                                 </button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @empty

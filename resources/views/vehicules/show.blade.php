@@ -49,14 +49,20 @@
             </div>
 
             <div class="flex space-x-3">
+                @if(can('vehicules.edit'))
                 <a href="{{ route('vehicules.edit', $vehicule) }}"
                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                     <i class="bx bx-edit mr-2"></i>Modifier
                 </a>
+                @endif
+
+                @if(can('vehicules.maintenance'))
                 <a href="{{ route('vehicules.maintenance', $vehicule) }}"
                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center">
                     <i class="bx bx-wrench mr-2"></i>Maintenance
                 </a>
+                @endif
+
                 <a href="{{ route('vehicules.index') }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">
                     <i class="bx bx-arrow-back mr-2"></i>Retour
@@ -189,10 +195,12 @@
                     @endforelse
                 </div>
                 <div class="px-6 py-3 border-t border-gray-200 bg-gray-50">
+                    @if(can('vehicules.maintenance'))
                     <a href="{{ route('vehicules.maintenance', $vehicule) }}" class="text-anadec-blue hover:text-anadec-dark-blue flex items-center justify-center">
                         <i class="bx bx-list-ul mr-1"></i>
                         Voir toutes les maintenances
                     </a>
+                    @endif
                 </div>
             </div>
 
@@ -378,18 +386,23 @@
                     </h3>
                 </div>
                 <div class="p-6 space-y-3">
+                    @if(can('vehicules.edit'))
                     <a href="{{ route('vehicules.edit', $vehicule) }}"
                        class="w-full flex items-center justify-center p-3 bg-gradient-to-r from-yellow-50 to-amber-100 rounded-lg hover:from-yellow-100 hover:to-amber-200 transition-all border border-yellow-200">
                         <i class="bx bx-edit text-yellow-600 mr-2"></i>
                         <span class="text-yellow-800 font-medium">Modifier le véhicule</span>
                     </a>
+                    @endif
 
+                    @if(can('vehicules.maintenance'))
                     <a href="{{ route('vehicules.maintenance', $vehicule) }}"
                        class="w-full flex items-center justify-center p-3 bg-gradient-to-r from-purple-50 to-indigo-100 rounded-lg hover:from-purple-100 hover:to-indigo-200 transition-all border border-purple-200">
                         <i class="bx bx-wrench text-purple-600 mr-2"></i>
                         <span class="text-purple-800 font-medium">Gérer les maintenances</span>
                     </a>
+                    @endif
 
+                    @if(can('vehicules.destroy'))
                     <form action="{{ route('vehicules.destroy', $vehicule) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?');">
                         @csrf
                         @method('DELETE')
@@ -398,6 +411,7 @@
                             <span class="text-red-800 font-medium">Supprimer le véhicule</span>
                         </button>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

@@ -97,11 +97,13 @@
     <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
 
         <div class="flex space-x-2 mb-3">
+            @if(can('demandes-fournitures.create'))
             <a href="{{ route('demandes-fournitures.create') }}"
                class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                 <i class="bx bx-plus mr-2"></i>
                 Nouvelle Demande
             </a>
+            @endif
         </div>
 
         <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
@@ -233,15 +235,22 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('demandes-fournitures.view'))
                             <a href="{{ route('demandes-fournitures.show', $demande) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
                             @if($demande->peutEtreModifie())
+                                @if(can('demandes-fournitures.edit'))
                                 <a href="{{ route('demandes-fournitures.edit', $demande) }}"
                                    class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                     <i class="bx bx-edit"></i>
                                 </a>
+                                @endif
+
+                                @if(can('demandes-fournitures.destroy'))
                                 <form method="POST" action="{{ route('demandes-fournitures.destroy', $demande) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -251,6 +260,7 @@
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </form>
+                                @endif
                             @endif
                         </td>
                     </tr>

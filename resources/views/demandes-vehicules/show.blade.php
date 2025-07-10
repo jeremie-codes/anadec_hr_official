@@ -39,10 +39,12 @@
 
             <div class="flex space-x-3">
                 @if($demandeVehicule->peutEtreModifie())
+                @if(can('demandes-vehicules.edit'))
                     <a href="{{ route('demandes-vehicules.edit', $demandeVehicule) }}"
                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                         <i class="bx bx-edit mr-2"></i>Modifier
                     </a>
+                @endif
                 @endif
 
                 @if($demandeVehicule->peutEtreApprouve())
@@ -64,6 +66,7 @@
                 @endif
 
                 @if($demandeVehicule->statut === 'affecte')
+                    @if(can('demandes-vehicules.demarrer'))
                     <form action="{{ route('demandes-vehicules.demarrer', $demandeVehicule) }}" method="POST">
                         @csrf
                         <button type="submit"
@@ -71,6 +74,7 @@
                             <i class="bx bx-play mr-2"></i>Démarrer
                         </button>
                     </form>
+                    @endif
                 @endif
 
                 @if($demandeVehicule->statut === 'en_cours')

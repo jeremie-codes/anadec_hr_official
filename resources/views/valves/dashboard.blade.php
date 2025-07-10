@@ -83,9 +83,12 @@
                             <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $valve->getStatutBadgeClass() }}">
                                 {{ $valve->getStatutLabel() }}
                             </span>
+
+                            @if(can('valves.view'))
                             <a href="{{ route('valves.show', $valve) }}" class="block text-xs text-anadec-blue mt-1 hover:underline">
                                 Voir détails
                             </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -97,10 +100,12 @@
                 @endforelse
             </div>
             <div class="px-6 py-3 border-t border-gray-200 bg-gray-50">
+                @if(can('valves.view'))
                 <a href="{{ route('valves.index', ['priorite' => 'urgente']) }}" class="text-anadec-blue hover:text-anadec-dark-blue flex items-center justify-center">
                     <i class="bx bx-list-ul mr-1"></i>
                     Voir tous les communiqués urgents
                 </a>
+                @endif
             </div>
         </div>
 
@@ -128,9 +133,11 @@
                             </p>
                         </div>
                         <div class="text-right">
+                            @if(can('valves.view'))
                             <a href="{{ route('valves.show', $valve) }}" class="text-anadec-blue hover:text-anadec-dark-blue">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -160,6 +167,7 @@
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                @if(can('valves.create'))
                 <a href="{{ route('valves.create') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -168,7 +176,9 @@
                         <p class="text-sm text-blue-700">Créer un communiqué</p>
                     </div>
                 </a>
+                @endif
 
+                @if(can('valves.view'))
                 <a href="{{ route('valves.index', ['statut' => 'en_cours']) }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
                     <i class="bx bx-calendar-check text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -177,7 +187,9 @@
                         <p class="text-sm text-green-700">Voir les communiqués en cours</p>
                     </div>
                 </a>
-
+                @endif
+                
+                @if(can('valves.view'))
                 <a href="{{ route('valves.index', ['priorite' => 'urgente']) }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-red-50 to-rose-100 rounded-xl hover:from-red-100 hover:to-rose-200 transition-all duration-200 border border-red-200">
                     <i class="bx bx-error text-red-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -186,6 +198,7 @@
                         <p class="text-sm text-red-700">Gérer les urgences</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

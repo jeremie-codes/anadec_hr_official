@@ -65,9 +65,12 @@
                     <i class="bx bx-filter mr-2 text-blue-600"></i>
                     Filtres et Recherche
                 </h3>
+
+                @if(can('sous-directions.create'))
                 <a href="{{ route('sous_directions.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                     <i class="bx bx-plus mr-2"></i>Nouvelle sous direction
                 </a>
+                @endif
             </div>
         </div>
         <div class="p-6">
@@ -133,10 +136,14 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex items-center space-x-2">
+                                    @if(can('sous-directions.edit'))
                                     <a href="{{ route('sous_directions.edit', $sous_direction) }}"
                                        class="text-green-600 hover:text-green-900 bg-green-100 hover:bg-green-200 px-2 py-1 rounded transition-colors">
                                         <i class="bx bx-edit"></i>
                                     </a>
+                                    @endif
+
+                                    @if(can('sous-directions.destroy'))
                                     @if($sous_direction->agents_count == 0)
                                         <form method="POST" action="{{ route('sous_directions.destroy', $sous_direction) }}" class="inline">
                                             @csrf
@@ -148,6 +155,7 @@
                                             </button>
                                         </form>
                                     @endif
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -157,9 +165,12 @@
                                 <div class="text-gray-500">
                                     <i class="bx bx-briefcase text-4xl mb-2"></i>
                                     <p>Aucune sous direction trouvée.</p>
+
+                                    @if(can('sous-directions.create'))
                                     <a href="{{ route('sous_directions.create') }}" class="mt-2 inline-block text-blue-600 hover:text-blue-800">
                                         <i class="bx bx-plus-circle mr-1"></i> Créer une nouvelle sous direction
                                     </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

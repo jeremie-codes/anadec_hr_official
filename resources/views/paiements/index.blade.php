@@ -152,21 +152,29 @@
             </div>
 
             <div class="flex space-x-2">
+                @if(can('paiements.create'))
                 <a href="{{ route('paiements.create') }}"
                    class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                     <i class="bx bx-plus mr-2"></i>
                     Nouveau Paiement
                 </a>
+                @endif
+
+                @if(can('paiements.valider'))
                 <a href="{{ route('paiements.validation') }}"
                    class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 flex items-center transition-all">
                     <i class="bx bx-check mr-2"></i>
                     Validation
                 </a>
+                @endif
+
+                @if(can('paiements.fiches-paie'))
                 <a href="{{ route('paiements.fiches-paie') }}"
                    class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 flex items-center transition-all">
                     <i class="bx bx-file mr-2"></i>
                     Fiches de Paie
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -233,15 +241,22 @@
                             {{ $paiement->date_paiement->format('d/m/Y') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('paiements.view'))
                             <a href="{{ route('paiements.show', $paiement) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
                             @if($paiement->statut === 'en_attente')
+                                @if(can('paiements.edit'))
                                 <a href="{{ route('paiements.edit', $paiement) }}"
                                    class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                     <i class="bx bx-edit"></i>
                                 </a>
+                                @endif
+
+                                @if(can('paiements.destroy'))
                                 <form method="POST" action="{{ route('paiements.destroy', $paiement) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -251,6 +266,7 @@
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </form>
+                                @endif
                             @endif
                             @if($paiement->statut === 'valide')
                                 <button onclick="openPaiementModal({{ $paiement->id }})"
@@ -259,10 +275,12 @@
                                 </button>
                             @endif
                             @if($paiement->statut === 'paye')
+                                @if(can('paiements.fiches-paie'))
                                 <a href="{{ route('paiements.fiche-paie', $paiement) }}"
                                    class="text-purple-600 hover:text-purple-800 transition-colors">
                                     <i class="bx bx-file"></i>
                                 </a>
+                                @endif
                             @endif
                         </td>
                     </tr>

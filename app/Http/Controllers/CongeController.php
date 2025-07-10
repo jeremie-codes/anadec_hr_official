@@ -258,7 +258,7 @@ class CongeController extends Controller
         $conge->update($validated);
 
         if (Auth::user()->agent->role ?? null) {
-            if (Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC') {
+            if (Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->code == 'DEC') {
                 $conge->statut = 'traiter_rh';
                 $conge->save();
             }

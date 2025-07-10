@@ -153,11 +153,13 @@
             </div>
 
             <div class="flex space-x-2">
+                @if(can('demandes-vehicules.create'))
                 <a href="{{ route('demandes-vehicules.create') }}"
                    class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                     <i class="bx bx-plus mr-2"></i>
                     Nouvelle Demande
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -236,15 +238,21 @@
                             {{ $demande->created_at->format('d/m/Y') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('demandes-vehicules.view'))
                             <a href="{{ route('demandes-vehicules.show', $demande) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
                             @if($demande->peutEtreModifie())
+                                @if(can('demandes-vehicules.edit'))
                                 <a href="{{ route('demandes-vehicules.edit', $demande) }}"
                                    class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                     <i class="bx bx-edit"></i>
                                 </a>
+                                @endif
+                                @if(can('demandes-vehicules.destroy'))
                                 <form method="POST" action="{{ route('demandes-vehicules.destroy', $demande) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -254,6 +262,7 @@
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </form>
+                                @endif
                             @endif
                         </td>
                     </tr>

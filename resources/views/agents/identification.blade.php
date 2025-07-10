@@ -61,14 +61,21 @@
                         Actif
                     </span>
                     <div class="flex space-x-2">
+
+                        @if(can('agents.view'))
                         <a href="{{ route('agents.show', $agent) }}"
                            class="text-anadec-blue hover:text-anadec-dark-blue">
                             <i class="bx bx-show text-lg"></i>
                         </a>
+                        @endif
+
+                        @if(can('agents.edit'))
                         <a href="{{ route('agents.edit', $agent) }}"
                            class="text-yellow-600 hover:text-yellow-800">
                             <i class="bx bx-edit text-lg"></i>
                         </a>
+                        @endif
+
                     </div>
                 </div>
             </div>

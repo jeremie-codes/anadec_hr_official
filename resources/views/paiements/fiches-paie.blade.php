@@ -119,14 +119,19 @@
                             {{ $paiement->getMethodePaiementLabel() }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('paiements.fiches-paie'))
                             <a href="{{ route('paiements.fiche-paie', $paiement) }}"
                                class="text-purple-600 hover:text-purple-800 transition-colors">
                                 <i class="bx bx-file"></i>
                             </a>
+                            @endif
+
+                            @if(can('paiements.view'))
                             <a href="{{ route('paiements.show', $paiement) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
                         </td>
                     </tr>
                     @empty

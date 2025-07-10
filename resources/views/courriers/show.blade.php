@@ -44,10 +44,12 @@
 
             <div class="flex space-x-3">
                 @if($courrier->peutEtreModifie())
+                @if(can('courriers.edit'))
                     <a href="{{ route('courriers.edit', $courrier) }}"
                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                         <i class="bx bx-edit mr-2"></i>Modifier
                     </a>
+                @endif
                 @endif
 
                 @if($courrier->peutEtreTraite())
@@ -211,6 +213,8 @@
                                            class="text-blue-600 hover:text-blue-800">
                                             <i class="bx bx-download"></i>
                                         </a>
+
+                                        @if(can('courriers.supprimer-document'))
                                         <form method="POST" action="{{ route('courriers.supprimer-document', $document) }}" class="inline">
                                             @csrf
                                             @method('DELETE')
@@ -220,6 +224,7 @@
                                                 <i class="bx bx-trash"></i>
                                             </button>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -344,11 +349,13 @@
                 </div>
                 <div class="p-6 space-y-3">
                     @if($courrier->peutEtreModifie())
+                    @if(can('courriers.edit'))
                         <a href="{{ route('courriers.edit', $courrier) }}"
                            class="w-full flex items-center justify-center p-3 bg-gradient-to-r from-yellow-50 to-amber-100 rounded-lg hover:from-yellow-100 hover:to-amber-200 transition-all border border-yellow-200">
                             <i class="bx bx-edit text-yellow-600 mr-2"></i>
                             <span class="text-yellow-800 font-medium">Modifier le courrier</span>
                         </a>
+                    @endif
                     @endif
 
                     @if($courrier->peutEtreTraite())
@@ -374,6 +381,7 @@
                     @endif
 
                     @if($courrier->peutEtreAnnule())
+                    @if(can('courriers.destroy'))
                         <form action="{{ route('courriers.destroy', $courrier) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir annuler ce courrier ?');">
                             @csrf
                             @method('DELETE')
@@ -382,6 +390,7 @@
                                 <span class="text-red-800 font-medium">Annuler le courrier</span>
                             </button>
                         </form>
+                    @endif
                     @endif
                 </div>
             </div>

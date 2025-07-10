@@ -65,9 +65,11 @@
                     <i class="bx bx-filter mr-2 text-blue-600"></i>
                     Filtres et Recherche
                 </h3>
+                @if(can('services.create'))
                 <a href="{{ route('services.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                     <i class="bx bx-plus mr-2"></i>Nouveau Service
                 </a>
+                @endif
             </div>
         </div>
         <div class="p-6">
@@ -137,10 +139,14 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex items-center space-x-2">
+                                    @if(can('services.edit'))
                                     <a href="{{ route('services.edit', $service) }}"
                                        class="text-green-600 hover:text-green-900 bg-green-100 hover:bg-green-200 px-2 py-1 rounded transition-colors">
                                         <i class="bx bx-edit"></i>
                                     </a>
+                                    @endif
+
+                                    @if(can('services.destroy'))
                                     @if($service->agents_count == 0)
                                         <form method="POST" action="{{ route('services.destroy', $service) }}" class="inline">
                                             @csrf
@@ -152,6 +158,7 @@
                                             </button>
                                         </form>
                                     @endif
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -161,9 +168,12 @@
                                 <div class="text-gray-500">
                                     <i class="bx bx-briefcase text-4xl mb-2"></i>
                                     <p>Aucun service trouvé.</p>
+
+                                    @if(can('services.create'))
                                     <a href="{{ route('services.create') }}" class="mt-2 inline-block text-blue-600 hover:text-blue-800">
                                         <i class="bx bx-plus-circle mr-1"></i> Créer un service
                                     </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

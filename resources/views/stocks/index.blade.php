@@ -74,10 +74,12 @@
     <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
 
         <div class="flex space-x-2 mb-3">
+            @if(can('stocks.mouvements'))
             <a href="{{ route('stocks.mouvements') }}" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center">
                 <i class="bx bx-transfer mr-2"></i>
                 Mouvements
             </a>
+            @endif
         </div>
 
         <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
@@ -125,11 +127,13 @@
             </div>
 
             <div class="flex space-x-2">
+                @if(can('stocks.create'))
                 <a href="{{ route('stocks.create') }}"
                    class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                     <i class="bx bx-plus mr-2"></i>
                     Nouvel Article
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -195,14 +199,21 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                            @if(can('stocks.view'))
                             <a href="{{ route('stocks.show', $stock) }}"
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
+                            @endif
+
+                            @if(can('stocks.edit'))
                             <a href="{{ route('stocks.edit', $stock) }}"
                                class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                 <i class="bx bx-edit"></i>
                             </a>
+                            @endif
+
+                            @if(can('stocks.create'))
                             <button onclick="openStockModal({{ $stock->id }}, 'ajouter')"
                                     class="text-green-600 hover:text-green-800 transition-colors">
                                 <i class="bx bx-plus-circle"></i>
@@ -211,6 +222,7 @@
                                     class="text-orange-600 hover:text-orange-800 transition-colors">
                                 <i class="bx bx-minus-circle"></i>
                             </button>
+                            @endif
                         </td>
                     </tr>
                     @empty

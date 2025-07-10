@@ -39,10 +39,12 @@
 
             <div class="flex space-x-3">
                 @if($demandeFourniture->peutEtreModifie())
+                @if(can('demandes-fournitures.edit'))
                     <a href="{{ route('demandes-fournitures.edit', $demandeFourniture) }}"
                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 flex items-center">
                         <i class="bx bx-edit mr-2"></i>Modifier
                     </a>
+                @endif
                 @endif
                 
                 @if($demandeFourniture->peutEtreApprouve())
