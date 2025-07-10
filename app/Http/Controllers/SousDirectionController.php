@@ -74,7 +74,7 @@ class SousDirectionController extends Controller
             'total_agents' => $sous_direction->agents()->count(),
         ];
 
-        return view('sous-directions.show', compact('sous_direction', 'stats'));
+        return view('sous-directions.index', compact('sous_direction', 'stats'));
     }
 
     public function edit(SousDirection $sous_direction)
@@ -103,7 +103,7 @@ class SousDirectionController extends Controller
 
         $sous_direction->update($validated);
 
-        return redirect()->route('sous_directions.show', $sous_direction)
+        return redirect()->route('sous_directions.index', $sous_direction)
             ->with('success', 'SousDirection modifié avec succès.');
     }
 
