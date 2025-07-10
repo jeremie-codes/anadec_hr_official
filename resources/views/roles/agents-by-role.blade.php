@@ -103,6 +103,10 @@
                                                 <i class="bx bx-user-plus"></i>
                                             </button>
                                         @else
+                                            <a href="{{ route('roles.agent-permissions', $agent) }}"
+                                                class="text-indigo-600 hover:text-indigo-900 bg-indigo-100 hover:bg-indigo-200 px-2 py-1 rounded transition-colors">
+                                                <i class="bx bx-shield"></i>
+                                            </a>
                                             <!-- Réinitialiser le mot de passe -->
                                             <form method="POST" action="{{ route('roles.reset-password', $agent) }}" class="inline">
                                                 @csrf

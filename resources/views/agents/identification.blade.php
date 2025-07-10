@@ -25,11 +25,14 @@
                     <i class="bx bx-x mr-1"></i>Effacer
                 </a>
             @endif
+
+            @if(can('agents.create'))
             <a href="{{ route('agents.create') }}"
                 class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
                 <i class="bx bx-plus mr-2"></i>
                 Nouvel Agent
             </a>
+            @endif
         </form>
     </div>
 
