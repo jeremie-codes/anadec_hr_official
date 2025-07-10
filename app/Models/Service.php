@@ -12,6 +12,7 @@ class Service extends Model
     protected $fillable = [
         'direction_id',
         'sous_direction_id',
+        'code',
         'name',
     ];
 

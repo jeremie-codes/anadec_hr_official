@@ -123,7 +123,7 @@
                     @forelse($sous_directions as $sous_direction)
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">{{ $sous_direction->name }}</div>
+                                <div class="text-sm font-medium text-gray-900">{{ $sous_direction->name }} {{ $sous_direction->code ? "($sous_direction->code)": "" }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-lg font-semibold text-gray-900">{{ $sous_direction->services->count() }}</div>

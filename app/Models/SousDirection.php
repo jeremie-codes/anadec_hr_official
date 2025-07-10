@@ -8,6 +8,7 @@ class SousDirection extends Model
 {
     protected $fillable = [
         'direction_id',
+        'code',
         'name',
     ];
 

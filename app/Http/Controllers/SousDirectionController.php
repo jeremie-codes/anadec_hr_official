@@ -46,6 +46,7 @@ class SousDirectionController extends Controller
     {
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
+            'code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
         ]);
 
@@ -87,6 +88,7 @@ class SousDirectionController extends Controller
     {
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
+            'code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
         ]);
 

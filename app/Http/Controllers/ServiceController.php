@@ -50,6 +50,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
             'sous_direction_id' => 'required|exists:sous_directions,id',
+            'code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
         ]);
 
@@ -93,6 +94,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'direction_id' => 'required|exists:directions,id',
             'sous_direction_id' => 'required|exists:sous_directions,id',
+            'code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
         ]);
 
