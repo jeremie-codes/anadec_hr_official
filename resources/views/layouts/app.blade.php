@@ -630,7 +630,7 @@
                 @endif
 
                <!-- Gestion des Directions et Services -->
-                @if(can('directions.view') || can('sous_directions.view') || can('services.view'))
+                @if(can('directions.view') || can('sous-directions.view') || can('services.view'))
                     <div class="space-y-1">
                         <button class="flex items-center w-full px-2 text-left py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue"
                                 onclick="toggleSubmenu('structure-submenu', 'icon-structure')">
@@ -645,7 +645,7 @@
                                     <span class="sidebar-text ml-3">Directions</span>
                                 </a>
                             @endif
-                            @if(can('sous_directions.view'))
+                            @if(can('sous-directions.view'))
                                 <a href="{{ route('sous_directions.index') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-building text-lg"></i>
                                     <span class="sidebar-text ml-3">Sous Directions</span>
