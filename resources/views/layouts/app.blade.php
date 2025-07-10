@@ -63,8 +63,13 @@
 </head>
 <body class="bg-gray-50">
     <div class="flex h-screen overflow-hidden">
+        <!-- Overlay -->
+        <div id="mobile-overlay" onclick="toggleMobileSidebar()" class="hidden fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"></div>
+
         <!-- Sidebar -->
-        <div id="sidebar" class="sidebar-expanded transition-width bg-anadec-blue flex flex-col">
+        <div id="sidebar" class="sidebar-expanded transition-width bg-anadec-blue flex flex-col
+                        fixed md:relative z-40 h-full md:h-auto top-0 left-0 transform -translate-x-full md:translate-x-0
+                        md:flex w-64 md:w-auto transition-transform duration-300 ease-in-out">
             <!-- Logo -->
             <div class="flex items-center justify-center h-16 bg-anadec-dark-blue">
                 <div class="flex items-center">
@@ -687,12 +692,12 @@
             </nav>
 
             <!-- Bouton de réduction -->
-            <div class="p-2">
+            {{-- <div class="p-2">
                 <button onclick="toggleSidebar()"
                         class="w-full flex items-center justify-center px-2 py-2 text-sm font-medium text-white rounded-md hover:bg-anadec-light-blue">
                     <i id="sidebar-toggle-icon" class="bx bx-chevron-left text-xl"></i>
                 </button>
-            </div>
+            </div> --}}
         </div>
 
         <!-- Contenu principal -->
@@ -700,6 +705,9 @@
             <!-- Header -->
             <header class="bg-white shadow-sm border-b border-gray-200">
                 <div class="flex items-center justify-between px-6 py-4">
+                    <button id="hamburger-btn" class="md:hidden text-anadec-blue text-3xl mr-4" onclick="toggleMobileSidebar()">
+                        <i class="bx bx-menu"></i>
+                    </button>
                     <div>
                         <h1 class="text-xl font-semibold text-gray-900">@yield('page-title', 'Tableau de Bord')</h1>
                         <p class="text-sm text-gray-600">@yield('page-description', 'Bienvenue sur ANADEC RH')</p>
@@ -848,5 +856,24 @@
             });
         }, 5000);
     </script>
+
+    <script>
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-overlay');
+            const isOpen = sidebar.classList.contains('-translate-x-full');
+
+            if (isOpen) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                overlay.classList.add('hidden');
+            }
+        }
+    </script>
+
 </body>
 </html>
