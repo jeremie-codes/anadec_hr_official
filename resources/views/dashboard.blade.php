@@ -8,7 +8,7 @@
 <div class="space-y-6">
     <!-- Statistiques principales -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        @if(Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC' 
+        {{-- @if(Auth::user()->agent->role->name == 'collaborateur' && Auth::user()->agent->direction->name == 'DRH' && Auth::user()->agent->service->name == 'DEC' 
             || Auth::user()->agent->role->name == 'directeur' && Auth::user()->agent->direction->name == 'DRH' 
             || Auth::user()->agent->role->name == 'sous-directeur' && Auth::user()->agent->sousDirection->name == 'ADMINISTRATION' && Auth::user()->agent->direction->name == 'DRH')
             <!-- Total Agents Actifs -->
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-        @endif
+        @endif --}}
     </div>
 
     <!-- Graphiques et tableaux -->
