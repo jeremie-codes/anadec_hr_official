@@ -50,9 +50,9 @@
                     <div class="flex-1 min-w-0">
                         <h3 class="text-lg font-medium text-gray-900 truncate">{{ $agent->full_name }}</h3>
                         <p class="text-sm text-gray-500">{{ $agent->matricule }}</p>
-                        <p class="text-sm text-gray-600">{{ $agent->role->name ?? '' }}</p>
-                        <p class="text-xs text-gray-500">{{ $agent->direction?->name ?? '' }}</p>
-                        <div class="text-xs text-gray-500">{{ $agent->sousDirection?->name == 'Ancun' ? '': $agent->sousDirection?->name }}</div>
+                        <p class="text-sm text-gray-600">{{ $agent?->role?->name ?? '' }}</p>
+                        <p class="text-xs text-gray-500">{{ $agent?->direction?->name ?? '' }}</p>
+                        <div class="text-xs text-gray-500">{{ $agent?->sousDirection?->name == 'Ancun' ? '': $agent?->sousDirection?->name }}</div>
                     </div>
                 </div>
 
