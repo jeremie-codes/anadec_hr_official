@@ -87,7 +87,7 @@
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-900">{{ $presence->agent->full_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $presence->agent->direction }}</p>
+                                <p class="text-xs text-gray-500">{{ $presence->agent->direction->name }}</p>
                             </div>
                         </div>
                         <div class="text-right">
