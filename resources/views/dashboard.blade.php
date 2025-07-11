@@ -9,17 +9,19 @@
     <!-- Statistiques principales -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         @if(
-    (Auth::user()->agent?->role?->name === 'collaborateur' && 
-     Auth::user()->agent?->direction?->name === 'DRH' && 
-     Auth::user()->agent?->service?->code === 'DEC') ||
+            (Auth::user()->agent?->role?->name === 'collaborateur' &&
+            Auth::user()->agent?->direction?->name === 'DRH' &&
+            Auth::user()->agent?->service?->code === 'DEC') ||
 
-    (Auth::user()->agent?->role?->name === 'directeur' && 
-     Auth::user()->agent?->direction?->name === 'DRH') ||
+            (Auth::user()->agent?->role?->name === 'directeur' &&
+            Auth::user()->agent?->direction?->name === 'DRH') ||
 
-    (Auth::user()->agent?->role?->name === 'sous-directeur' && 
-     Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' && 
-     Auth::user()->agent?->direction?->name === 'DRH')
-)
+            (Auth::user()->agent?->role?->name === 'sous-directeur' &&
+            Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' &&
+            Auth::user()->agent?->direction?->name === 'DRH') ||
+
+            (Auth::user()->agent?->role?->name === 'Admini')
+        )
 
             <!-- Total Agents Actifs -->
             <div class="bg-gradient-to-br from-emerald-500 to-green-600 overflow-hidden shadow-lg rounded-xl border border-green-200">
@@ -91,36 +93,51 @@
         @endif
     </div>
 
-    <!-- Graphiques et tableaux -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Présences de la semaine -->
-        <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">
-                <h3 class="text-lg font-medium text-gray-900 flex items-center">
-                    <i class="bx bx-line-chart mr-2 text-purple-600"></i>
-                    Présences de la Semaine
-                </h3>
-            </div>
-            <div class="p-6">
-                <div class="space-y-4">
-                    @foreach($weekPresences as $day)
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <span class="text-sm font-medium text-gray-700">{{ $day['date'] }}</span>
-                        <div class="flex items-center space-x-4">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mr-2"></div>
-                                <span class="text-sm text-gray-600 font-medium">{{ $day['presents'] }} présents</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 bg-gradient-to-r from-red-400 to-rose-500 rounded-full mr-2"></div>
-                                <span class="text-sm text-gray-600 font-medium">{{ $day['absents'] }} absents</span>
+        <!-- Graphiques et tableaux -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        @if(
+            (Auth::user()->agent?->role?->name === 'collaborateur' &&
+            Auth::user()->agent?->direction?->name === 'DRH' &&
+            Auth::user()->agent?->service?->code === 'DEC') ||
+
+            (Auth::user()->agent?->role?->name === 'directeur' &&
+            Auth::user()->agent?->direction?->name === 'DRH') ||
+
+            (Auth::user()->agent?->role?->name === 'sous-directeur' &&
+            Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' &&
+            Auth::user()->agent?->direction?->name === 'DRH') ||
+
+            (Auth::user()->agent?->role?->name === 'Admini')
+        )
+            <!-- Présences de la semaine -->
+            <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">
+                    <h3 class="text-lg font-medium text-gray-900 flex items-center">
+                        <i class="bx bx-line-chart mr-2 text-purple-600"></i>
+                        Présences de la Semaine
+                    </h3>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4">
+                        @foreach($weekPresences as $day)
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="text-sm font-medium text-gray-700">{{ $day['date'] }}</span>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mr-2"></div>
+                                    <span class="text-sm text-gray-600 font-medium">{{ $day['presents'] }} présents</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-gradient-to-r from-red-400 to-rose-500 rounded-full mr-2"></div>
+                                    <span class="text-sm text-gray-600 font-medium">{{ $day['absents'] }} absents</span>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
-        </div>
+        @endif
 
         <!-- Communiqués de la valve -->
         <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
@@ -188,88 +205,103 @@
         </div>
     </div>
 
-    <!-- Actions rapides -->
-    <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-indigo-50 to-purple-50">
-            <h3 class="text-lg font-medium text-gray-900 flex items-center">
-                <i class="bx bx-zap mr-2 text-indigo-600"></i>
-                Actions Rapides
-            </h3>
-        </div>
-        <div class="p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <a href="{{ route('agents.create') }}"
-                   class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
-                    <i class="bx bx-user-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
-                    <div>
-                        <p class="font-semibold text-blue-900">Nouvel Agent</p>
-                        <p class="text-sm text-blue-700">Ajouter un agent</p>
-                    </div>
-                </a>
+    @if(
+        (Auth::user()->agent?->role?->name === 'collaborateur' &&
+        Auth::user()->agent?->direction?->name === 'DRH' &&
+        Auth::user()->agent?->service?->code === 'DEC') ||
 
-                <a href="{{ route('presences.create') }}"
-                   class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
-                    <i class="bx bx-calendar-plus text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
-                    <div>
-                        <p class="font-semibold text-green-900">Nouvelle Présence</p>
-                        <p class="text-sm text-green-700">Enregistrer présence</p>
-                    </div>
-                </a>
+        (Auth::user()->agent?->role?->name === 'directeur' &&
+        Auth::user()->agent?->direction?->name === 'DRH') ||
 
-                <a href="{{ route('visitors.create') }}"
-                   class="group flex items-center p-4 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl hover:from-yellow-100 hover:to-orange-200 transition-all duration-200 border border-yellow-200">
-                    <i class="bx bx-user-voice text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
-                    <div>
-                        <p class="font-semibold text-orange-900">Nouveau Visiteur</p>
-                        <p class="text-sm text-orange-700">Enregistrer visiteur</p>
-                    </div>
-                </a>
+        (Auth::user()->agent?->role?->name === 'sous-directeur' &&
+        Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' &&
+        Auth::user()->agent?->direction?->name === 'DRH') ||
 
-                <a href="{{ route('valves.create') }}"
-                   class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
-                    <i class="bx bx-megaphone text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
-                    <div>
-                        <p class="font-semibold text-purple-900">Nouveau Communiqué</p>
-                        <p class="text-sm text-purple-700">Publier annonce</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Statistiques supplémentaires -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        (Auth::user()->agent?->role?->name === 'Admini')
+    )
+        <!-- Actions rapides -->
         <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-            <div class="p-6 text-center bg-gradient-to-br from-blue-50 to-indigo-50">
-                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="bx bx-user-check text-white text-2xl"></i>
+            <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-indigo-50 to-purple-50">
+                <h3 class="text-lg font-medium text-gray-900 flex items-center">
+                    <i class="bx bx-zap mr-2 text-indigo-600"></i>
+                    Actions Rapides
+                </h3>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="{{ route('agents.create') }}"
+                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
+                        <i class="bx bx-user-plus text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <p class="font-semibold text-blue-900">Nouvel Agent</p>
+                            <p class="text-sm text-blue-700">Ajouter un agent</p>
+                        </div>
+                    </a>
+
+                    <a href="{{ route('presences.create') }}"
+                    class="group flex items-center p-4 bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl hover:from-green-100 hover:to-emerald-200 transition-all duration-200 border border-green-200">
+                        <i class="bx bx-calendar-plus text-green-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <p class="font-semibold text-green-900">Nouvelle Présence</p>
+                            <p class="text-sm text-green-700">Enregistrer présence</p>
+                        </div>
+                    </a>
+
+                    <a href="{{ route('visitors.create') }}"
+                    class="group flex items-center p-4 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl hover:from-yellow-100 hover:to-orange-200 transition-all duration-200 border border-yellow-200">
+                        <i class="bx bx-user-voice text-orange-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <p class="font-semibold text-orange-900">Nouveau Visiteur</p>
+                            <p class="text-sm text-orange-700">Enregistrer visiteur</p>
+                        </div>
+                    </a>
+
+                    <a href="{{ route('valves.create') }}"
+                    class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
+                        <i class="bx bx-megaphone text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <p class="font-semibold text-purple-900">Nouveau Communiqué</p>
+                            <p class="text-sm text-purple-700">Publier annonce</p>
+                        </div>
+                    </a>
                 </div>
-                <p class="text-3xl font-bold text-gray-900">{{ number_format($totalRetraites) }}</p>
-                <p class="text-sm text-gray-600 font-medium">Retraités</p>
             </div>
         </div>
 
-        <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-            <div class="p-6 text-center bg-gradient-to-br from-yellow-50 to-orange-50">
-                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="bx bx-first-aid text-white text-2xl"></i>
+        <!-- Statistiques supplémentaires -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
+                <div class="p-6 text-center bg-gradient-to-br from-blue-50 to-indigo-50">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bx bx-user-check text-white text-2xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-900">{{ number_format($totalRetraites) }}</p>
+                    <p class="text-sm text-gray-600 font-medium">Retraités</p>
                 </div>
-                <p class="text-3xl font-bold text-gray-900">{{ number_format($totalMalades) }}</p>
-                <p class="text-sm text-gray-600 font-medium">En Congé Maladie</p>
             </div>
-        </div>
 
-        <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-            <div class="p-6 text-center bg-gradient-to-br from-green-50 to-emerald-50">
-                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="bx bx-trending-up text-white text-2xl"></i>
+            <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
+                <div class="p-6 text-center bg-gradient-to-br from-yellow-50 to-orange-50">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bx bx-first-aid text-white text-2xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-900">{{ number_format($totalMalades) }}</p>
+                    <p class="text-sm text-gray-600 font-medium">En Congé Maladie</p>
                 </div>
-                <p class="text-3xl font-bold text-gray-900">
-                    {{ $totalAgents > 0 ? round(($presentsToday / $totalAgents) * 100) : 0 }}%
-                </p>
-                <p class="text-sm text-gray-600 font-medium">Taux de Présence</p>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
+                <div class="p-6 text-center bg-gradient-to-br from-green-50 to-emerald-50">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bx bx-trending-up text-white text-2xl"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-900">
+                        {{ $totalAgents > 0 ? round(($presentsToday / $totalAgents) * 100) : 0 }}%
+                    </p>
+                    <p class="text-sm text-gray-600 font-medium">Taux de Présence</p>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 @endsection
