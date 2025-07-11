@@ -381,7 +381,7 @@
                     @endif
 
                     @if($courrier->peutEtreAnnule())
-                    @if(can('courriers.destroy'))
+                    @if(can('courriers.delete'))
                         <form action="{{ route('courriers.destroy', $courrier) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir annuler ce courrier ?');">
                             @csrf
                             @method('DELETE')

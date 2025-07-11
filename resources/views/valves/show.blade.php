@@ -94,7 +94,7 @@
                                         </p>
                                     </div>
                                 @else
-                                    <p class="text-gray-600">Fichier non supporté : 
+                                    <p class="text-gray-600">Fichier non supporté :
                                         <a href="{{ $url }}" class="text-blue-500 underline" target="_blank">Télécharger {{ $extension }}</a>
                                     </p>
                                 @endif
@@ -196,7 +196,7 @@
                     </form>
                     @endif
 
-                    @if(can('valves.destroy'))
+                    @if(can('valves.delete'))
                     <form action="{{ route('valves.destroy', $valve) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce communiqué ?');">
                         @csrf
                         @method('DELETE')

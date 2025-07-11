@@ -220,7 +220,7 @@
                             </a>
                             @endif
 
-                            @if(can('presences.destroy'))                            
+                            @if(can('presences.delete'))
                             <form method="POST" action="{{ route('presences.destroy', $presence) }}" class="inline">
                                 @csrf
                                 @method('DELETE')

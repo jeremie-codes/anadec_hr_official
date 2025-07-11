@@ -256,7 +256,7 @@
                                 </a>
                                 @endif
 
-                                @if(can('paiements.destroy'))
+                                @if(can('paiements.delete'))
                                 <form method="POST" action="{{ route('paiements.destroy', $paiement) }}" class="inline">
                                     @csrf
                                     @method('DELETE')

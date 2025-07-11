@@ -143,7 +143,7 @@
                                     </a>
                                     @endif
 
-                                    @if(can('sous-directions.destroy'))
+                                    @if(can('sous-directions.delete'))
                                     @if($sous_direction->agents_count == 0)
                                         <form method="POST" action="{{ route('sous_directions.destroy', $sous_direction) }}" class="inline">
                                             @csrf

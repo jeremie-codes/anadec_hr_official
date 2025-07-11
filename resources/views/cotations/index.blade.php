@@ -226,7 +226,7 @@
                             </a>
                             @endif
 
-                            @if(can('cotations.destroy'))
+                            @if(can('cotations.delete'))
                             <form method="POST" action="{{ route('cotations.destroy', $cotation) }}" class="inline">
                                 @csrf
                                 @method('DELETE')

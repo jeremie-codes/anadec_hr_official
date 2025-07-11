@@ -187,7 +187,7 @@
                             </a>
                             @endif
 
-                            @if(can('agents.destroy'))
+                            @if(can('agents.delete'))
                             <form method="POST" action="{{ route('agents.destroy', $agent) }}" class="inline">
                                 @csrf
                                 @method('DELETE')

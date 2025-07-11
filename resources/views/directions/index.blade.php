@@ -130,7 +130,7 @@
                                     </a>
                                     @endif
 
-                                    @if(can('directions.destroy'))
+                                    @if(can('directions.delete'))
                                     @if($direction->services_count == 0 && $direction->agents_count == 0)
                                         <form method="POST" action="{{ route('directions.destroy', $direction) }}" class="inline">
                                             @csrf
@@ -153,7 +153,7 @@
                                     <i class="bx bx-buildings text-4xl mb-2"></i>
                                     <p>Aucune direction trouvée.</p>
 
-                                    @if(can('directions.create'))                                    
+                                    @if(can('directions.create'))
                                     <a href="{{ route('directions.create') }}" class="mt-2 inline-block text-blue-600 hover:text-blue-800">
                                         <i class="bx bx-plus-circle mr-1"></i> Créer une direction
                                     </a>

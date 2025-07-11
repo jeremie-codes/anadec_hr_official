@@ -10,7 +10,7 @@
     <div class="bg-white p-6 rounded-lg shadow-sm border">
         <form method="GET" class="flex items-center space-x-4">
             <label for="date" class="text-sm font-medium text-gray-700">Date :</label>
-            <input type="date" name="date" id="date" value="{{ $date->format('Y-m-d') }}" 
+            <input type="date" name="date" id="date" value="{{ $date->format('Y-m-d') }}"
                    class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
             <button type="submit" class="bg-anadec-blue text-white px-4 py-2 rounded-lg hover:bg-anadec-dark-blue">
                 <i class="bx bx-calendar mr-2"></i>Afficher
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-white p-6 rounded-lg shadow-sm border">
             <div class="flex items-center">
                 <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-white p-6 rounded-lg shadow-sm border">
             <div class="flex items-center">
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-white p-6 rounded-lg shadow-sm border">
             <div class="flex items-center">
                 <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
@@ -129,7 +129,7 @@
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-900">{{ $agent->full_name }}</p>
-                                <p class="text-xs text-gray-500">{{ $agent->direction }}</p>
+                                <p class="text-xs text-gray-500">{{ $agent->direction->name }}</p>
                             </div>
                         </div>
                         <div class="text-right">
@@ -153,12 +153,12 @@
     <div class="bg-white p-6 rounded-lg shadow-sm border">
         <h3 class="text-lg font-medium text-gray-900 mb-4">Actions Rapides</h3>
         <div class="flex space-x-4">
-            <a href="{{ route('presences.create') }}" 
+            <a href="{{ route('presences.create') }}"
                class="bg-anadec-blue text-white px-4 py-2 rounded-lg hover:bg-anadec-dark-blue flex items-center">
                 <i class="bx bx-plus mr-2"></i>
                 Nouvelle Présence
             </a>
-            <a href="{{ route('presences.export', ['date' => $date->format('Y-m-d')]) }}" 
+            <a href="{{ route('presences.export', ['date' => $date->format('Y-m-d')]) }}"
                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
                 <i class="bx bx-download mr-2"></i>
                 Exporter le Jour

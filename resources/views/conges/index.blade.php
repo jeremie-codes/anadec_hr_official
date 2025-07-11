@@ -224,7 +224,7 @@
                                 </a>
                                 @endif
 
-                                @if(can('conges.destroy'))
+                                @if(can('conges.delete'))
                                 <form method="POST" action="{{ route('conges.destroy', $conge) }}" class="inline">
                                     @csrf
                                     @method('DELETE')

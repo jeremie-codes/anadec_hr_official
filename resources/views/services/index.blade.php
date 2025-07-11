@@ -146,7 +146,7 @@
                                     </a>
                                     @endif
 
-                                    @if(can('services.destroy'))
+                                    @if(can('services.delete'))
                                     @if($service->agents_count == 0)
                                         <form method="POST" action="{{ route('services.destroy', $service) }}" class="inline">
                                             @csrf

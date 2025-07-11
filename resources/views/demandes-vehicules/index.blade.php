@@ -252,7 +252,7 @@
                                     <i class="bx bx-edit"></i>
                                 </a>
                                 @endif
-                                @if(can('demandes-vehicules.destroy'))
+                                @if(can('demandes-vehicules.delete'))
                                 <form method="POST" action="{{ route('demandes-vehicules.destroy', $demande) }}" class="inline">
                                     @csrf
                                     @method('DELETE')

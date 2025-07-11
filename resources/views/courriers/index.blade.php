@@ -267,7 +267,7 @@
                                 </button>
                             @endif
                             @if($courrier->peutEtreAnnule())
-                                @if(can('courriers.destroy'))
+                                @if(can('courriers.delete'))
                                 <form method="POST" action="{{ route('courriers.destroy', $courrier) }}" class="inline">
                                     @csrf
                                     @method('DELETE')

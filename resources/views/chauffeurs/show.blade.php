@@ -281,7 +281,7 @@
                         <span class="text-yellow-800 font-medium">Modifier le chauffeur</span>
                     </a>
 
-                    @if(can('chauffeurs.destroy'))
+                    @if(can('chauffeurs.delete'))
                     <form action="{{ route('chauffeurs.destroy', $chauffeur) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce chauffeur ?');">
                         @csrf
                         @method('DELETE')

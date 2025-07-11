@@ -354,17 +354,17 @@
 
                         <!-- État actuel -->
                         <div class="flex items-center justify-between p-3 rounded-lg
-                            {{ $vehicule->etat === 'bon_etat' ? 'bg-green-50' : 
-                              ($vehicule->etat === 'panne' ? 'bg-red-50' : 
+                            {{ $vehicule->etat === 'bon_etat' ? 'bg-green-50' :
+                              ($vehicule->etat === 'panne' ? 'bg-red-50' :
                               ($vehicule->etat === 'entretien' ? 'bg-yellow-50' : 'bg-gray-50')) }}">
                             <div class="flex items-center">
-                                <i class="bx {{ $vehicule->getEtatIcon() }} mr-2 
-                                    {{ $vehicule->etat === 'bon_etat' ? 'text-green-600' : 
-                                      ($vehicule->etat === 'panne' ? 'text-red-600' : 
+                                <i class="bx {{ $vehicule->getEtatIcon() }} mr-2
+                                    {{ $vehicule->etat === 'bon_etat' ? 'text-green-600' :
+                                      ($vehicule->etat === 'panne' ? 'text-red-600' :
                                       ($vehicule->etat === 'entretien' ? 'text-yellow-600' : 'text-gray-600')) }}"></i>
-                                <span class="text-sm font-medium 
-                                    {{ $vehicule->etat === 'bon_etat' ? 'text-green-800' : 
-                                      ($vehicule->etat === 'panne' ? 'text-red-800' : 
+                                <span class="text-sm font-medium
+                                    {{ $vehicule->etat === 'bon_etat' ? 'text-green-800' :
+                                      ($vehicule->etat === 'panne' ? 'text-red-800' :
                                       ($vehicule->etat === 'entretien' ? 'text-yellow-800' : 'text-gray-800')) }}">
                                     État actuel
                                 </span>
@@ -402,7 +402,7 @@
                     </a>
                     @endif
 
-                    @if(can('vehicules.destroy'))
+                    @if(can('vehicules.delete'))
                     <form action="{{ route('vehicules.destroy', $vehicule) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?');">
                         @csrf
                         @method('DELETE')

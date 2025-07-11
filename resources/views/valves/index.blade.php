@@ -182,7 +182,7 @@
                                 </button>
                             </form>
                             @endif
-                            @if(can('valves.destroy'))
+                            @if(can('valves.delete'))
                             <form method="POST" action="{{ route('valves.destroy', $valve) }}" class="inline">
                                 @csrf
                                 @method('DELETE')
