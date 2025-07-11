@@ -176,7 +176,7 @@ class PresenceController extends Controller
                     $presence->date->format('d/m/Y'),
                     $presence->agent->matricule,
                     $presence->agent->nom,
-                    $presence->agent->direction,
+                    $presence->agent->direction->name,
                     $presence->heure_arrivee,
                     $presence->heure_depart,
                     $presence->statut,

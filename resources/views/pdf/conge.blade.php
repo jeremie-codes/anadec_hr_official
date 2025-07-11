@@ -33,7 +33,7 @@
     @if ($conge->type == 'annuel')
         <h3 class="text-center mb-4">DECISION DE CONGE DE CIRCONSTANCE</h3>
     @else
-        <h3 class="text-center mb-4">DECISION DE CONGE DE REECONSTITUTION <br> EXERCICE {{ $conge->exercice ?? "" }}</h3>
+        <h3 class="text-center mb-4">DECISION DE CONGE DE RECONSTITUTION <br> EXERCICE {{ $conge->exercice ?? "" }}</h3>
     @endif
 
 
