@@ -205,12 +205,12 @@
                                     <span class="sidebar-text ml-3">Liste Générale</span>
                                 </a>
                             @endif
-                            @if(can('presences.daily'))
+                            {{-- @if(can('presences.daily'))
                                 <a href="{{ route('presences.daily') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-calendar-event text-lg"></i>
                                     <span class="sidebar-text ml-3">Présence du Jour</span>
                                 </a>
-                            @endif
+                            @endif --}}
                             @if(can('presences.create'))
                                 <a href="{{ route('presences.create') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-plus text-lg"></i>
