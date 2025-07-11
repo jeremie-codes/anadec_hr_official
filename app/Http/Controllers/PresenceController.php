@@ -75,7 +75,7 @@ class PresenceController extends Controller
             ->whereNotIn('id', $agentsPresents)
             ->get();
 
-            $date = $date->format("d/m/Y");
+            // dd($dat->format("d/m/Y")e);
         return view('presences.daily', compact('presences', 'agentsAbsents', 'date'));
     }
 
