@@ -20,7 +20,7 @@
             Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' &&
             Auth::user()->agent?->direction?->name === 'DRH') ||
 
-            (Auth::user()->agent?->role?->name === 'Admini')
+            (Auth::user()->agent?->role?->name === 'Admin')
         )
 
             <!-- Total Agents Actifs -->
@@ -107,7 +107,7 @@
             Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' &&
             Auth::user()->agent?->direction?->name === 'DRH') ||
 
-            (Auth::user()->agent?->role?->name === 'Admini')
+            (Auth::user()->agent?->role?->name === 'Admin')
         )
             <!-- Présences de la semaine -->
             <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
@@ -217,7 +217,7 @@
         Auth::user()->agent?->sousDirection?->name === 'S/D ADMINISTRATION' &&
         Auth::user()->agent?->direction?->name === 'DRH') ||
 
-        (Auth::user()->agent?->role?->name === 'Admini')
+        (Auth::user()->agent?->role?->name === 'Admin')
     )
         <!-- Actions rapides -->
         <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
