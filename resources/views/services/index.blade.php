@@ -126,10 +126,13 @@
                     @forelse($services as $service)
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">{{ $service->name }} ({{ $service->code }})</div>
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ \Illuminate\Support\Str::limit($service->name, 35) }} ({{ $service->code }})
+                                </div>
+
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $service->sousDirection->name ?? '' }}</div>
+                                <div class="text-sm text-gray-900">{{ \Illuminate\Support\Str::limit($service->sousDirection->name, 4) ?? '' }} {{ $service->code }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{ $service->direction->name ?? '' }}</div>

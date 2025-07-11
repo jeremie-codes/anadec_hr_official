@@ -148,7 +148,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-12 text-center">
+                            <td colspan="5" class="px-6 py-12 text-center">
                                 <div class="text-gray-500">
                                     <i class="bx bx-buildings text-4xl mb-2"></i>
                                     <p>Aucune direction trouvée.</p>

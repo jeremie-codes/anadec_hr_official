@@ -94,7 +94,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Service</label>
-                        <p class="text-sm text-gray-900">{{ $agent->service->name ?? '' }}</p>
+                        <p class="text-sm text-gray-900">{{ $agent->service->code ?? '' }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Grade/Fonction</label>

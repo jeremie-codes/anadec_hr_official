@@ -52,7 +52,7 @@
                         <p class="text-sm text-gray-500">{{ $agent->matricule }}</p>
                         <p class="text-sm text-gray-600">{{ $agent->role->name ?? '' }}</p>
                         <p class="text-xs text-gray-500">{{ $agent->direction->name ?? '' }}</p>
-                        <div class="text-xs text-gray-500">{{ $agent->sousDirection->name ?? '' }}</div>
+                        <div class="text-xs text-gray-500">{{ $agent->sousDirection->name == 'Ancun' ? '' }}</div>
                     </div>
                 </div>
 
