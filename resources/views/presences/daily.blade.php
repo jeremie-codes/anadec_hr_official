@@ -2,7 +2,7 @@
 
 @section('title', 'Présence du Jour - ANADEC RH')
 @section('page-title', 'Présence du Jour')
-@section('page-description', 'Suivi des présences pour le {{ $date->format("d/m/Y") }}')
+@section('page-description', "Suivi des présences pour le $date")
 
 @section('content')
 <div class="space-y-6">
@@ -10,7 +10,7 @@
     <div class="bg-white p-6 rounded-lg shadow-sm border">
         <form method="GET" class="flex items-center space-x-4">
             <label for="date" class="text-sm font-medium text-gray-700">Date :</label>
-            <input type="date" name="date" id="date" value="{{ $date->format('Y-m-d') }}"
+            <input type="date" name="date" id="date" value="{{ $date }}"
                    class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
             <button type="submit" class="bg-anadec-blue text-white px-4 py-2 rounded-lg hover:bg-anadec-dark-blue">
                 <i class="bx bx-calendar mr-2"></i>Afficher
@@ -158,7 +158,7 @@
                 <i class="bx bx-plus mr-2"></i>
                 Nouvelle Présence
             </a>
-            <a href="{{ route('presences.export', ['date' => $date->format('Y-m-d')]) }}"
+            <a href="{{ route('presences.export', ['date' => $date]) }}"
                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
                 <i class="bx bx-download mr-2"></i>
                 Exporter le Jour
