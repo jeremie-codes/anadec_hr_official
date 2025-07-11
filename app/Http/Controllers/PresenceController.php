@@ -62,7 +62,7 @@ class PresenceController extends Controller
 
     public function daily(Request $request)
     {
-        $date = $request->date ? Carbon::parse($request->date) : Carbon::today();
+        $date = Carbon::parse($request->date);
 
         $presences = Presence::with('agent')
             ->whereDate('date', $date)
