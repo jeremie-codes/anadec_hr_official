@@ -83,7 +83,16 @@
 
     <!-- Filtres et actions -->
     <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+        <div class="flex flex-col md:flex- md:items-start md:justify-center space-y-4 md:space-y-0">
+            <div>
+                @if(can('conges.create'))
+                <a href="{{ route('conges.create') }}"
+                class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 mb-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
+                    <i class="bx bx-plus mr-2"></i>
+                    Nouvelle Demande
+                </a>
+                @endif
+            </div>
             <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                 <form method="GET" class="flex items-center space-x-2">
                     <!-- Recherche -->
@@ -115,16 +124,6 @@
                         <option value="exceptionnel" {{ request('type') == 'exceptionnel' ? 'selected' : '' }}>Congé exceptionnel</option>
                     </select>
 
-                    <!-- Filtre par agent -->
-                    {{-- <select name="agent_id" class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
-                        <option value="">Tous les agents</option>
-                        @foreach($agents as $agent)
-                            <option value="{{ $agent->id }}" {{ request('agent_id') == $agent->id ? 'selected' : '' }}>
-                                {{ $agent->full_name }}
-                            </option>
-                        @endforeach
-                    </select> --}}
-
                     <button type="submit" class="bg-gradient-to-r from-anadec-blue to-anadec-light-blue text-white px-4 py-2 rounded-lg hover:from-anadec-dark-blue hover:to-anadec-blue transition-all">
                         <i class="bx bx-filter-alt mr-1"></i> Filtrer
                     </button>
@@ -136,14 +135,6 @@
                     @endif
                 </form>
             </div>
-
-            @if(can('conges.create'))
-            <a href="{{ route('conges.create') }}"
-               class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
-                <i class="bx bx-plus mr-2"></i>
-                Nouvelle Demande
-            </a>
-            @endif
         </div>
     </div>
 
