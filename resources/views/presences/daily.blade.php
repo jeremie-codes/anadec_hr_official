@@ -2,7 +2,7 @@
 
 @section('title', 'Présence du Jour - ANADEC RH')
 @section('page-title', 'Présence du Jour')
-@section('page-description', "Suivi des présences")
+@section('page-description', 'Suivi des présences pour le {{ $date->format("d/m/Y") }}')
 
 @section('content')
 <div class="space-y-6">
