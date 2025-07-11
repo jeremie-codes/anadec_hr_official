@@ -24,7 +24,7 @@ class AgentController extends Controller
 
         // Filtrage par direction
         if ($request->filled('direction')) {
-            $query->where('direction', $request->direction);
+            $query->where('direction_id', $request->direction);
         }
 
         // Recherche

@@ -214,6 +214,11 @@ class Conge extends Model
         return $this->statut === 'approuve_directeur';
     }
 
+    public function demandeurPeutEtreModifie()
+    {
+        return $this->statut === 'en_attente';
+    }
+
     public function peutEtreApprouveParDirecteur()
     {
         return $this->statut === 'en_attente';

@@ -71,14 +71,22 @@
 
     <!-- Filtres et actions -->
     <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+        <div class="flex flex-col md:items-start md:justify-center space-y-4 md:space-y-0">
+            <div class="flex space-x-2 mb-2">
+                <a href="{{ route('visitors.create') }}"
+                   class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
+                    <i class="bx bx-plus mr-2"></i>
+                    Nouveau Visiteur
+                </a>
+            </div>
+
             <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                 <form method="GET" class="flex items-center space-x-2">
                     <!-- Recherche -->
                     <div class="relative">
                         <input type="text" name="search" value="{{ request('search') }}"
-                               placeholder="Rechercher..."
-                               class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-anadec-blue focus:border-anadec-blue">
+                                placeholder="Rechercher..."
+                                class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-anadec-blue focus:border-anadec-blue">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
                             <i class="bx bx-search text-gray-400"></i>
                         </div>
@@ -101,16 +109,9 @@
                         @endforeach
                     </select>
 
-                    <!-- Filtre par statut -->
-                    <select name="statut" class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
-                        <option value="">Tous les statuts</option>
-                        <option value="en_cours" {{ request('statut') == 'en_cours' ? 'selected' : '' }}>En cours</option>
-                        <option value="termine" {{ request('statut') == 'termine' ? 'selected' : '' }}>Terminé</option>
-                    </select>
-
                     <!-- Filtre par date -->
                     <input type="date" name="date" value="{{ request('date') }}"
-                           class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
+                            class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
 
                     <button type="submit" class="bg-gradient-to-r from-anadec-blue to-anadec-light-blue text-white px-4 py-2 rounded-lg hover:from-anadec-dark-blue hover:to-anadec-blue transition-all">
                         <i class="bx bx-filter-alt mr-1"></i> Filtrer
@@ -124,13 +125,6 @@
                 </form>
             </div>
 
-            <div class="flex space-x-2">
-                <a href="{{ route('visitors.create') }}"
-                   class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 flex items-center transition-all">
-                    <i class="bx bx-plus mr-2"></i>
-                    Nouveau Visiteur
-                </a>
-            </div>
         </div>
     </div>
 
@@ -193,12 +187,12 @@
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
-                            <a href="{{ route('visitors.edit', $visitor) }}"
+                            <a href="{{ route('visitors.edit', $visitor) }}" title="Modifier"
                                class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                 <i class="bx bx-edit"></i>
                             </a>
                             @if($visitor->estEnCours())
-                                <button onclick="openSortieModal({{ $visitor->id }})"
+                                <button onclick="openSortieModal({{ $visitor->id }})" title="Signaler la Sortie"
                                         class="text-green-600 hover:text-green-800 transition-colors">
                                     <i class="bx bx-log-out"></i>
                                 </button>
@@ -299,10 +293,10 @@
     }
 
     // Fermer le modal en cliquant à l'extérieur
-    document.getElementById('sortie-modal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeSortieModal();
-        }
-    });
+    // document.getElementById('sortie-modal').addEventListener('click', function(e) {
+    //     if (e.target === this) {
+    //         closeSortieModal();
+    //     }
+    // });
 </script>
 @endsection

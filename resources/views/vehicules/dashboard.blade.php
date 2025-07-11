@@ -292,6 +292,7 @@
                         <p class="text-sm text-orange-700">Suivi des missions</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

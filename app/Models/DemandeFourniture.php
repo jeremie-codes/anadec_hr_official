@@ -13,8 +13,6 @@ class DemandeFourniture extends Model
     protected $fillable = [
         'agent_id',
         'article_id',
-        'direction',
-        'service',
         'besoin',
         'quantite',
         'unite',

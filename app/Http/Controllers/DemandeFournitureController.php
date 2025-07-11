@@ -135,8 +135,6 @@ class DemandeFournitureController extends Controller
     {
         $validated = $request->validate([
             'agent_id' => 'required|exists:agents,id',
-            'direction' => 'required|string|max:255',
-            'service' => 'required|string|max:255',
             'article_id' => 'nullable|exists:stocks,id',
             'besoin' => 'required|string|max:1000',
             'quantite' => 'required|integer|min:1',
@@ -148,8 +146,15 @@ class DemandeFournitureController extends Controller
 
         DemandeFourniture::create($validated);
 
-        return redirect()->route('demandes-fournitures.index')
-            ->with('success', 'Demande de fourniture créée avec succès.');
+        $user = Auth::user();
+        $agentConnecteId = $user->agent->id;
+
+        if ($agentConnecteId == $validated['agent_id']) {
+            return redirect()->route('demandes-fournitures.mes-demandes')->with('success', 'Demande soumise avec succès.');
+        } else {
+            return redirect()->route('demandes-fournitures.index')
+                ->with('success', 'Demande de fourniture créée avec succès.');
+        }
     }
 
     public function show(DemandeFourniture $demandeFourniture)
@@ -181,10 +186,9 @@ class DemandeFournitureController extends Controller
                 ->with('error', 'Cette demande ne peut plus être modifiée.');
         }
 
+        // dd($request->all());
         $validated = $request->validate([
             'agent_id' => 'required|exists:agents,id',
-            'direction' => 'required|string|max:255',
-            'service' => 'required|string|max:255',
             'article_id' => 'nullable|exists:stocks,id',
             'besoin' => 'required|string|max:1000',
             'quantite' => 'required|integer|min:1',
@@ -193,6 +197,7 @@ class DemandeFournitureController extends Controller
             'date_besoin' => 'nullable|date|after_or_equal:today',
             'justification' => 'nullable|string|max:1000',
         ]);
+
 
         $demandeFourniture->update($validated);
 

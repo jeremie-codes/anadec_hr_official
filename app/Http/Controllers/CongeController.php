@@ -187,8 +187,14 @@ class CongeController extends Controller
 
         Conge::create($validated);
 
-        return redirect()->route('conges.index')
-            ->with('success', 'Demande de congé créée avec succès.');
+        $user = Auth::user();
+        $agentConnecteId = $user->agent->id;
+
+        if ($agentConnecteId == $validated['agent_id']) {
+            return redirect()->route('conges.mes-conges')->with('success', 'Demande soumise avec succès.');
+        } else {
+            return redirect()->route('conges.index')->with('success', 'Demande de congé créée avec succès.');
+        }
     }
 
     public function show(Conge $conge)
@@ -263,6 +269,7 @@ class CongeController extends Controller
                 $conge->save();
             }
         }
+
 
         return redirect()->route('conges.show', $conge)
             ->with('success', 'Demande de congé modifiée avec succès.');

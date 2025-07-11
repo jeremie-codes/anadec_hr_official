@@ -316,7 +316,7 @@
                 @if(
                     can('stocks.dashboard') || can('stocks.view') ||
                     can('demandes-fournitures.dashboard') || can('demandes-fournitures.view') ||
-                    can('demandes-fournitures.create') || can('demandes-fournitures.approval') ||
+                    can('demandes-fournitures.create') || can('demandes-fournitures.approver') ||
                     can('demandes-fournitures.mes-demandes')
                 )
                     <div class="space-y-1">
@@ -357,7 +357,7 @@
                                     <span class="sidebar-text ml-3">Nouvelle Demande</span>
                                 </a>
                             @endif
-                            @if(can('demandes-fournitures.approval'))
+                            @if(can('demandes-fournitures.approver'))
                                 <a href="{{ route('demandes-fournitures.approbation') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-check text-lg"></i>
                                     <span class="sidebar-text ml-3">Approbation</span>
@@ -378,7 +378,7 @@
                     can('vehicules.dashboard') || can('vehicules.view') ||
                     can('chauffeurs.view') ||
                     can('demandes-vehicules.dashboard') || can('demandes-vehicules.view') ||
-                    can('demandes-vehicules.create') || can('demandes-vehicules.approval') ||
+                    can('demandes-vehicules.create') || can('demandes-vehicules.approver') ||
                     can('demandes-vehicules.affectation') || can('demandes-vehicules.mes-demandes')
                 )
                     <div class="space-y-1">
@@ -425,12 +425,12 @@
                                     <span class="sidebar-text ml-3">Nouvelle Demande</span>
                                 </a>
                             @endif
-                            @if(can('demandes-vehicules.approval'))
+                            {{-- @if(can('demandes-vehicules.approver'))
                                 <a href="{{ route('demandes-vehicules.approbation') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-check text-lg"></i>
                                     <span class="sidebar-text ml-3">Approbation</span>
                                 </a>
-                            @endif
+                            @endif --}}
                             @if(can('demandes-vehicules.affectation'))
                                 <a href="{{ route('demandes-vehicules.affectation') }}" class="flex items-center px-2 py-2 text-sm text-gray-300 rounded-md hover:text-white hover:bg-anadec-light-blue">
                                     <i class="bx bx-transfer-alt text-lg"></i>

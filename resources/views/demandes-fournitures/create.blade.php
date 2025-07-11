@@ -42,41 +42,6 @@
 
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label for="direction" class="block text-sm font-medium text-gray-700">Direction *</label>
-                            <select name="direction" id="direction" required
-                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                                <option value="">Sélectionnez...</option>
-                                @foreach($directions as $direction)
-                                    <option value="{{ $direction->id }}" {{ old('direction') == $direction->id ? 'selected' : '' }}>
-                                        {{ $direction->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('direction')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label for="service" class="block text-sm font-medium text-gray-700">Service *</label>
-                            <select name="service" id="service" required
-                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                                <option value="">Sélectionnez...</option>
-                                @foreach($services as $service)
-                                    <option value="{{ $service->id }}" {{ old('service') == $service->id ? 'selected' : '' }}>
-                                        {{ $service->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('service')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-
                     <!-- Sélection d'article avec recherche -->
                     <div>
                         <label for="article_id" class="block text-sm font-medium text-gray-700">Article demandé *</label>
@@ -118,7 +83,31 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité *</label>
+                                <input type="number" name="quantite" id="quantite" required min="1"
+                                       value="{{ old('quantite') }}"
+                                       onchange="checkStock()"
+                                       class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
+                                @error('quantite')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label for="unite" class="block text-sm font-medium text-gray-700">Unité *</label>
+                                <input type="text" name="unite" id="unite" required readonly
+                                       value="{{ old('unite') }}"
+                                       class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm bg-gray-100 focus:ring-anadec-blue focus:border-anadec-blue">
+                                @error('unite')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
+
 
                     <div>
                         <label for="besoin" class="block text-sm font-medium text-gray-700">Description du Besoin *</label>
@@ -133,29 +122,6 @@
 
                 <!-- Détails de la demande -->
                 <div class="space-y-6">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité *</label>
-                            <input type="number" name="quantite" id="quantite" required min="1"
-                                   value="{{ old('quantite') }}"
-                                   onchange="checkStock()"
-                                   class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                            @error('quantite')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label for="unite" class="block text-sm font-medium text-gray-700">Unité *</label>
-                            <input type="text" name="unite" id="unite" required readonly
-                                   value="{{ old('unite') }}"
-                                   class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm bg-gray-100 focus:ring-anadec-blue focus:border-anadec-blue">
-                            @error('unite')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
                     <!-- Vérification du stock -->
                     <div id="stock-check" class="rounded-lg p-4 hidden">
                         <h4 class="text-sm font-medium mb-2 flex items-center">

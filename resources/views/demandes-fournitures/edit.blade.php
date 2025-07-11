@@ -33,43 +33,11 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        <input type="hidden" name="agent_id" value="{{ $demandeFourniture->agent_id }}">
                         @error('agent_id')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label for="direction" class="block text-sm font-medium text-gray-700">Direction *</label>
-                            <select name="direction" id="direction" required
-                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                                <option value="">Sélectionnez...</option>
-                                @foreach($directions as $direction)
-                                    <option value="{{ $direction->id }}" {{ old('direction', $demandeFourniture->direction->id) == $direction->id ? 'selected' : '' }}>
-                                        {{ $direction->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('direction')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label for="service" class="block text-sm font-medium text-gray-700">Service *</label>
-                            <select name="service" id="service" required
-                                    class="mt-1 py-2 px-4 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-anadec-blue focus:border-anadec-blue">
-                                <option value="">Sélectionnez...</option>
-                                @foreach($services as $service)
-                                    <option value="{{ $service->id }}" {{ old('service', $demandeFourniture->service->id) == $service->id ? 'selected' : '' }}>
-                                        {{ $service->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('service')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
                     </div>
 
                     <div>
@@ -81,10 +49,7 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
 
-                <!-- Détails de la demande -->
-                <div class="space-y-6">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité *</label>
@@ -115,7 +80,10 @@
                             @enderror
                         </div>
                     </div>
+                </div>
 
+                <!-- Détails de la demande -->
+                <div class="space-y-6">
                     <div>
                         <label for="urgence" class="block text-sm font-medium text-gray-700">Niveau d'Urgence *</label>
                         <select name="urgence" id="urgence" required

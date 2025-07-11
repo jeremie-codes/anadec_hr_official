@@ -23,7 +23,7 @@
 
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900">{{ $demandeFourniture->agent->full_name }}</h2>
-                    <p class="text-gray-600">{{ $demandeFourniture->direction }} - {{ $demandeFourniture->service }}</p>
+                    <p class="text-gray-600">{{ $demandeFourniture->agent->direction->name }} - {{ $demandeFourniture->agent->service->code }}</p>
                     <div class="flex items-center space-x-3 mt-2">
                         <span class="inline-flex px-3 py-1 text-sm font-semibold rounded-full {{ $demandeFourniture->getUrgenceBadgeClass() }}">
                             <i class="bx {{ $demandeFourniture->getUrgenceIcon() }} mr-1"></i>
@@ -46,8 +46,9 @@
                     </a>
                 @endif
                 @endif
-                
+
                 @if($demandeFourniture->peutEtreApprouve())
+                    @if(can('demandes-fournitures.approver'))
                     <button onclick="openApprovalModal({{ $demandeFourniture->id }}, 'approuver')"
                             class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
                         <i class="bx bx-check mr-2"></i>Approuver
@@ -56,6 +57,7 @@
                             class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex items-center">
                         <i class="bx bx-x mr-2"></i>Rejeter
                     </button>
+                    @endif
                 @endif
 
                 @if($demandeFourniture->statut === 'en_cours')
@@ -65,7 +67,7 @@
                     </button>
                 @endif
 
-                <a href="{{ route('demandes-fournitures.index') }}"
+                <a href="{{ url()->previous() }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">
                     <i class="bx bx-arrow-back mr-2"></i>Retour
                 </a>

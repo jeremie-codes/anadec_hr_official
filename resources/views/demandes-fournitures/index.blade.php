@@ -138,17 +138,6 @@
                         <option value="faible" {{ request('urgence') == 'faible' ? 'selected' : '' }}>Faible</option>
                     </select>
 
-                    <!-- Filtre par direction -->
-                    <select name="direction" class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-anadec-blue focus:border-anadec-blue">
-                        <option value="">Toutes les directions</option>
-                        <option value="Direction Générale" {{ request('direction') == 'Direction Générale' ? 'selected' : '' }}>Direction Générale</option>
-                        <option value="Direction RH" {{ request('direction') == 'Direction RH' ? 'selected' : '' }}>Direction RH</option>
-                        <option value="Direction Financière" {{ request('direction') == 'Direction Financière' ? 'selected' : '' }}>Direction Financière</option>
-                        <option value="Direction Technique" {{ request('direction') == 'Direction Technique' ? 'selected' : '' }}>Direction Technique</option>
-                        <option value="Direction Administrative" {{ request('direction') == 'Direction Administrative' ? 'selected' : '' }}>Direction Administrative</option>
-                        <option value="Direction Commerciale" {{ request('direction') == 'Direction Commerciale' ? 'selected' : '' }}>Direction Commerciale</option>
-                    </select>
-
                     <button type="submit" class="bg-gradient-to-r from-anadec-blue to-anadec-light-blue text-white px-4 py-2 rounded-lg hover:from-anadec-dark-blue hover:to-anadec-blue transition-all">
                         <i class="bx bx-filter-alt mr-1"></i> Filtrer
                     </button>
@@ -198,8 +187,8 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $demande->agent->full_name }}</div>
-                                    <div class="text-sm text-gray-500">{{ $demande->direction }}</div>
-                                    <div class="text-xs text-gray-400">{{ $demande->service }}</div>
+                                    <div class="text-sm text-gray-500">{{ $demande->agent?->direction?->name }}</div>
+                                    <div class="text-xs text-gray-400">{{ $demande->agent?->service?->code }}</div>
                                 </div>
                             </div>
                         </td>

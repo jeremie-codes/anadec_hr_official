@@ -344,7 +344,7 @@
 
         while (current <= fin) {
             // Compter seulement les jours ouvrables (1 = lundi, 5 = vendredi)
-            if (current.getDay() >= 1 && current.getDay() == 5) {
+            if (current.getDay() >= 1 && current.getDay() <= 5) {
                 jours++;
             }
             current.setDate(current.getDate() + 1);

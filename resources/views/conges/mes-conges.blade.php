@@ -116,6 +116,7 @@
                     </div>
                 </a>
 
+                @if(can('conges.dashboard'))
                 <a href="{{ route('conges.dashboard') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-tachometer text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -124,6 +125,7 @@
                         <p class="text-sm text-blue-700">Vue d'ensemble</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -179,7 +181,7 @@
                                class="text-anadec-blue hover:text-anadec-dark-blue transition-colors">
                                 <i class="bx bx-show"></i>
                             </a>
-                            @if($conge->peutEtreModifie())
+                            @if($conge->demandeurPeutEtreModifie())
                                 <a href="{{ route('conges.edit', $conge) }}"
                                    class="text-yellow-600 hover:text-yellow-800 transition-colors">
                                     <i class="bx bx-edit"></i>

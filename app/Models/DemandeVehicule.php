@@ -13,8 +13,6 @@ class DemandeVehicule extends Model
         'agent_id',
         'vehicule_id',
         'chauffeur_id',
-        'direction',
-        'service',
         'destination',
         'motif',
         'date_heure_sortie',

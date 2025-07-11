@@ -133,22 +133,28 @@ class DemandeVehiculeController extends Controller
     {
         try {
             $validated = $request->validate([
-            'agent_id' => 'required|exists:agents,id',
-            'vehicule_id' => 'required|exists:vehicules,id',
-            'destination' => 'required|string|max:255',
-            'motif' => 'required|string|max:1000',
-            'date_heure_sortie' => 'required|date|after_or_equal:today',
-            'date_heure_retour_prevue' => 'required|date|after:date_heure_sortie',
-            'nombre_passagers' => 'required|integer|min:1|max:50',
-            'urgence' => 'required|in:faible,normale,elevee,critique',
-        ]);
+                'agent_id' => 'required|exists:agents,id',
+                'vehicule_id' => 'required|exists:vehicules,id',
+                'destination' => 'required|string|max:255',
+                'motif' => 'required|string|max:1000',
+                'date_heure_sortie' => 'required|date|after_or_equal:today',
+                'date_heure_retour_prevue' => 'required|date|after:date_heure_sortie',
+                'nombre_passagers' => 'required|integer|min:1|max:50',
+                'urgence' => 'required|in:faible,normale,elevee,critique',
+            ]);
 
-        // dd($validated);
+            // dd($validated);
 
-        DemandeVehicule::create($validated);
+            DemandeVehicule::create($validated);
 
-        return redirect()->route('demandes-vehicules.index')
-            ->with('success', 'Demande de véhicule créée avec succès.');
+            $user = Auth::user();
+            $agentConnecteId = $user->agent->id;
+            if ($agentConnecteId == $validated['agent_id']) {
+                return redirect()->route('demandes-vehicules.mes-demandes')->with('success', 'Demande soumise avec succès.');
+            } else {
+                return redirect()->route('demandes-vehicules.index')
+                    ->with('success', 'Demande de véhicule créée avec succès.');
+            }
         } catch (\Throwable $th) {
             return redirect()->route('demandes-vehicules.create')
                 ->with('error', 'Error :' . $th->getMessage());

@@ -25,6 +25,7 @@
                     </div>
                 </a>
 
+                @if(can('demandes-vehicules.dashboard'))
                 <a href="{{ route('demandes-vehicules.dashboard') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl hover:from-blue-100 hover:to-indigo-200 transition-all duration-200 border border-blue-200">
                     <i class="bx bx-tachometer text-blue-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -33,6 +34,7 @@
                         <p class="text-sm text-blue-700">Vue d'ensemble</p>
                     </div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

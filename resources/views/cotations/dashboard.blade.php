@@ -241,7 +241,7 @@
                 </a>
                 @endif
 
-                @if(can('cotations.genererate'))
+                @if(can('cotations.generate'))
                 <button onclick="openGenerationModal()"
                         class="group flex items-center p-4 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl hover:from-purple-100 hover:to-pink-200 transition-all duration-200 border border-purple-200">
                     <i class="bx bx-cog text-purple-600 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
@@ -251,7 +251,7 @@
                     </div>
                 </button>
                 @endif
-                
+
                 @if(can('presences.view'))
                 <a href="{{ route('presences.index') }}"
                    class="group flex items-center p-4 bg-gradient-to-br from-orange-50 to-red-100 rounded-xl hover:from-orange-100 hover:to-red-200 transition-all duration-200 border border-orange-200">

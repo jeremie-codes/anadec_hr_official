@@ -27,10 +27,11 @@ class PresenceController extends Controller
 
         // Filtrage par direction
         if ($request->filled('direction')) {
-            $query->whereHas('agent', function($q) use ($request) {
-                $q->where('direction', $request->direction);
+            $query->whereHas('agent.direction', function($q) use ($request) {
+                $q->where('name', $request->direction);
             });
         }
+
 
         // Recherche
         if ($request->filled('search')) {

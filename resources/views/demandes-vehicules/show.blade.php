@@ -84,7 +84,7 @@
                     </button>
                 @endif
 
-                <a href="{{ route('demandes-vehicules.index') }}"
+                <a href="{{ url()->previous() }}"
                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center">
                     <i class="bx bx-arrow-back mr-2"></i>Retour
                 </a>
